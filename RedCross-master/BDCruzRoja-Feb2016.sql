@@ -13,7 +13,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `escuelacruzroja`
 --
+
 create database `escuelacruzroja`;
+
 -- --------------------------------------------------------
 
 --
@@ -22,7 +24,7 @@ create database `escuelacruzroja`;
 
 CREATE TABLE `administrador` (
   `id_administrador` int(11) NOT NULL COMMENT 'id del admin',
-  `contra_administrador` varchar(255) DEFAULT NULL COMMENT 'contraseña de administrador',
+  `d_contra` varchar(25) DEFAULT NULL COMMENT 'contraseña de administrador',
   `d_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre del admin',
   `d_apellidopaterno` varchar(60) DEFAULT NULL COMMENT 'apellido paterno del admin',
   `d_apellidomaterno` varchar(60) DEFAULT NULL COMMENT 'apellido materno del admin',
@@ -52,17 +54,7 @@ CREATE TABLE `administrador` (
   `d_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `d_email` varchar(60) NOT NULL COMMENT 'correo electronico del administrador',
   `d_fecharegistro` date DEFAULT NULL COMMENT 'fecha en el que se registro'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `administrador`
---
-
-INSERT INTO `administrador` (`id_administrador`, `contra_administrador`, `d_nombre`, `d_apellidopaterno`, `d_apellidomaterno`, `d_fechanac`, `d_edad`, `d_lugarnac`, `d_nacionalidad`, `d_sexo`, `d_estadocivil`, `d_gposanguineo`, `d_rh`, `d_curp`, `d_servmedico`, `d_trabajo`, `d_enfermedades`, `d_alergias`, `d_debilidadmotriz`, `d_domicilio`, `d_numext`, `d_numint`, `d_cp`, `d_colonia`, `d_municipio`, `d_numlocal`, `d_numcelular`, `d_escolaridad`, `d_otrosestudios`, `d_email`, `d_fecharegistro`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'rob', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(2, 'admin', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL);
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Estructura de tabla para la tabla `alumno`
@@ -70,7 +62,7 @@ INSERT INTO `administrador` (`id_administrador`, `contra_administrador`, `d_nomb
 
 CREATE TABLE `alumno` (
   `id_alumno` int(11) NOT NULL COMMENT 'id de alumno',
-  `contra_alumno` varchar(255) NOT NULL COMMENT 'contraseña de alumno',
+  `a_contra` varchar(25) NOT NULL COMMENT 'contraseña de alumno',
   `a_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre',
   `a_apellidpaterno` varchar(60) DEFAULT NULL COMMENT 'apellido paterno',
   `a_apellidomaterno` varchar(60) DEFAULT NULL COMMENT 'apellido materno',
@@ -119,21 +111,10 @@ CREATE TABLE `alumno` (
   `a_fecharegistro` date DEFAULT NULL COMMENT 'fecha en la que se registro el alumno',
   `a_estatus` varchar(50) NOT NULL DEFAULT 'Activo',
   `a_celPadre` varchar(50) NOT NULL,
-  `a_celMadre` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=11 ;
-
---
--- Volcado de datos para la tabla `alumno`
---
-
-INSERT INTO `alumno` (`id_alumno`, `contra_alumno`, `a_nombre`, `a_apellidpaterno`, `a_apellidomaterno`, `a_fechanac`, `a_lugarnac`, `a_nacionalidad`, `a_sexo`, `a_estadocivil`, `a_gposanguineo`, `a_rh`, `a_curp`, `a_servmedico`, `a_trabajo`, `a_enfermedades`, `a_alergias`, `a_debilidadmotriz`, `a_domicilio`, `a_numext`, `a_numint`, `a_cp`, `a_colonia`, `a_municipio`, `a_numlocal`, `a_numcelular`, `a_nompapa`, `a_ocupacionpapa`, `a_empresapapa`, `a_sueldopapa`, `a_nommama`, `a_ocupacionmama`, `a_empresamama`, `a_sueldomama`, `a_otrosestudios`, `a_suspencionestudios`, `a_matreprobadas`, `a_aval`, `a_promocionesc`, `a_objcruzroja`, `a_objenfermeria`, `a_otracarrera`, `a_ceneval`, `a_regescuela`, `a_psicometrico`, `a_entrevista`, `a_email`, `a_fecharegistro`, `a_estatus`, `a_celPadre`, `a_celMadre`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'ariana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', ''),
-(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'roberto carlos', 'rivera', 'martinez', '2015-02-02', 'gpe', 'MÃ©xico', 'M', 'Divorciado', 'O', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', '8181167707', NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1111, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', '0', 'robert_rivmtz@hotmail.comasdsd', NULL, 'Baja definitiva', 'celPadre', 'celMadre'),
-(8, '$2y$10$hoBA7bStal8ouWspyseOlO8m68uNQGC9V/0k6566ZUlVZUd2Hpafa', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', ''),
-(9, '$2y$10$Qa.euWZVHDF3MOZFEfSGne/k579ROOEP.4TBXKCLEvNyEr9kvyX4i', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', ''),
-(10, '$2y$10$L6hM8imRNDu1iIt1pKhbRezNV4r12niosemQVBoP7.ZCSUE4HEjXm', 'prueba celular', '', '', '0000-00-00', '', '', 'M', 'Soltero', 'O', '', '', 'no', 'soy nini', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-11-05', 'Activo', 'celular padre', 'celular madre');
-
--- --------------------------------------------------------
+  `a_celMadre` varchar(50) NOT NULL,
+  `id_grupo` int(11) DEFAULT NULL COMMENT 'grupo al que pertenece el alumno',
+  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno',
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=1 ;
 
 --
 -- Estructura de tabla para la tabla `curso`
@@ -141,7 +122,8 @@ INSERT INTO `alumno` (`id_alumno`, `contra_alumno`, `a_nombre`, `a_apellidpatern
 
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL COMMENT 'id del curso',
-  `id_semestre` int(11) DEFAULT NULL COMMENT 'semestre al que pertenece el curso',
+  `id_grupo` int(11) DEFAULT NULL COMMENT 'grupo al que pertenece el curso',
+  `id_maestro` int(11) DEFAULT NULL COMMENT 'maestro que imparte el curso',
   `cu_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre del curso',
   `cu_objetivo` varchar(254) DEFAULT NULL COMMENT 'objetivo del curso',
   `cu_numunidades` int(11) DEFAULT NULL COMMENT 'unidades correspondientes al curso',
@@ -151,27 +133,8 @@ CREATE TABLE `curso` (
   `cu_horaInicio` time NOT NULL,
   `cu_isPrioridadAlta` varchar(2) NOT NULL,
   `cu_horaFinal` time NOT NULL,
-  `cu_maestroresp` varchar(100) DEFAULT NULL COMMENT 'maestro resp del curso',
   `cu_ultimaFechaAsistencia` date NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Volcado de datos para la tabla `curso`
---
-
-INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`, `cu_aula`, `cu_dias`, `cu_horaInicio`, `cu_isPrioridadAlta`, `cu_horaFinal`, `cu_maestroresp`, `cu_ultimaFechaAsistencia`) VALUES
-(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', '0', '00:00:00', NULL, '0000-00-00'),
-(2, 9, 'integrador', 'alksdlanl', 0, '2015-11-05', 'aulas3', ',Lunes,Martes,Miercoles,Jueves,Viernes,Sabado', '15:59:00', 'Si', '00:00:00', NULL, '0000-00-00'),
-(3, 23, 'curso', 'objetivo', 0, '2015-11-05', 'aulas4', ',Lunes,Miercoles,Viernes', '14:00:00', 'Si', '13:00:00', NULL, '0000-00-00'),
-(4, 0, '', '', 0, '2015-11-08', '', '', '00:00:00', 'No', '00:00:00', 'azael', '0000-00-00'),
-(5, 3, 'Base de datos', 'Enseñar', 8, '2015-11-09', 'edificio 2', ',Lunes,Miercoles,Viernes', '09:30:00', 'No', '13:00:00', 'azael', '0000-00-00'),
-(6, 5, 'Base de datos avanzadas', 'Aprender UML', 2, '2015-11-09', 'edificio 1, salon 424', ',Lunes,Martes,Miercoles', '08:00:00', 'No', '12:00:00', 'azael', '0000-00-00'),
-(7, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael', '0000-00-00'),
-(8, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael', '0000-00-00'),
-(9, 0, 'compi', '', 0, '2015-11-09', 'aulas 5', ',Lunes,Miercoles,Viernes', '00:00:00', 'No', '05:00:00', '1', '2015-11-10'),
-(10, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', '2', '0000-00-00');
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Estructura de tabla para la tabla `inscritos`
@@ -192,16 +155,6 @@ CREATE TABLE `inscritos` (
   `inscr_fechasFaltas` text NOT NULL,
   `inscr_Cursado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `inscritos`
---
-
-INSERT INTO `inscritos` (`id_alumno`, `id_curso`, `inscr_periodo`, `inscr_hora`, `inscr_dia`, `inscr_asistencia`, `inscr_calificacion`, `inscr_calificacion1`, `inscr_calificacion2`, `inscr_calificacion3`, `inscr_fecharegistro`, `inscr_fechasFaltas`, `inscr_Cursado`) VALUES
-(1, 9, NULL, NULL, NULL, 3, NULL, 0, 0, 0, NULL, '5999', 1),
-(7, 9, NULL, NULL, NULL, 4, NULL, 0, 0, 0, NULL, '4007', 1);
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `maestro`
@@ -240,31 +193,7 @@ CREATE TABLE `maestro` (
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
   `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
   `m_estudios` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `maestro`
---
-
-INSERT INTO `maestro` (`id_maestro`, `contra_maestro`, `m_nombre`, `m_apellidopaterno`, `m_apellidomaterno`, `m_fechanac`, `m_edad`, `m_lugarnac`, `m_nacionalidad`, `m_sexo`, `m_estadocivil`, `m_gposanguineo`, `m_rh`, `m_curp`, `m_servmedico`, `m_trabajo`, `m_enfermedades`, `m_alergias`, `m_debilidadmotriz`, `m_domicilio`, `m_numext`, `m_numint`, `m_cp`, `m_colonia`, `m_municipio`, `m_numlocal`, `m_numcelular`, `m_escolaridad`, `m_otrosestudios`, `m_email`, `m_fecharegistro`, `m_estudios`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(2, '$2y$10$dmA7nJeN4QCraCMZPILh3uYWMQsfiWEEIqwlE9ADvABHK9qJszNL.', 'nombre', 'paterno', 'materno', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '', NULL, 'estudios232');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `maestro_curso`
---
-
-CREATE TABLE `maestro_curso` (
-  `id_maestro` int(11) NOT NULL COMMENT 'id del maestro',
-  `id_curso` int(11) NOT NULL COMMENT 'id del curso',
-  `mc_hora` varchar(16) DEFAULT NULL COMMENT 'hora del curso que impartirá el maestro',
-  `mc_dia` varchar(16) DEFAULT NULL COMMENT 'día del curso que impartirá el maestro',
-  `mc_fecharegistro` date NOT NULL COMMENT 'fecha de registro'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Estructura de tabla para la tabla `semestre`
@@ -277,8 +206,30 @@ CREATE TABLE `semestre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Índices para tablas volcadas
+-- Estructura de tabla para la tabla `grupo`
 --
+
+CREATE TABLE `grupo` (
+  `id_grupo` int(11) NOT NULL COMMENT 'id del grupo',
+  `gru_nombre` varchar(60) DEFAULT NULL COMMENT 'Nombre del grupo',
+  `id_nivelEscolar` int(11) DEFAULT NULL COMMENT 'nivel escolar del grupo',
+  `id_periodo` int(11) DEFAULT NULL COMMENT 'periodo al que pertenece el grupo'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `id_permiso` int(11) NOT NULL COMMENT 'id del permisos',
+  `id_administrador` int(11) DEFAULT NULL COMMENT 'administrador relicionado al permiso',
+  `p_abcAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de administradores', 
+  `p_abcMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de maestro', 
+  `p_abcAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de alumno',  
+  `p_abcPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de periodo',  
+  `p_abcGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de grupos y cursos',  
+  `p_verReportes` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso ver los reportes que genera el sistema'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indices de la tabla `administrador`
@@ -315,10 +266,6 @@ ALTER TABLE `maestro`
 --
 ALTER TABLE `semestre`
  ADD PRIMARY KEY (`id_semestre`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
 
 --
 -- AUTO_INCREMENT de la tabla `administrador`
