@@ -15,6 +15,7 @@ SET time_zone = "+00:00";
 --
 
 create database `escuelacruzroja`;
+use `escuelacruzroja`;
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,7 @@ CREATE TABLE `alumno` (
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL,
   `id_grupo` int(11) DEFAULT NULL COMMENT 'grupo al que pertenece el alumno',
-  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno',
+  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=1 ;
 
 --
@@ -142,10 +143,7 @@ CREATE TABLE `curso` (
 
 CREATE TABLE `inscritos` (
   `id_alumno` int(11) NOT NULL COMMENT 'id del alumno',
-  `id_curso` int(11) NOT NULL COMMENT 'is del curso',
-  `inscr_periodo` varchar(16) DEFAULT NULL COMMENT 'periodo de inscripción',
-  `inscr_hora` varchar(16) DEFAULT NULL COMMENT 'hora del curso',
-  `inscr_dia` varchar(16) DEFAULT NULL COMMENT 'dia del curso',
+  `id_curso` int(11) NOT NULL COMMENT 'id del curso',
   `inscr_asistencia` smallint(6) DEFAULT NULL COMMENT 'total de faltas',
   `inscr_calificacion` float DEFAULT NULL COMMENT 'calificación final del curso',
   `inscr_calificacion1` float NOT NULL COMMENT 'calificación primer parcial',
@@ -162,7 +160,7 @@ CREATE TABLE `inscritos` (
 
 CREATE TABLE `maestro` (
   `id_maestro` int(11) NOT NULL COMMENT 'id ',
-  `contra_maestro` varchar(255) NOT NULL COMMENT 'contraseña del maestro',
+  `m_contra` varchar(25) NOT NULL COMMENT 'contraseña del maestro',
   `m_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre',
   `m_apellidopaterno` varchar(60) DEFAULT NULL COMMENT 'apellido paterno',
   `m_apellidomaterno` varchar(60) DEFAULT NULL COMMENT 'apellido materno',
@@ -176,33 +174,58 @@ CREATE TABLE `maestro` (
   `m_rh` varchar(16) DEFAULT NULL COMMENT 'rh',
   `m_curp` varchar(20) DEFAULT NULL COMMENT 'curp',
   `m_servmedico` varchar(60) DEFAULT NULL COMMENT 'servicio medico',
-  `m_trabajo` varchar(254) DEFAULT NULL COMMENT 'trabajo',
-  `m_enfermedades` varchar(254) DEFAULT NULL COMMENT 'enfermedades',
-  `m_alergias` varchar(254) DEFAULT NULL COMMENT 'alergias',
-  `m_debilidadmotriz` varchar(254) DEFAULT NULL COMMENT 'alguna debilidad motriz',
-  `m_domicilio` varchar(254) DEFAULT NULL COMMENT 'domicilio',
+  `m_trabajo` varchar(60) DEFAULT NULL COMMENT 'trabajo',
+  `m_enfermedades` varchar(60) DEFAULT NULL COMMENT 'enfermedades',
+  `m_alergias` varchar(60) DEFAULT NULL COMMENT 'alergias',
+  `m_debilidadmotriz` varchar(60) DEFAULT NULL COMMENT 'alguna debilidad motriz',
+  `m_domicilio` varchar(60) DEFAULT NULL COMMENT 'domicilio',
   `m_numext` varchar(16) DEFAULT NULL COMMENT 'num ext',
-  `m_numint` varchar(16) DEFAULT NULL COMMENT 'num int',
+  `m_numint` varchar(60) DEFAULT NULL COMMENT 'num int',
   `m_cp` varchar(16) DEFAULT NULL COMMENT 'codigo postal',
-  `m_colonia` varchar(254) DEFAULT NULL COMMENT 'colonia',
-  `m_municipio` varchar(254) DEFAULT NULL COMMENT 'municipio',
+  `m_colonia` varchar(60) DEFAULT NULL COMMENT 'colonia',
+  `m_municipio` varchar(60) DEFAULT NULL COMMENT 'municipio',
   `m_numlocal` int(11) DEFAULT NULL COMMENT 'numero local',
   `m_numcelular` int(11) DEFAULT NULL COMMENT 'numero celular',
-  `m_escolaridad` varchar(254) DEFAULT NULL COMMENT 'escolaridad',
-  `m_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
+  `m_escolaridad` varchar(60) DEFAULT NULL COMMENT 'escolaridad',
+  `m_otrosestudios` varchar(60) DEFAULT NULL COMMENT 'otros estudios',
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
   `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
-  `m_estudios` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `m_estudios` text NOT NULL,
+  `m_estatus` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 --
--- Estructura de tabla para la tabla `semestre`
+-- Estructura de tabla para la tabla `nivel_Escolar`
 --
 
-CREATE TABLE `semestre` (
-  `id_semestre` int(11) NOT NULL COMMENT 'id del semestre',
-  `s_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
-  `s_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro'
+CREATE TABLE `nivel_Escolar` (
+  `id_nivelEscolar` int(11) NOT NULL COMMENT 'id del semestre',
+  `ne_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
+  `id_carrera` date DEFAULT NULL COMMENT 'fecha de registro'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+--
+-- Estructura de tabla para la tabla `carrera`
+--
+
+CREATE TABLE `carrera` (
+  `id_carrera` int(11) NOT NULL COMMENT 'id del carrera',
+  `c_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre del semestre',
+  `c_desc` text NOT NULL COMMENT 'descripción del semestre',
+  `c_fechaCreacion` date DEFAULT NULL COMMENT 'fecha de registro',
+  `c_estatus` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Estructura de tabla para la tabla `periodo`
+--
+
+CREATE TABLE `periodo` (
+  `id_periodo` int(11) NOT NULL COMMENT 'id del periodo',
+  `per_desc` varchar(60) DEFAULT NULL COMMENT 'descripcion del periodo',
+  `per_fechaCreacion` date NOT NULL COMMENT 'fecha de inicio de periodo',
+  `per_estatus` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -232,63 +255,134 @@ CREATE TABLE `permisos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
+-- Indices de la tabla `permisos`
+--
+
+ALTER TABLE `permisos`
+ ADD PRIMARY KEY (`id_permiso`);
+
+--
+-- Indices de la tabla `semestre`
+--
+
+ALTER TABLE `grupo`
+ ADD PRIMARY KEY (`id_grupo`);
+ 
+--
+-- Indices de la tabla `periodo`
+--
+
+ALTER TABLE `periodo`
+ ADD PRIMARY KEY (`id_periodo`);
+
+--
+-- Indices de la tabla `carrera`
+--
+
+ALTER TABLE `carrera`
+ ADD PRIMARY KEY (`id_carrera`);
+
+--
 -- Indices de la tabla `administrador`
 --
+
 ALTER TABLE `administrador`
  ADD PRIMARY KEY (`id_administrador`);
 
 --
 -- Indices de la tabla `alumno`
 --
+
 ALTER TABLE `alumno`
  ADD PRIMARY KEY (`id_alumno`);
 
 --
 -- Indices de la tabla `curso`
 --
+
 ALTER TABLE `curso`
  ADD PRIMARY KEY (`id_curso`);
 
 --
 -- Indices de la tabla `inscritos`
 --
+
 ALTER TABLE `inscritos`
  ADD PRIMARY KEY (`id_alumno`,`id_curso`);
 
 --
 -- Indices de la tabla `maestro`
 --
+
 ALTER TABLE `maestro`
  ADD PRIMARY KEY (`id_maestro`);
 
 --
 -- Indices de la tabla `semestre`
 --
-ALTER TABLE `semestre`
- ADD PRIMARY KEY (`id_semestre`);
+
+ALTER TABLE `nivel_Escolar`
+ ADD PRIMARY KEY (`id_nivelEscolar`);
 
 --
 -- AUTO_INCREMENT de la tabla `administrador`
 --
+
 ALTER TABLE `administrador`
-MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del admin',AUTO_INCREMENT=3;
+MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del admin',AUTO_INCREMENT=1;
+
 --
 -- AUTO_INCREMENT de la tabla `alumno`
 --
+
 ALTER TABLE `alumno`
-MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_INCREMENT=11;
+MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_INCREMENT=1;
+
 --
 -- AUTO_INCREMENT de la tabla `curso`
 --
+
 ALTER TABLE `curso`
-MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT de la tabla `maestro`
---
-ALTER TABLE `maestro`
-MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT=3;
+MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=1;
+
 --
 -- AUTO_INCREMENT de la tabla `semestre`
 --
-ALTER TABLE `semestre`
-MODIFY `id_semestre` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del semestre';
+
+ALTER TABLE `nivel_Escolar`
+MODIFY `id_nivelEscolar` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del semestre',AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT de la tabla `periodo`
+--
+
+ALTER TABLE `periodo`
+MODIFY `id_periodo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del periodo',AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+
+ALTER TABLE `permisos`
+MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del permiso',AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT de la tabla `carrera`
+--
+
+ALTER TABLE `carrera`
+MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del carrera',AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT de la tabla `grupo`
+--
+
+ALTER TABLE `grupo`
+MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del grupo',AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT de la tabla `grupo`
+--
+
+ALTER TABLE `maestro`
+MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del maestro',AUTO_INCREMENT=1;
