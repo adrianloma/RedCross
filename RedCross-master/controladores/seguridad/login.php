@@ -47,7 +47,7 @@
 	}	
 
 	//Si la clave ingresada es igual a la de la base de datos deja ingresar
-	if($clave == $password && $usuario != ""){
+	if(md5($clave) == $password && $usuario != ""){
 		session_start();
 		// store session data
 		$_SESSION['matricula']=$usuario;

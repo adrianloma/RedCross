@@ -1,20 +1,19 @@
+function validaFormaAdmin(){
+	return checkPasswords();
+}
+
 function checkPasswords(){
 	var password1 = document.getElementById('password1').value;
 	var password2 = document.getElementById('password2').value;
-	return password1 != "" && password2 != "" && password1 == password2;
 
-}
-
-function showPasswordsAlert(){
-	var password2 = document.getElementById('password2');
-	if(!checkPasswords()){
+	if(!(password1 != "" && password2 != "" && password1 == password2)){
 		alert('Las contraseñas no coinciden, favor de corregirlos');
-		password2.style.backgroundColor = "red";
+		return false;
 	}
 	else{
 		password2.style.backgroundColor = "";
+		return true;
 	}
-
 }
 
 function selectOption(select, textOption){

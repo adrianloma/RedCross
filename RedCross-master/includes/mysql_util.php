@@ -1,23 +1,32 @@
 <?php
-function mysql_insert($table, $inserts) {
-    $values = array_map('mysql_real_escape_string', array_values($inserts));
-    $keys = array_keys($inserts);
+    
+    function mysql_insert_Alumno($table, $conexion, $inserts) {
 
-    return mysql_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
-}
+        $conn = array($conexion);
+        
+        for($i = 0 ; $i < 45 ; $i++)
+            array_push($conn, $conexion);
 
-function mysql_update($table, $inserts, $matricula) {
-    $values = array_map('mysql_real_escape_string', array_values($inserts));
-    $keys = array_keys($inserts);
-   	$sql = "UPDATE $table SET ";
-   	for ($i = 0; $i < count($keys); $i++) {
-    	$sql = $sql . " " . $keys[$i] . "='" . $values[$i] ."'";
-    	if($i < count($keys)-1){
-    		$sql = $sql . ", ";
+        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
+        $keys = array_keys($inserts);
+
+        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
+
+        return mysqli_query($conexion, $query);
+    }
+
+    function mysql_update($table, $inserts, $matricula) {
+        $values = array_map('mysql_real_escape_string', array_values($inserts));
+        $keys = array_keys($inserts);
+       	$sql = "UPDATE $table SET ";
+       	for ($i = 0; $i < count($keys); $i++) {
+        	$sql = $sql . " " . $keys[$i] . "='" . $values[$i] ."'";
+        	if($i < count($keys)-1){
+        		$sql = $sql . ", ";
+        	}
     	}
-	}
-	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
+    	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
 
-    return mysql_query($sql);
-}
+        return mysql_query($sql);
+    }
 ?>

@@ -25,7 +25,7 @@ use `escuelacruzroja`;
 
 CREATE TABLE `administrador` (
   `id_administrador` int(11) NOT NULL COMMENT 'id del admin',
-  `d_contra` varchar(25) DEFAULT NULL COMMENT 'contraseña de administrador',
+  `d_contra` varchar(60) DEFAULT NULL COMMENT 'contraseña de administrador',
   `d_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre del admin',
   `d_apellidopaterno` varchar(60) DEFAULT NULL COMMENT 'apellido paterno del admin',
   `d_apellidomaterno` varchar(60) DEFAULT NULL COMMENT 'apellido materno del admin',
@@ -63,7 +63,7 @@ CREATE TABLE `administrador` (
 
 CREATE TABLE `alumno` (
   `id_alumno` int(11) NOT NULL COMMENT 'id de alumno',
-  `a_contra` varchar(25) NOT NULL COMMENT 'contraseña de alumno',
+  `a_contra` varchar(60) NOT NULL COMMENT 'contraseña de alumno',
   `a_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre',
   `a_apellidpaterno` varchar(60) DEFAULT NULL COMMENT 'apellido paterno',
   `a_apellidomaterno` varchar(60) DEFAULT NULL COMMENT 'apellido materno',
@@ -81,13 +81,10 @@ CREATE TABLE `alumno` (
   `a_alergias` varchar(254) DEFAULT NULL COMMENT 'alergias',
   `a_debilidadmotriz` varchar(254) DEFAULT NULL COMMENT 'indicar alguna debilidad motriz',
   `a_domicilio` varchar(254) DEFAULT NULL COMMENT 'domicilio',
-  `a_numext` varchar(16) DEFAULT NULL COMMENT 'numero ext',
-  `a_numint` varchar(16) DEFAULT NULL COMMENT 'num int',
   `a_cp` varchar(16) DEFAULT NULL COMMENT 'codigo postal',
   `a_colonia` varchar(254) DEFAULT NULL COMMENT 'colonia',
   `a_municipio` varchar(254) DEFAULT NULL COMMENT 'municipio',
   `a_numlocal` varchar(30) DEFAULT NULL COMMENT 'número local',
-  `a_numcelular` int(11) DEFAULT NULL COMMENT 'número celular',
   `a_nompapa` varchar(60) DEFAULT NULL COMMENT 'nombre del papa',
   `a_ocupacionpapa` varchar(60) DEFAULT NULL COMMENT 'nombre de la mama',
   `a_empresapapa` varchar(60) DEFAULT NULL COMMENT 'empresa en donde labora el papa',
@@ -160,7 +157,7 @@ CREATE TABLE `inscritos` (
 
 CREATE TABLE `maestro` (
   `id_maestro` int(11) NOT NULL COMMENT 'id ',
-  `m_contra` varchar(25) NOT NULL COMMENT 'contraseña del maestro',
+  `m_contra` varchar(60) NOT NULL COMMENT 'contraseña del maestro',
   `m_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre',
   `m_apellidopaterno` varchar(60) DEFAULT NULL COMMENT 'apellido paterno',
   `m_apellidomaterno` varchar(60) DEFAULT NULL COMMENT 'apellido materno',
