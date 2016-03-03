@@ -1,11 +1,15 @@
 <?php
-	$conexion = mysql_connect('localhost', 'root', 'root');
-	mysql_set_charset('utf8', $conexion);
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "escuelacruzroja";
+
+	// Create connection
+	$conexion = mysqli_connect($servername, $username, $password, $dbname);
+
+	// Check connection
 	if (!$conexion) {
-		die('No pudo conectarse: ' . mysql_error());
+	    die("No pudo conectarse: " . mysqli_connect_error());
 	}
-	$conexion_base = mysql_select_db('escuelacruzroja', $conexion);
-	if (!$conexion_base) {
-		die('No se encuentra la base de datos seleccionada : ' . mysql_error());
-	}
+
 ?>

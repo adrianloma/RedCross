@@ -16,31 +16,38 @@
 	}else{
 		$clave="";
 	}
+	
 	$password="";
 	$nombre="";
 	
 	if($tipo == "a"){
 		$tabla = "alumno";
 	}
-	elseif ($tipo == "m"){
+	else if ($tipo == "m"){
 		$tabla = "maestro";
 	}
-	else{
+	else if ($tipo == "d"){
 		$tabla = "administrador";
+	}else{
+		echo "<script language=\"javascript\">
+				alert(\"Usuario o clave incorrectas\");
+				window.location.href = \"../../vistas/index.php\"
+				</script>";
 	}
 	
-	$usuario = mysql_escape_string($usuario);
-	$sql="select " . "contra_" . $tabla . ", " . $tipo . "_nombre from " . $tabla . " where id_" . $tabla . "= $usuario";
-	$result = mysql_query($sql);
-	while($row = mysql_fetch_array($result)){
-		$password=$row['contra_' . $tabla];
-		$nombre=$row[$tipo . '_nombre'];
-
-	}	
+	$usuario = mysqli_escape_string($conexion, $usuario);
 	
+	$sql="select " . $tipo . "_contra, " . $tipo . "_nombre from " . $tabla . " where id_" . $tabla . "= '$usuario'";
+	
+	$result = mysqli_query($conexion, $sql);
+
+	while($row = mysqli_fetch_assoc($result)){
+		$password=$row[$tipo . '_contra'];
+		$nombre=$row[$tipo . '_nombre'];
+	}	
+
 	//Si la clave ingresada es igual a la de la base de datos deja ingresar
-	if(password_verify($clave, $password) && $usuario!="")
-	{
+	if($clave == $password && $usuario != ""){
 		session_start();
 		// store session data
 		$_SESSION['matricula']=$usuario;
