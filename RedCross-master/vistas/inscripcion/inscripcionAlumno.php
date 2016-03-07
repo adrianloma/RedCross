@@ -186,7 +186,7 @@
 					<div class="form-group">
 						<label for="" class="col-lg-2 control-label">¿Tiene alg&uacute;n tipo de debilidad motriz?</label>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="" name="DebilidadMotriz" placeholder="Liste alergias que padece">
+							<input type="text" class="form-control" id="" name="DebilidadMotriz" placeholder="Liste debilidades motrices que padece, omitir en caso de no tener">
 						</div>
 					</div>
 					<br><br>
@@ -394,9 +394,9 @@
 					</div>
 					<br><br>
 					<div class="form-group">
-						<label for="" class="col-lg-2 control-label">Repite contraseña</label>
+						<label for="" class="col-lg-2 control-label">Repita contraseña</label>
 						<div class="col-lg-10">
-							<input type="password" class="form-control" id="password2" name="" placeholder="Contraseña" required>
+							<input type="password" class="form-control" id="password2" name="" placeholder="Repita Contraseña" required>
 						</div>
 					</div>
 				</div> <!-- /row  -->
