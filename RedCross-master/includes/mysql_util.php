@@ -14,21 +14,6 @@
 
         return mysqli_query($conexion, $query);
     }
-	
-	function mysql_insert_Maestro($table, $conexion, $inserts) {
-
-        $conn = array($conexion);
-        
-        for($i = 0 ; $i < 31 ; $i++)
-            array_push($conn, $conexion);
-
-        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
-        $keys = array_keys($inserts);
-
-        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
-
-        return mysqli_query($conexion, $query);
-    }
 
     function mysql_update($table, $inserts, $matricula) {
         $values = array_map('mysql_real_escape_string', array_values($inserts));
