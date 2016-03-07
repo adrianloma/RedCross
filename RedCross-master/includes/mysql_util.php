@@ -1,10 +1,25 @@
 <?php
     
-    function mysql_insert_Alumno($table, $conexion, $inserts) {
+  function mysql_insert_Alumno($table, $conexion, $inserts) {
 
         $conn = array($conexion);
         
         for($i = 0 ; $i < 45 ; $i++)
+            array_push($conn, $conexion);
+
+        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
+        $keys = array_keys($inserts);
+
+        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
+
+        return mysqli_query($conexion, $query);
+     }   
+    
+  function mysql_insert_Admin($table, $conexion, $inserts) {
+
+        $conn = array($conexion);
+        
+        for($i = 0 ; $i < 26 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
@@ -19,7 +34,7 @@
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 31 ; $i++)
+        for($i = 0 ; $i < 30 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
