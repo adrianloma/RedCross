@@ -65,7 +65,7 @@
     'd_numint' => $NumInterior,
     'd_numext' => $NumExterior,
     'd_edad' => 0,
-    'd_escolaridad' => $Escolaridad,
+    'd_escolaridad' => $Escolaridad
 
 	));
 

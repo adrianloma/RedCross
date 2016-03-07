@@ -19,14 +19,13 @@
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 26 ; $i++)
+        for($i = 0 ; $i < 29 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
         $keys = array_keys($inserts);
 
         $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
-
         return mysqli_query($conexion, $query);
     }
 	
@@ -34,7 +33,7 @@
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 30 ; $i++)
+        for($i = 0 ; $i < 31 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
