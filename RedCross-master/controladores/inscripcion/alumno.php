@@ -106,7 +106,7 @@
 		$alertMsg = "Nuevo alumno agregado satisfactoriamente con matricula: a$newId";
 	}
 	else{
-		$alertMsg = "Algo salio mal: " . mysql_error();
+		$alertMsg = "Algo salio mal: " . mysqli_error($conexion);
 	}
 		echo "<script language=\"javascript\">
 					alert(\"$alertMsg\");
