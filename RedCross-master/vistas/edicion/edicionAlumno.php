@@ -41,71 +41,72 @@ include "../../includes/sessionAdmin.php";
 	    var url="../../controladores/edicion/search.php?matricula=" + searchId;
 	    xhr.open("GET", url, true);
 	    xhr.send();
-	  }
-	  function validarMatricula(){
-	  	var id = document.getElementById('matricula').value;
-	  	if (!isValidMatricula(id)) {
-	  		alert("Matricula no valida, favor de volver a cargar el alumno");
-	  		return false;
-	  	}
-	  	return true;
-	  }
-	  function fillFields(){
-	    var fields = xhr.responseText.trim();
-	    var arrayFields = fields.split("|");
-	    if(arrayFields[0] == "-1"){
-	    	alert(arrayFields[1]);
-	    	return;
-	    }
-	    document.getElementById('matricula').value = 'a' + arrayFields[1];
-	    document.getElementById('nombres').value = arrayFields[3];
-	    document.getElementById('APaterno').value = arrayFields[4];
-	    document.getElementById('AMaterno').value = arrayFields[5];
-	    document.getElementById('FechaNacimiento').value = arrayFields[6];
-	    document.getElementById('LugarNacimiento').value = arrayFields[7];
-	    document.getElementById('Nacionalidad').value = arrayFields[8];
-	    selectOption(document.getElementById('Sexo'), arrayFields[9]);
-	    selectOption(document.getElementById('EstadoCivil'), arrayFields[10]);
-	    selectOption(document.getElementById('GrupoSanguineo'), arrayFields[11]);
-	    document.getElementById('RH').value = arrayFields[12];
-	    document.getElementById('CURP').value = arrayFields[13];
-	    document.getElementById('ServicioMedico').value = arrayFields[14];
-	    document.getElementById('ActualmenteLaborando').value = arrayFields[15];
-	    document.getElementById('Enfermedades').value = arrayFields[16];
-	    document.getElementById('Alergias').value = arrayFields[17];
-	    document.getElementById('DebilidadMotriz').value = arrayFields[18];
-	    document.getElementById('Direccion').value = arrayFields[19];
-	    document.getElementById('CP').value = arrayFields[22];
-	    document.getElementById('Colonia').value = arrayFields[23];
-	    document.getElementById('Municipio').value = arrayFields[24];
-	    document.getElementById('Telefono').value = arrayFields[25];
-	    document.getElementById('NombrePadre').value = arrayFields[27];
-	    document.getElementById('OcupacionPadre').value = arrayFields[28];
-	    document.getElementById('EmpresaPadre').value = arrayFields[29];
-	    document.getElementById('SueldoPadre').value = arrayFields[30];
-	    document.getElementById('NombreMadre').value = arrayFields[31];
-	    document.getElementById('OcupacionMadre').value = arrayFields[32];
-	    document.getElementById('EmpresaMadre').value = arrayFields[33];
-	    document.getElementById('SueldoMadre').value = arrayFields[34];
-	    document.getElementById('OtrosEstudios').value = arrayFields[35];
-	    document.getElementById('SuspendidoEstudios').value = arrayFields[36];
-	    document.getElementById('MateriasReprobadas').value = arrayFields[37];
-	    document.getElementById('ApoyoEconomico').value = arrayFields[38];
-	    document.getElementById('EnteroEscuela').value = arrayFields[39];
-	    document.getElementById('PorqueEstudiarCR').value = arrayFields[40];
-	    document.getElementById('PorqueEstudiarEnfermeria').value = arrayFields[41];
-	    document.getElementById('OtrasCarrerasPosibles').value = arrayFields[42];
-	    document.getElementById('RegistroCeneval').value = arrayFields[43];
-	    document.getElementById('RegistroEscuela').value = arrayFields[44];
-	    document.getElementById('ExamenPsicometrico').value = arrayFields[45];
-	    document.getElementById('Entrevisto').value = arrayFields[46];
-	    document.getElementById('Email').value = arrayFields[47];
-	    selectOption(document.getElementById('Estatus'), arrayFields[49]);
-	    document.getElementById('celularPadre').value = arrayFields[50];
-	    document.getElementById('celularMadre').value = arrayFields[51];
+	}
 
+	function validarMatricula(){
+		var id = document.getElementById('matricula').value;
+		if (!isValidMatricula(id)) {
+			alert("Matricula no valida, favor de volver a cargar el alumno");
+			return false;
+		}
+		return true;
+	}
+	  
+	function fillFields(){
+		var fields = xhr.responseText.trim();
+		var arrayFields = fields.split("|");
+		if(arrayFields[0] == "-1"){
+			alert(arrayFields[1]);
+			return;
+		}
+		document.getElementById('matricula').value = 'a' + arrayFields[1];
+		document.getElementById('nombres').value = arrayFields[3];
+		document.getElementById('APaterno').value = arrayFields[4];
+		document.getElementById('AMaterno').value = arrayFields[5];
+		document.getElementById('FechaNacimiento').value = arrayFields[6];
+		document.getElementById('LugarNacimiento').value = arrayFields[7];
+		document.getElementById('Nacionalidad').value = arrayFields[8];
+		selectOption(document.getElementById('Sexo'), arrayFields[9]);
+		selectOption(document.getElementById('EstadoCivil'), arrayFields[10]);
+		selectOption(document.getElementById('GrupoSanguineo'), arrayFields[11]);
+		document.getElementById('RH').value = arrayFields[12];
+		document.getElementById('CURP').value = arrayFields[13];
+		document.getElementById('ServicioMedico').value = arrayFields[14];
+		document.getElementById('ActualmenteLaborando').value = arrayFields[15];
+		document.getElementById('Enfermedades').value = arrayFields[16];
+		document.getElementById('Alergias').value = arrayFields[17];
+		document.getElementById('DebilidadMotriz').value = arrayFields[18];
+		document.getElementById('Direccion').value = arrayFields[19];
+		document.getElementById('CP').value = arrayFields[20];
+		document.getElementById('Colonia').value = arrayFields[21];
+		document.getElementById('Municipio').value = arrayFields[22];
+		document.getElementById('Telefono').value = arrayFields[23];
+		document.getElementById('NombrePadre').value = arrayFields[24];
+		document.getElementById('OcupacionPadre').value = arrayFields[25];
+		document.getElementById('EmpresaPadre').value = arrayFields[26];
+		document.getElementById('SueldoPadre').value = arrayFields[27];
+		document.getElementById('NombreMadre').value = arrayFields[28];
+		document.getElementById('OcupacionMadre').value = arrayFields[29];
+		document.getElementById('EmpresaMadre').value = arrayFields[30];
+		document.getElementById('SueldoMadre').value = arrayFields[31];
+		document.getElementById('OtrosEstudios').value = arrayFields[32];
+		document.getElementById('SuspendidoEstudios').value = arrayFields[33];
+		document.getElementById('MateriasReprobadas').value = arrayFields[34];
+		document.getElementById('ApoyoEconomico').value = arrayFields[35];
+		document.getElementById('EnteroEscuela').value = arrayFields[36];
+		document.getElementById('PorqueEstudiarCR').value = arrayFields[37];
+		document.getElementById('PorqueEstudiarEnfermeria').value = arrayFields[38];
+		document.getElementById('OtrasCarrerasPosibles').value = arrayFields[39];
+		document.getElementById('RegistroCeneval').value = arrayFields[40];
+		document.getElementById('RegistroEscuela').value = arrayFields[41];
+		document.getElementById('ExamenPsicometrico').value = arrayFields[42];
+		document.getElementById('Entrevisto').value = arrayFields[43];
+		document.getElementById('Email').value = arrayFields[44];
+		selectOption(document.getElementById('Estatus'), arrayFields[56]);
+		document.getElementById('celularPadre').value = arrayFields[47];
+		document.getElementById('celularMadre').value = arrayFields[48];
+	}
 
-	  }
 	</script>
 </head>
 
@@ -153,49 +154,50 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombre" >
+						<input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombre" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="APaterno" name="APaterno" placeholder="Apellido Paterno" >
+						<input type="text" class="form-control" id="APaterno" name="APaterno" placeholder="Apellido Paterno" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="AMaterno" name="AMaterno" placeholder="Apellido Materno" >
+						<input type="text" class="form-control" id="AMaterno" name="AMaterno" placeholder="Apellido Materno" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
+						<input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" placeholder="dd/mm/aaaa" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Lugar de Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="LugarNacimiento" name="LugarNacimiento" placeholder="Ciudad" >
+						<input type="text" class="form-control" id="LugarNacimiento" name="LugarNacimiento" placeholder="Ciudad" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nacionalidad</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Nacionalidad" name="Nacionalidad" placeholder="Mexicano" >
+						<input type="text" class="form-control" id="Nacionalidad" name="Nacionalidad" placeholder="Mexicano" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Sexo</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="Sexo" name="Sexo" >
+						<select class="form-control" id="Sexo" name="Sexo" required>
+							<option value="">-</option>
 							<option value="M">Masculino</option>
 							<option value="F">Femenino</option>
 						</select>
@@ -205,7 +207,8 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Estado Civil</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="EstadoCivil" name="EstadoCivil">
+						<select class="form-control" id="EstadoCivil" name="EstadoCivil" required>
+							<option value="">-</option>
 							<option value="Soltero">Soltero</option>
 							<option value="Casado">Casado</option>
 							<option value="Divorciado">Divorciado</option>
@@ -217,14 +220,15 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Grupo Sangu&iacute;neo</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="GrupoSanguineo" name="GrupoSanguineo">
-							<option value="O">O-</option>
+						<select class="form-control" id="GrupoSanguineo" name="GrupoSanguineo" required>
+							<option value="">-</option>
+							<option value="O-">O-</option>
 							<option value="O+">O+</option>
-							<option value="A">A-</option>
+							<option value="A-">A-</option>
 							<option value="A+">A+</option>
-							<option value="B">B-</option>
+							<option value="B-">B-</option>
 							<option value="B+">B+</option>
-							<option value="AB">AB-</option>
+							<option value="AB-">AB-</option>
 							<option value="AB+">AB+</option>
 						</select>
 					</div>
@@ -233,14 +237,14 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">RH</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="RH" name="RH" placeholder="RH" >
+						<input type="text" class="form-control" id="RH" name="RH" placeholder="RH" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">CURP</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="CURP" name="CURP" placeholder="CURP" >
+						<input type="text" class="form-control" id="CURP" name="CURP" placeholder="CURP" required>
 					</div>
 				</div>
 				<br><br>
@@ -282,49 +286,49 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Direcci&oacute;n</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Direcci&oacute;n con numero ext/int" >
+						<input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Direcci&oacute;n con numero ext/int" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">C&oacute;digo postal</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="CP" name="CP" placeholder="C&oacute;digo postal" >
+						<input type="text" class="form-control" id="CP" name="CP" placeholder="C&oacute;digo postal" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Colonia</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Colonia" name="Colonia" placeholder="Colonia" >
+						<input type="text" class="form-control" id="Colonia" name="Colonia" placeholder="Colonia" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Municipio</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Municipio" name="Municipio" placeholder="Municipio" >
+						<input type="text" class="form-control" id="Municipio" name="Municipio" placeholder="Municipio" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Telefono" name="Telefono" placeholder="Tel&eacute;fono" >
+						<input type="text" class="form-control" id="Telefono" name="Telefono" placeholder="Tel&eacute;fono" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="Email" name="Email" placeholder="Email" >
+						<input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre completo del padre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="NombrePadre" name="NombrePadre" placeholder="Nombre" >
+						<input type="text" class="form-control" id="NombrePadre" name="NombrePadre" placeholder="Nombre" required>
 					</div>
 				</div>
 				<br><br>
@@ -359,7 +363,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre completo de la madre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="NombreMadre" name="NombreMadre" placeholder="Nombre" >
+						<input type="text" class="form-control" id="NombreMadre" name="NombreMadre" placeholder="Nombre" required>
 					</div>
 				</div>
 				<br><br>
@@ -415,7 +419,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Qui&eacute;n lo apoya econ&oacute;micamente en sus estudios?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="ApoyoEconomico" name="ApoyoEconomico" placeholder="" >
+						<input type="text" class="form-control" id="ApoyoEconomico" name="ApoyoEconomico" placeholder="" required>
 					</div>
 				</div>
 				<br><br><br>
@@ -450,7 +454,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Realiz&oacute; su registro ante el CENEVAL?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('RegistroCeneval')" id="RegistroCeneval" name="RegistroCeneval" placeholder="Puntaje CENEVAL" >
+						<input type="text" class="form-control" onchange="isFloat('RegistroCeneval')" id="RegistroCeneval" name="RegistroCeneval" placeholder="Puntaje CENEVAL" required>
 					</div>
 				</div>
 				<br><br>
@@ -464,14 +468,14 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Contest&oacute; el examen psicom&eacute;trico?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="ExamenPsicometrico" name="ExamenPsicometrico" placeholder="" >
+						<input type="text" class="form-control" id="ExamenPsicometrico" name="ExamenPsicometrico" placeholder="" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Acudi&oacute; a la entrevista?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Entrevisto" name="Entrevisto" placeholder="" >
+						<input type="text" class="form-control" id="Entrevisto" name="Entrevisto" placeholder="" required>
 					</div>
 				</div>
 				<br><br>

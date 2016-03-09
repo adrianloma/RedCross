@@ -19,11 +19,11 @@
 		$tabla = "administrador";
 	}
 
-	$matricula = mysql_escape_string($matricula);
+	$matricula = mysqli_escape_string($conexion, $matricula);
 	$sql="select * from " . $tabla . " where id_" . $tabla . "= $matricula";
-	$result = mysql_query($sql);
+	$result = mysqli_query($conexion, $sql);
 	$response = "";
-	$row = mysql_fetch_row($result);
+	$row = mysqli_fetch_assoc($result);
 	foreach ($row as $col_value) {
     	$response = $response . '|' . $col_value;
 	}
