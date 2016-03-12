@@ -44,15 +44,15 @@
         return mysqli_query($conexion, $query);
     }
 
-    function mysql_update($table, $conexion, $inserts, $matricula) {
+    function mysql_update($table, $conexion, $updates, $matricula) {
 
         $conn = array($conexion);
         
         for($i = 0 ; $i < 45 ; $i++)
             array_push($conn, $conexion);
 
-        $values = array_map('mysqli_escape_string', $conn ,array_values($inserts));
-        $keys = array_keys($inserts);
+        $values = array_map('mysqli_escape_string', $conn ,array_values($updates));
+        $keys = array_keys($updates);
        	
         $sql = "UPDATE $table SET ";
 
@@ -64,6 +64,20 @@
     	}
 
     	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
+
+        return mysqli_query($conexion, $sql);
+    }
+	
+	
+	function mysql_delete($table, $conexion, $matricula) {
+
+        $conn = array($conexion);      
+
+
+       	
+        $sql = "DELETE FROM $table  WHERE id_" . $table . "=" . $matricula;
+
+		
 
         return mysqli_query($conexion, $sql);
     }

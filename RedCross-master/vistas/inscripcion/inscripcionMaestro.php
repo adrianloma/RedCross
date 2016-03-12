@@ -100,7 +100,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Edad</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_edad')" id="m_edad" name="m_edad" placeholder="Edad (número)" >
+						<input type="text" class="form-control" onchange="isFloat('m_edad')" id="m_edad" name="m_edad" placeholder="Edad (n&uacutemero)" >
 					</div>
 				</div>
 				<br><br>	

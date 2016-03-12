@@ -101,8 +101,19 @@ function get_action(form) {
 				break;
 		}
 	} else if (document.getElementById('baja').checked) {
-		/*
-
-		*/
+		switch(display){
+			case "Alumnos":
+				form.action = '../bajas/bajaAlumno.php';
+				break;
+			case "Maestros":
+				form.action = '../bajas/bajaMaestro.php';
+				break;
+			case "Cursos":
+				form.action = '../bajas/bajaCurso.php';
+				break;
+			case "Administradores":
+				form.action = '../bajas/bajaAdmin.php';
+				break;
+		}
 	}
 }
