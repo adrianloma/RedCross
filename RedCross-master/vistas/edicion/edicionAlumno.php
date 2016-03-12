@@ -150,7 +150,6 @@ include "../../includes/sessionAdmin.php";
 			<div class="row">
 				<form method="post" onsubmit="return validarMatricula()" action="../../controladores/edicion/alumno.php">
 					<input type="hidden"  id="matricula" name="matricula" value="">
-				<!-- CURP del alumno -->
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">

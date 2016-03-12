@@ -65,6 +65,6 @@
 
     	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
 
-        return mysqli_query($conexion, $query);
+        return mysqli_query($conexion, $sql);
     }
 ?>

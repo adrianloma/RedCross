@@ -4,7 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
-	$matricula = substr($_POST["matricula"], 1);;
+	$matricula = substr($_POST["matricula"], 1);
 	$nombres = $_POST["nombres"];
 	$APaterno = $_POST["APaterno"];
 	$AMaterno = $_POST["AMaterno"];
@@ -100,7 +100,7 @@
 
 	), $matricula);
 
-	if (mysqli_affected_rows() > 0){
+	if (mysqli_affected_rows($conexion) > 0){
 		$alertMsg = "Alumno actualizado satisfactoriamente";
 	}elseif (!$result) {
 		$alertMsg = "Algo salio mal: " . mysqli_error($conexion);
