@@ -35,7 +35,7 @@ include "../../includes/sessionAdmin.php";
 		function search(){
 		var searchId = document.getElementById('searchId').value;
 		console.log(searchId);
-		if(!isValidMatricula(searchId)){
+		if(!isValidMatricula(searchId) || (searchId[0] != 'm' &&  searchId[0] != 'M')){
 			alert("Favor de ingresar una matricula valida");
 			return;
 		}

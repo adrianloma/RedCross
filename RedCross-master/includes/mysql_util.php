@@ -70,14 +70,9 @@
 	
 	
 	function mysql_delete($table, $conexion, $matricula) {
-
         $conn = array($conexion);      
 
-
-       	
         $sql = "DELETE FROM $table  WHERE id_" . $table . "=" . $matricula;
-
-		
 
         return mysqli_query($conexion, $sql);
     }

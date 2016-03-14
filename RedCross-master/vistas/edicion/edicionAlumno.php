@@ -32,10 +32,11 @@ include "../../includes/sessionAdmin.php";
 
 	function search(){
 		var searchId = document.getElementById('searchId').value;
-		if(!isValidMatricula(searchId)){
+		if(!isValidMatricula(searchId) || (searchId[0] != 'a' &&  searchId[0] != 'A')){
 			alert("Favor de ingresar una matricula valida");
 			return;
 		}
+
 	    xhr=new XMLHttpRequest();
 	    xhr.onload= fillFields;
 	    var url="../../controladores/edicion/search.php?matricula=" + searchId;
@@ -102,7 +103,7 @@ include "../../includes/sessionAdmin.php";
 		document.getElementById('ExamenPsicometrico').value = arrayFields[42];
 		document.getElementById('Entrevisto').value = arrayFields[43];
 		document.getElementById('Email').value = arrayFields[44];
-		selectOption(document.getElementById('Estatus'), arrayFields[56]);
+		selectOption(document.getElementById('Estatus'), arrayFields[46]);
 		document.getElementById('celularPadre').value = arrayFields[47];
 		document.getElementById('celularMadre').value = arrayFields[48];
 	}
