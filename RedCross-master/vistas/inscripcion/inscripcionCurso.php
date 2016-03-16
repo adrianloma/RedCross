@@ -135,7 +135,7 @@ include "../../includes/conexion.php";
 					<select class="form-control" id="maestroResponsable" name="maestroResponsable" required>
 						<option value="">-</option>
 						<?php
-							$sql="SELECT id_maestro, m_nombre, m_apellidopaterno FROM maestro";
+							$sql="SELECT id_maestro, m_nombre, m_apellidopaterno FROM maestro  where m_estatus = 1";
 							$result = mysqli_query($conexion,$sql);
 							while ($row = mysqli_fetch_assoc($result)){
 								echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";

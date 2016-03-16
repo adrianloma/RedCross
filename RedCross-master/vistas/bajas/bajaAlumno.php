@@ -149,7 +149,7 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" onsubmit="return validarMatricula()" action="../../controladores/edicion/alumno.php">
+				<form method="post" onsubmit="return validarMatricula()" action="../../controladores/bajas/alumno.php">
 					<input type="hidden"  id="matricula" name="matricula" value="">
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>

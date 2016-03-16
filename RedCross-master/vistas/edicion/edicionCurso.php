@@ -1,6 +1,6 @@
 <?php
 include "../../includes/sessionAdmin.php";
-
+include "../../includes/conexion.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,10 +31,11 @@ include "../../includes/sessionAdmin.php";
 
 		function search(){
 		var searchId = document.getElementById('searchId').value;
-		if(!isInt("searchId")){
+		if(!isValidMatricula(searchId) || (searchId[0] != 'c' &&  searchId[0] != 'C')){
+			alert("Favor de ingresar una matricula valida");
 			return;
 		}
-		searchId = "c" + searchId;
+		//searchId = "c" + searchId;
 	    xhr=new XMLHttpRequest();
 	    xhr.onload= fillFields;
 	    var url="../../controladores/edicion/search.php?matricula=" + searchId;
@@ -50,15 +51,41 @@ include "../../includes/sessionAdmin.php";
 	    	return;
 	    }
 	    document.getElementById('matricula').value = arrayFields[1];
-	    document.getElementById('semestre').value = arrayFields[2];
-	    document.getElementById('nombre').value = arrayFields[3];
-	    document.getElementById('objetivoCurso').value = arrayFields[4];
-	    document.getElementById('lugar').value = arrayFields[7];
-	    markCheckBoxes(arrayFields[8]);
-	    document.getElementById('horaInicio').value = arrayFields[9];
-	    document.getElementById('isPrioridadAlta').value = arrayFields[10];
-	    document.getElementById('horaTerminacion').value = arrayFields[11];
+	    document.getElementById('nombre').value = arrayFields[4];
+	    document.getElementById('objetivoCurso').value = arrayFields[5];
+	    document.getElementById('unidades').value = arrayFields[6];
+	    document.getElementById('lugar').value = arrayFields[8];
+
+	    if(arrayFields[9].indexOf("Lu") != -1)
+	    	document.getElementById("Lunes").checked = true;
+
+	    if(arrayFields[9].indexOf("Ma") != -1)
+	    	document.getElementById("Martes").checked = true;
+
+		if(arrayFields[9].indexOf("Mi") != -1)
+	    	document.getElementById("Miercoles").checked = true;
+
+	    if(arrayFields[9].indexOf("Ju") != -1)
+	    	document.getElementById("Jueves").checked = true;
+
+	    if(arrayFields[9].indexOf("Vi") != -1)
+	    	document.getElementById("Viernes").checked = true;
+
+	    if(arrayFields[9].indexOf("Sa") != -1)
+	    	document.getElementById("Sabado").checked = true;
 	    
+	    document.getElementById('horaInicio').value = arrayFields[10];
+	    document.getElementById('isPrioridadAlta').value = arrayFields[11];
+	    document.getElementById('horaTerminacion').value = arrayFields[12];
+
+	    var maestros = document.getElementById('maestroResponsable');
+
+	    for(var x=0; x < maestros.length; x++){
+	    	if(maestros[x].value == arrayFields[3]){
+	    		maestros[x].selected = true;
+	    	}
+	    }
+
 	  }
 	</script>
 </head>
@@ -101,34 +128,27 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-			<form method="post" onsubmit="return isInt('searchId')" action="../../controladores/edicion/curso.php">
+			<form method="post" onsubmit="" action="../../controladores/edicion/curso.php">
 				<input type="hidden"  id="matricula" name="matricula" value="">
 				<!-- CURP del alumno -->
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Semestre</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isInt('semestre')" id="semestre" name="semestre" placeholder="Semestre" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del curso" >
+						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del curso" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">Objetivo del curso</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="objetivoCurso" name="objetivoCurso"></textarea>
+						<textarea class="form-control" rows="3" id="objetivoCurso" name="objetivoCurso" required></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Unidades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" >
+						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" required>
 					</div>
 				</div>
 				<br><br><br><br>
@@ -147,21 +167,21 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Hora de inicio</label>
 					<div class="col-lg-10">
-						<input type="time" class="form-control" id="horaInicio" name="horaInicio">
+						<input type="time" class="form-control" id="horaInicio" name="horaInicio" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Hora de terminacion</label>
 					<div class="col-lg-10">
-						<input type="time" class="form-control" id="horaTerminacion" name="horaTerminacion">
+						<input type="time" class="form-control" id="horaTerminacion" name="horaTerminacion" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Lugar</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar en donde se impartira" >
+						<input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar en donde se impartira" required>
 					</div>
 				</div>
 				<br><br>
@@ -172,6 +192,22 @@ include "../../includes/sessionAdmin.php";
 							<option value="No">No</option>
 							<option value="Si">Si</option>
 						</select>
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Maestro(a) responsable</label>
+					<div class="col-lg-10">
+					<select class="form-control" id="maestroResponsable" name="maestroResponsable" required>
+						<option value="">-</option>
+						<?php
+							$sql="SELECT id_maestro, m_nombre, m_apellidopaterno FROM maestro where m_estatus = 1";
+							$result = mysqli_query($conexion,$sql);
+							while ($row = mysqli_fetch_assoc($result)){
+								echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
+							}
+						?>
+					</select>
 					</div>
 				</div>
 			</div> <!-- /row  -->

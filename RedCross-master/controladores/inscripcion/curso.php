@@ -15,6 +15,7 @@ if(isset($_POST['dias'])){
     foreach($_POST['dias'] as $dia){
         $dias = $dias . "," . $dia;
     }
+    $dias = substr($dias,1);
 }
 
 $isPrioridadAlta = $_POST['isPrioridadAlta'];

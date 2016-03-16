@@ -36,7 +36,7 @@ function markCheckBoxes(idsStr){
 }
 
 function isValidMatricula(matricula){
-	var patt = /^[admADM][0-9]+$/i;
+	var patt = /^[admcADMC][0-9]+$/i;
 	return patt.test(matricula);
 }
 
