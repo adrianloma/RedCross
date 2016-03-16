@@ -4,27 +4,26 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
-
-$semestre = $_POST["semestre"];
 $nombre = $_POST["nombre"];
 $objetivoCurso = $_POST["objetivoCurso"];
 $unidades = $_POST["unidades"];
 $dias = "";
 $horaInicio = $_POST["horaInicio"];
 $horaFinal = $_POST["horaTerminacion"];
+
 if(isset($_POST['dias'])){
     foreach($_POST['dias'] as $dia){
-        $dias = $dias . ",". $dia;
+        $dias = $dias . "," . $dia;
     }
 }
+
 $isPrioridadAlta = $_POST['isPrioridadAlta'];
 $maestroResponsable = $_POST['maestroResponsable'];
 $lugar = $_POST['lugar'];
 
 
-$result = mysql_insert("curso", array(
+$result = mysql_insert_curso("curso", $conexion, array(
 	'cu_nombre' => $nombre,
-	'id_semestre' => $semestre,
 	'cu_objetivo' => $objetivoCurso,
 	'cu_numunidades' => $unidades,
 	'cu_fecharegistro' => date("Y-m-d"),
@@ -33,15 +32,15 @@ $result = mysql_insert("curso", array(
 	'cu_dias' => $dias,
 	'cu_isPrioridadAlta' => $isPrioridadAlta,
 	'cu_aula' => $lugar,
-	'cu_maestroresp' => $maestroResponsable
-
+	'id_maestro' => $maestroResponsable
 ));
+
 if ($result){
-	$newId = mysql_insert_id();
+	$newId = mysqli_insert_id($conexion);
 	$alertMsg = "Nuevo curso agregado satisfactoriamente con matricula $newId";
 }
 else{
-	$alertMsg = "Algo salio mal: " . mysql_error();
+	$alertMsg = "Algo salio mal: " . mysqli_error($conexion);
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");

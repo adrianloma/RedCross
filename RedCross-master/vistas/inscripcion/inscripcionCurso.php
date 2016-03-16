@@ -65,30 +65,23 @@ include "../../includes/conexion.php";
 			<div class="row">
 				<form method="post" action="../../controladores/inscripcion/curso.php">
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Semestre</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isInt('semestre')" id="semestre" name="semestre" placeholder="Semestre" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del curso" >
+						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del curso" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">Objetivo del curso</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="objetivoCurso" name="objetivoCurso"></textarea>
+						<textarea class="form-control" rows="3" id="objetivoCurso" name="objetivoCurso" required></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Unidades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" >
+						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" required>
 					</div>
 				</div>
 				<br><br>
@@ -107,21 +100,21 @@ include "../../includes/conexion.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Hora de inicio</label>
 					<div class="col-lg-10">
-						<input type="time" class="form-control" id="horaInicio" name="horaInicio">
+						<input type="time" class="form-control" id="horaInicio" name="horaInicio" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Hora de terminacion</label>
 					<div class="col-lg-10">
-						<input type="time" class="form-control" id="horaTerminacion" name="horaTerminacion">
+						<input type="time" class="form-control" id="horaTerminacion" name="horaTerminacion" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Lugar</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar en donde se impartira" >
+						<input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar en donde se impartira" required>
 					</div>
 				</div>
 				<br><br>
@@ -139,11 +132,12 @@ include "../../includes/conexion.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Maestro(a) responsable</label>
 					<div class="col-lg-10">
-					<select class="form-control" id="maestroResponsable" name="maestroResponsable">
+					<select class="form-control" id="maestroResponsable" name="maestroResponsable" required>
+						<option value="">-</option>
 						<?php
 							$sql="SELECT id_maestro, m_nombre, m_apellidopaterno FROM maestro";
-							$result = mysql_query($sql);
-							while ($row = mysql_fetch_array($result)){
+							$result = mysqli_query($conexion,$sql);
+							while ($row = mysqli_fetch_assoc($result)){
 								echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
 							}
 						?>
