@@ -69,9 +69,9 @@ include "../../includes/sessionAdmin.php";
 					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
-						<form onsubmit="get_action(this);" >
+					<form onsubmit="get_action(this);" >
 						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Alumnos">
-						</form>
+					</form>
 				</div>
 				<br>
 				<div>
@@ -119,27 +119,8 @@ include "../../includes/sessionAdmin.php";
 				<div class="widget">
 					<h4>Bienvenido</h4>
 					<address>
-						Usted ha ingresado como administrador, por favor seleccione la opci&oacute;n que requiera.
+						Usted ha ingresado como administrador.
 					</address>
-
-					<div class="radio">
-						<label>
-							<input type="radio" name="options"  id="inscribir" value="inscribir" checked="true">
-							Dar de alta
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" name="options" id="editar" value="editar">
-							Editar
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" name="options" id="baja" value="baja">
-							Dar de baja
-						</label>
-					</div>
 
 				</div>
 			</div>

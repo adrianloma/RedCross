@@ -70,50 +70,29 @@ function get_action(form) {
 
 	var display = form['Display'].value;
 
-	if(document.getElementById('inscribir').checked){
-		switch(display){
-			case "Alumnos":
-				form.action = '../inscripcion/inscripcionAlumno.php';
-				break;
-			case "Maestros":
-				form.action = '../inscripcion/inscripcionMaestro.php';
-				break;
-			case "Cursos":
-				form.action = '../inscripcion/inscripcionCurso.php';
-				break;
-			case "Administradores":
-				form.action = '../inscripcion/inscripcionAdmin.php';
-				break;
-		}
-	}else if (document.getElementById('editar').checked) {
-		switch(display){
-			case "Alumnos":
-				form.action = '../edicion/edicionAlumno.php';
-				break;
-			case "Maestros":
-				form.action = '../edicion/edicionMaestro.php';
-				break;
-			case "Cursos":
-				form.action = '../edicion/edicionCurso.php';
-				break;
-			case "Administradores":
-				form.action = '../edicion/edicionAdmin.php';
-				break;
-		}
-	} else if (document.getElementById('baja').checked) {
-		switch(display){
-			case "Alumnos":
-				form.action = '../bajas/bajaAlumno.php';
-				break;
-			case "Maestros":
-				form.action = '../bajas/bajaMaestro.php';
-				break;
-			case "Cursos":
-				form.action = '../bajas/bajaCurso.php';
-				break;
-			case "Administradores":
-				form.action = '../bajas/bajaAdmin.php';
-				break;
-		}
+	switch(display){
+		case "Alumnos":
+			form.action = 'menuABCAlumnos.php';
+			break;
+		case "Maestros":
+			form.action = 'menuABCMaestros.php';
+			break;
+		case "Cursos":
+			form.action = 'menuABCCursos.php';
+			break;
+		case "Administradores":
+			form.action = 'menuABCAdmins.php';
+			break;
 	}
+}
+
+function getQueryVariable(variable) {
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if (pair[0] == variable) {
+		  return pair[1];
+		}
+	} 
 }
