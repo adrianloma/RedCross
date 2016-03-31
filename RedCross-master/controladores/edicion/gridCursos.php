@@ -10,57 +10,72 @@
 	$contiene = mysqli_escape_string($conexion, $contiene);
 
 	$sql="select 
-			    id_maestro,
-				m_nombre,
-				m_apellidoPaterno,
-				m_apellidoMaterno,
-				m_email,
-			    m_curp,
-			    m_estatus
+			    cu.id_curso,
+			    cu.cu_nombre,
+			    m.m_nombre,
+			    m.m_apellidopaterno,
+			    cu.cu_aula,
+			    cu.cu_dias,
+			    cu.cu_horaInicio,
+			    cu.cu_horaFinal,
+			    c.c_nombre,
+			    g.gru_nombre,
+			    g.id_periodo
 			from
-			    maestro";
+			    curso cu left join maestro m
+							on m.id_maestro = cu.id_maestro
+						 left join grupo g
+							on g.id_grupo = cu.id_grupo
+						 left join nivel_escolar n
+			                on n.id_nivelEscolar = g.id_nivelEscolar
+						 left join carrera c
+							on c.id_carrera = n.id_carrera";
 
 	switch ($contiene) {
-		case 'id_maestro':
-			$sql .= " where id_maestro LIKE '%$buscar%'";
+		case 'id_curso':
+			$sql .= " where cu.id_curso LIKE '%$buscar%'";
 			break;
-		case 'a_nombre':
-			$sql .= " where m_nombre LIKE '%$buscar%'";
+		case 'nombre':
+			$sql .= " where cu.cu_nombre LIKE '%$buscar%'";
 			break;
-		case 'a_apellidoPaterno':
-			$sql .= " where m_apellidoPaterno LIKE '%$buscar%'";
+		case 'maestro':
+			$sql .= " where m.m_nombre LIKE '%$buscar%'
+						or  m.m_apellidopaterno LIKE '%$buscar%'";
 			break;
-		case 'a_apellidoMaterno':
-			$sql .= " where m_apellidoMaterno LIKE '%$buscar%'";
+		case 'aula':
+			$sql .= " where cu.cu_aula LIKE '%$buscar%'";
 			break;
-		case 'a_email':
-			$sql .= " where m_email LIKE '%$buscar%'";
+		case 'carrera':
+			$sql .= " where c.c_nombre LIKE '%$buscar%'";
 			break;
-		case 'a_curp':
-			$sql .= " where m_curp LIKE '%$buscar%'";
+		case 'grupo':
+			$sql .= " where g.gru_nombre LIKE '%$buscar%'";
 			break;
-		case 'm_estatus':
-			$sql .= " where m_estatus LIKE '%$buscar%'";
+		case 'periodo':
+			$sql .= " where g.id_periodo LIKE '%$buscar%'";
 			break;
 		default:
 			break;
 	}
 
-	$sql .= " order by m_nombre, m_apellidoPaterno, m_apellidoMaterno;";
+	$sql .= " order by cu.cu_nombre, c.c_nombre";
 
 	$result = mysqli_query($conexion, $sql);
 
 	while($row = mysqli_fetch_assoc($result)) {
         echo "	<tr>
-			  		<td>m" . $row["id_maestro"] . "</td>
-			  		<td>" . $row["m_nombre"] . "</td>
-			  		<td>" . $row["m_apellidoPaterno"] . "</td>
-			  		<td>" . $row["m_apellidoMaterno"] . "</td>
-			  		<td>" . $row["m_email"] . "</td>
-			  		<td>" . $row["m_curp"] . "</td>
-			  		<td>" . $row["m_estatus"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_maestro"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_maestro"] . ")\">Baja</button></td>
+			  		<td>c" . $row["id_curso"] . "</td>
+			  		<td>" . $row["cu_nombre"] . "</td>
+			  		<td>" . $row["m_nombre"] . " " .  $row["m_apellidopaterno"] ."</td>
+			  		<td>" . $row["cu_aula"] . "</td>
+			  		<td>" . $row["cu_horaInicio"] . "</td>
+			  		<td>" . $row["cu_horaFinal"] . "</td>
+			  		<td>" . $row["cu_dias"] . "</td>
+			  		<td>" . $row["c_nombre"] . "</td>
+			  		<td>" . $row["gru_nombre"] . "</td>
+			  		<td>" . $row["id_periodo"] . "</td>
+			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_curso"] . ")\">Editar</button></td>
+				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_curso"] . ")\">Baja</button></td>
 			  	</tr>";
     }
 

@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Alumnos</title>
+	<title>Cursos</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -31,7 +31,7 @@ include "../../includes/sessionAdmin.php";
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridMaestro.php?buscar=" + buscar + "&contiene=" + contiene;
+		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + "&contiene=" + contiene;
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -44,11 +44,14 @@ include "../../includes/sessionAdmin.php";
 								"<tr>"+
 									"<th>id</th>"+
 									"<th>Nombre</th>"+
-									"<th>Apellido Paterno</th>"+
-									"<th>Apellido Materno</th>"+
-									"<th>Correo</th>"+
-									"<th>CURP</th>"+
-									"<th>Estatus</th>"+
+									"<th>Maestro</th>"+
+									"<th>Aula</th>"+
+									"<th>Hora Inicio</th>"+
+									"<th>Hora Fin</th>"+
+									"<th>Dias</th>"+
+									"<th>Carrera</th>"+
+									"<th>Grupo</th>"+
+									"<th>Periodo</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
 								"</tr>"+
@@ -56,11 +59,11 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function editar(id){
-			window.location.assign("../edicion/edicionMaestro.php?id_maestro="+id);
+			window.location.assign("../edicion/edicionCurso.php?id_curso="+id);
 		}
 
 		function baja(id){
-			window.location.assign("../bajas/bajaMaestro.php?id_maestro="+id);
+			window.location.assign("../bajas/bajaCurso.php?id_curso="+id);
 		}
 	</script>
 
@@ -95,7 +98,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Maestros</h1>
+					<h1 class="page-title">Cursos</h1>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -105,13 +108,13 @@ include "../../includes/sessionAdmin.php";
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_maestro">Id</option>
-							<option value="m_nombre">Nombre</option>
-							<option value="m_apellidoPaterno">Apellido Paterno</option>
-							<option value="m_apellidoMaterno">Apellido Materno</option>
-							<option value="m_email">Correo</option>
-							<option value="m_curp">CURP</option>
-							<option value="m_estatus">Estatus</option>
+							<option value="id_curso">Id</option>
+							<option value="nombre">Nombre</option>
+							<option value="maestro">Maestro</option>
+							<option value="aula">Aula</option>
+							<option value="carrera">Carrera</option>
+							<option value="grupo">Grupo</option>
+							<option value="periodo">Periodo</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>

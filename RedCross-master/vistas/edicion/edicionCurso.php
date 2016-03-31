@@ -30,18 +30,14 @@ include "../../includes/conexion.php";
 	<script>
 
 		function search(){
-		var searchId = document.getElementById('searchId').value;
-		if(!isValidMatricula(searchId) || (searchId[0] != 'c' &&  searchId[0] != 'C')){
-			alert("Favor de ingresar una matricula valida");
-			return;
+			var searchId ="c"+getQueryVariable("id_curso");
+
+			xhr=new XMLHttpRequest();
+			xhr.onload= fillFields;
+			var url="../../controladores/edicion/search.php?matricula=" + searchId;
+			xhr.open("GET", url, true);
+			xhr.send();
 		}
-		//searchId = "c" + searchId;
-	    xhr=new XMLHttpRequest();
-	    xhr.onload= fillFields;
-	    var url="../../controladores/edicion/search.php?matricula=" + searchId;
-	    xhr.open("GET", url, true);
-	    xhr.send();
-	  }
 
 	  function fillFields(){
 	    var fields = xhr.responseText.trim();
@@ -90,7 +86,7 @@ include "../../includes/conexion.php";
 	</script>
 </head>
 
-<body class="home">
+<body class="home" onload="search()">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -103,15 +99,9 @@ include "../../includes/conexion.php";
 				</button>
 				<a class="navbar-brand" href="#">Edici&oacute;n</a>
 			</div>
-			<div class="navbar-form navbar-left" >
-				<div class="form-group">
-					<input type="text" class="form-control" id="searchId" name="searchId" placeholder="Ingresar ID">
-				</div>
-				<button onclick="search()" class="btn btn-default">Buscar</button>
-			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
+					<li><a href="../menus/menuABCCursos.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -218,7 +208,7 @@ include "../../includes/conexion.php";
 				</a>
 			</form>
 				<br><br>
-				<a href="../../vistas/menus/menuAdmin.php">
+				<a href="../menus/menuABCCursos.php">
 					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
 				</a>
 			</div>
