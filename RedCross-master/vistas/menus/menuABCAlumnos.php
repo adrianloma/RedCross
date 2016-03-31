@@ -51,6 +51,7 @@ include "../../includes/sessionAdmin.php";
 									"<th>Carrera</th>"+
 									"<th>Periodo</th>"+
 									"<th>Grupo</th>"+
+									"<th>Estatus</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
 								"</tr>"+
@@ -116,6 +117,7 @@ include "../../includes/sessionAdmin.php";
 							<option value="carrera">Carrera</option>
 							<option value="periodo">Periodo</option>
 							<option value="grupo">Grupo</option>
+							<option value="a_estatus">Estatus</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>

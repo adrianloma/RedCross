@@ -18,7 +18,8 @@
 			    a.a_curp,
 			    c.c_nombre,
 			    g.id_periodo,
-			    g.gru_nombre
+			    g.gru_nombre,
+			    a.a_estatus
 			from
 			    alumno 	a	left join grupo g
 								on	a.id_grupo = g.id_grupo
@@ -53,6 +54,9 @@
 		case 'grupo':
 			$sql .= " where g.gru_nombre LIKE '%$buscar%'";
 			break;
+		case 'a_estatus':
+			$sql .= " where a.a_estatus LIKE '%$buscar%'";
+			break;
 		default:
 			break;
 	}
@@ -72,6 +76,7 @@
 			  		<td>" . $row["c_nombre"] . "</td>
 			  		<td>" . $row["id_periodo"] . "</td>
 			  		<td>" . $row["gru_nombre"] . "</td>
+			  		<td>" . $row["a_estatus"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_alumno"] . ")\">Editar</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_alumno"] . ")\">Baja</button></td>
 			  	</tr>";

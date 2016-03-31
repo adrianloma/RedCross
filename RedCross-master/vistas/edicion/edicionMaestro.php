@@ -33,12 +33,8 @@ include "../../includes/sessionAdmin.php";
 	
 
 		function search(){
-		var searchId = document.getElementById('searchId').value;
-		console.log(searchId);
-		if(!isValidMatricula(searchId) || (searchId[0] != 'm' &&  searchId[0] != 'M')){
-			alert("Favor de ingresar una matricula valida");
-			return;
-		}
+			var searchId ="m"+getQueryVariable("id_maestro");
+
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
 			var url="../../controladores/edicion/search.php?matricula=" + searchId;
@@ -101,7 +97,7 @@ include "../../includes/sessionAdmin.php";
 	</script>
 </head>
 
-<body class="home">
+<body class="home" onload="search()">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -114,15 +110,9 @@ include "../../includes/sessionAdmin.php";
 				</button>
 				<a class="navbar-brand" href="#">Edici&oacute;n</a>
 			</div>
-			<form class="navbar-form navbar-left" role="search" onSubmit="return false;">
-				<div class="form-group">
-					<input type="text" id="searchId" class="form-control" placeholder="Ingresar ID">
-				</div>
-				<button onclick="search()" class="btn btn-default">Buscar</button>
-			</form>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
+					<li><a href="../menus/menuABCMaestros.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -369,7 +359,7 @@ include "../../includes/sessionAdmin.php";
 				</a>
 				</form>
 				<br><br>
-				<a href="#">
+				<a href="../menus/menuABCMaestros.php">
 					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
 				</a>
 			</div>

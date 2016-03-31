@@ -31,23 +31,15 @@ include "../../includes/sessionAdmin.php";
 
 	<script>
 	
-
 		function search(){
-		var searchId = document.getElementById('searchId').value;
-		console.log(searchId);
-		if(!isValidMatricula(searchId) || (searchId[0] != 'm' &&  searchId[0] != 'M')){
-			alert("Favor de ingresar una matricula valida");
-			return;
-		}
+			var searchId ="m"+getQueryVariable("id_maestro");
+
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
 			var url="../../controladores/edicion/search.php?matricula=" + searchId;
 			xhr.open("GET", url, true);
 			xhr.send();
-		}
-		
-
-	
+		}	
 	
 		function fillFields(){
 			//alert(xhr.responseText);
@@ -59,49 +51,49 @@ include "../../includes/sessionAdmin.php";
 				return;
 			}
 
-		
-		$i = 3;
-		
-		document.getElementById('matricula').value = 'a' + arrayFields[1];
-		document.getElementById('m_nombre').value = arrayFields[$i++];
-		document.getElementById('m_apellidopaterno').value = arrayFields[$i++];
-		document.getElementById('m_apellidomaterno').value = arrayFields[$i++];
-		document.getElementById('m_fechanac').value = arrayFields[$i++];
-		document.getElementById('m_edad').value = arrayFields[$i++];
-		
-		
-		document.getElementById('m_lugarnac').value = arrayFields[$i++];
-		document.getElementById('m_nacionalidad').value = arrayFields[$i++];
-		selectOption(document.getElementById('m_sexo'), arrayFields[$i++]);
-		selectOption(document.getElementById('m_estadocivil'), arrayFields[$i++]);
-		selectOption(document.getElementById('m_gposanguineo'), arrayFields[$i++]);
-		document.getElementById('m_rh').value = arrayFields[$i++];
-		document.getElementById('m_curp').value = arrayFields[$i++];
-		document.getElementById('m_servmedico').value = arrayFields[$i++];
-		document.getElementById('m_trabajo').value = arrayFields[$i++];
-		
-		
-		document.getElementById('m_enfermedades').value = arrayFields[$i++];
-		document.getElementById('m_alergias').value = arrayFields[$i++];
-		document.getElementById('m_debilidadmotriz').value = arrayFields[$i++];
-		document.getElementById('m_domicilio').value = arrayFields[$i++];
-		document.getElementById('m_numext').value = arrayFields[$i++];
-		document.getElementById('m_numint').value = arrayFields[$i++];
-		document.getElementById('m_cp').value = arrayFields[$i++];
-		document.getElementById('m_colonia').value = arrayFields[$i++];
-		document.getElementById('m_municipio').value = arrayFields[$i++];
-		document.getElementById('m_numlocal').value = arrayFields[$i++];
-		document.getElementById('m_numcelular').value = arrayFields[$i++];
-		document.getElementById('m_escolaridad').value = arrayFields[$i++];
-		document.getElementById('m_otrosestudios').value = arrayFields[$i++];
-		document.getElementById('m_email').value = arrayFields[$i++];
-		
-		//estudios/estatus
+			
+			$i = 3;
+			
+			document.getElementById('matricula').value = 'a' + arrayFields[1];
+			document.getElementById('m_nombre').value = arrayFields[$i++];
+			document.getElementById('m_apellidopaterno').value = arrayFields[$i++];
+			document.getElementById('m_apellidomaterno').value = arrayFields[$i++];
+			document.getElementById('m_fechanac').value = arrayFields[$i++];
+			document.getElementById('m_edad').value = arrayFields[$i++];
+			
+			
+			document.getElementById('m_lugarnac').value = arrayFields[$i++];
+			document.getElementById('m_nacionalidad').value = arrayFields[$i++];
+			selectOption(document.getElementById('m_sexo'), arrayFields[$i++]);
+			selectOption(document.getElementById('m_estadocivil'), arrayFields[$i++]);
+			selectOption(document.getElementById('m_gposanguineo'), arrayFields[$i++]);
+			document.getElementById('m_rh').value = arrayFields[$i++];
+			document.getElementById('m_curp').value = arrayFields[$i++];
+			document.getElementById('m_servmedico').value = arrayFields[$i++];
+			document.getElementById('m_trabajo').value = arrayFields[$i++];
+			
+			
+			document.getElementById('m_enfermedades').value = arrayFields[$i++];
+			document.getElementById('m_alergias').value = arrayFields[$i++];
+			document.getElementById('m_debilidadmotriz').value = arrayFields[$i++];
+			document.getElementById('m_domicilio').value = arrayFields[$i++];
+			document.getElementById('m_numext').value = arrayFields[$i++];
+			document.getElementById('m_numint').value = arrayFields[$i++];
+			document.getElementById('m_cp').value = arrayFields[$i++];
+			document.getElementById('m_colonia').value = arrayFields[$i++];
+			document.getElementById('m_municipio').value = arrayFields[$i++];
+			document.getElementById('m_numlocal').value = arrayFields[$i++];
+			document.getElementById('m_numcelular').value = arrayFields[$i++];
+			document.getElementById('m_escolaridad').value = arrayFields[$i++];
+			document.getElementById('m_otrosestudios').value = arrayFields[$i++];
+			document.getElementById('m_email').value = arrayFields[$i++];
+			
+			//estudios/estatus
 		}
 	</script>
 </head>
 
-<body class="home">
+<body class="home" onload="search()">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -114,15 +106,9 @@ include "../../includes/sessionAdmin.php";
 				</button>
 				<a class="navbar-brand" href="#">Bajas</a>
 			</div>
-			<form class="navbar-form navbar-left" role="search" onSubmit="return false;">
-				<div class="form-group">
-					<input type="text" id="searchId" class="form-control" placeholder="Ingresar ID">
-				</div>
-				<button onclick="search()" class="btn btn-default">Buscar</button>
-			</form>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
+					<li><a href="../menus/menuABCMaestros.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -369,7 +355,7 @@ include "../../includes/sessionAdmin.php";
 				</a>
 				</form>
 				<br><br>
-				<a href="#">
+				<a href="../menus/menuABCMaestros.php">
 					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
 				</a>
 			</div>
