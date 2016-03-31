@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Men&uacute;</title>
+	<title>Administradores</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -22,9 +22,50 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script src="../../includes/javascript_util.js"></script>
+
+	<script>
+
+		function Buscar(){
+			var buscar = document.getElementById('buscar').value;
+			var contiene = document.getElementById('contiene').value;
+			
+		    xhr=new XMLHttpRequest();
+		    xhr.onload= fillFields;
+		    var url="../../controladores/edicion/gridAdmin.php?buscar=" + buscar + "&contiene=" + contiene;
+		    xhr.open("GET", url, true);
+		    xhr.send();
+		    return false;
+		}
+
+		function fillFields(){
+			var grid = document.getElementById("grid");
+			var tabla = xhr.responseText;
+			grid.innerHTML = "<thead>"+
+								"<tr>"+
+									"<th>id</th>"+
+									"<th>Nombre</th>"+
+									"<th>Apellido Paterno</th>"+
+									"<th>Apellido Materno</th>"+
+									"<th>Correo</th>"+
+									"<th>CURP</th>"+
+									"<th>Editar</th>"+
+									"<th>Baja</th>"+
+								"</tr>"+
+								"</thead>" + tabla;
+		}
+
+		function editar(id){
+			window.location.assign("../edicion/edicionAdmin.php?id_administrador="+id);
+		}
+
+		function baja(id){
+			window.location.assign("../bajas/bajaAdmin.php?id_administrador="+id);
+		}
+	</script>
+
 </head>
 
-<body>
+<body onload="Buscar()">
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
 		<div class="container">
@@ -53,10 +94,32 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Men&uacute;</h1>
+					<h1 class="page-title">Administradores</h1>
 				</header>
+				<form class="form-inline" onsubmit="return Buscar()">
+					<div class="form-group">
+						<label for="buscar">Buscar:</label>
+						<input type="text" class="form-control" id="buscar" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="contiene">en</label>
+						<select class="form-control" id="contiene">
+							<option value="id_administrador">Id</option>
+							<option value="d_nombre">Nombre</option>
+							<option value="d_apellidoPaterno">Apellido Paterno</option>
+							<option value="d_apellidoMaterno">Apellido Materno</option>
+							<option value="d_email">Correo</option>
+							<option value="d_curp">CURP</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-default">Buscar</button>
+				</form>
+
 			</article>
 			<!-- /Article -->
+
+			<table class="table table-hover" id="grid"></table>
+
 		</div>
 	</div>	<!-- /container -->
 

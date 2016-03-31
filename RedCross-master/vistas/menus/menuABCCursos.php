@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Men&uacute;</title>
+	<title>Alumnos</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -22,9 +22,51 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script src="../../includes/javascript_util.js"></script>
+
+	<script>
+
+		function Buscar(){
+			var buscar = document.getElementById('buscar').value;
+			var contiene = document.getElementById('contiene').value;
+			
+		    xhr=new XMLHttpRequest();
+		    xhr.onload= fillFields;
+		    var url="../../controladores/edicion/gridMaestro.php?buscar=" + buscar + "&contiene=" + contiene;
+		    xhr.open("GET", url, true);
+		    xhr.send();
+		    return false;
+		}
+
+		function fillFields(){
+			var grid = document.getElementById("grid");
+			var tabla = xhr.responseText;
+			grid.innerHTML = "<thead>"+
+								"<tr>"+
+									"<th>id</th>"+
+									"<th>Nombre</th>"+
+									"<th>Apellido Paterno</th>"+
+									"<th>Apellido Materno</th>"+
+									"<th>Correo</th>"+
+									"<th>CURP</th>"+
+									"<th>Estatus</th>"+
+									"<th>Editar</th>"+
+									"<th>Baja</th>"+
+								"</tr>"+
+								"</thead>" + tabla;
+		}
+
+		function editar(id){
+			window.location.assign("../edicion/edicionMaestro.php?id_maestro="+id);
+		}
+
+		function baja(id){
+			window.location.assign("../bajas/bajaMaestro.php?id_maestro="+id);
+		}
+	</script>
+
 </head>
 
-<body>
+<body onload="Buscar()">
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
 		<div class="container">
@@ -53,10 +95,33 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Men&uacute;</h1>
+					<h1 class="page-title">Maestros</h1>
 				</header>
+				<form class="form-inline" onsubmit="return Buscar()">
+					<div class="form-group">
+						<label for="buscar">Buscar:</label>
+						<input type="text" class="form-control" id="buscar" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="contiene">en</label>
+						<select class="form-control" id="contiene">
+							<option value="id_maestro">Id</option>
+							<option value="m_nombre">Nombre</option>
+							<option value="m_apellidoPaterno">Apellido Paterno</option>
+							<option value="m_apellidoMaterno">Apellido Materno</option>
+							<option value="m_email">Correo</option>
+							<option value="m_curp">CURP</option>
+							<option value="m_estatus">Estatus</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-default">Buscar</button>
+				</form>
+
 			</article>
 			<!-- /Article -->
+
+			<table class="table table-hover" id="grid"></table>
+
 		</div>
 	</div>	<!-- /container -->
 
