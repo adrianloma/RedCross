@@ -28,6 +28,11 @@ include "../../includes/conexion.php";
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+	<script type="text/javascript">
+		function regresar(){
+			window.history.back();
+		}
+	</script>
 </head>
 
 <body class="home">
@@ -46,7 +51,7 @@ include "../../includes/conexion.php";
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuABCCarreras.php">Regresar</a></li>
+					<li><a href="#" onclick="regresar()">Regresar</a></li>
 				</ul>
 			</div>
 		</div>

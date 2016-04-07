@@ -73,7 +73,36 @@
         
         return mysqli_query($conexion, $query);
     }
+
+    function mysql_insert_semestre($table, $conexion, $inserts) {
+
+        $conn = array($conexion);
+        
+        for($i = 0 ; $i < 1 ; $i++)
+            array_push($conn, $conexion);
+
+        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
+        $keys = array_keys($inserts);
+
+        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
+        
+        return mysqli_query($conexion, $query);
+    }
     
+    function mysql_insert_periodo($table, $conexion, $inserts) {
+
+        $conn = array($conexion);
+        
+        for($i = 0 ; $i < 2 ; $i++)
+            array_push($conn, $conexion);
+
+        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
+        $keys = array_keys($inserts);
+
+        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
+        
+        return mysqli_query($conexion, $query);
+    }
 
     function mysql_update($table, $conexion, $updates, $matricula) {
 
@@ -94,7 +123,11 @@
         	}
     	}
 
-    	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
+        if($table == "nivel_escolar"){
+            $sql = $sql . " WHERE id_nivelEscolar=" . $matricula;
+        }else{
+            $sql = $sql . " WHERE id_" . $table . "=" . $matricula;
+        }
 
         return mysqli_query($conexion, $sql);
     }

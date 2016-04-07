@@ -40,6 +40,7 @@
 			  		<td>" . $row["c_fechaCreacion"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_carrera"] . ")\">Editar</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_carrera"] . ")\">Baja</button></td>
+				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_carrera"] . ",'" . $row["c_nombre"] . "')\">Ver</button></td>
 			  	</tr>";
     }
 

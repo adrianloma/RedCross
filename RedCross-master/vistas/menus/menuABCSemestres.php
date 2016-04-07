@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Carreras</title>
+	<title>Nivel Escolar</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -27,14 +27,14 @@ include "../../includes/sessionAdmin.php";
 
 		function Buscar(){
 
-			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + " > Carreras";
+			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + " > " + unescape(getQueryVariable("siglas")) + " > Nivel Escolar";
 
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCarreras.php?buscar=" + buscar + "&contiene=" + contiene;
+		    var url="../../controladores/edicion/gridSemestres.php?buscar=" + buscar + "&contiene=" + contiene + "&id_carrera=" + unescape(getQueryVariable("id_carrera"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -46,9 +46,8 @@ include "../../includes/sessionAdmin.php";
 			grid.innerHTML = "<thead>"+
 								"<tr>"+
 									"<th>id</th>"+
-									"<th>Siglas</th>"+
-									"<th>Descripci&oacute;n</th>"+
-									"<th>Fecha Creaci&oacute;n</th>"+
+									"<th>Nivel Escolar</th>"+
+									"<th>Carrera</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
 									"<th>Ver</th>"+
@@ -57,19 +56,19 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function ver(id, siglas){
-			window.location.assign("menuABCSemestres.php?id_periodo="+getQueryVariable("id_periodo")+"&per_nombre="+getQueryVariable("per_nombre")+"&id_carrera="+id+"&siglas="+siglas);
+			window.location.assign("menuABCGrupos.php?id_periodo="+getQueryVariable("id_periodo")+"&per_nombre="+getQueryVariable("per_nombre")+"&id_carrera="+id+"&siglas="+siglas);
 		}
 
 		function editar(id){
-			window.location.assign("../edicion/edicionCarrera.php?id_carrera="+id);
+			window.location.assign("../edicion/edicionSemestre.php?id_Semestre="+id);
 		}
 
 		function baja(id){
-			window.location.assign("../bajas/bajaCarrera.php?id_carrera="+id);
+			window.location.assign("../bajas/bajaSemestre.php?id_semestre="+id);
 		}
 
 		function alta(){
-			window.location.assign("../inscripcion/inscripcionCarrera.php");
+			window.location.assign("../inscripcion/inscripcionSemestre.php?id_carrera="+getQueryVariable("id_carrera"));
 		}
 
 		function regresar(){
@@ -108,7 +107,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-10 maincontent">
 				<header class="page-header">
-					<h2 class="page-title" id="titulo">Carreras</h2>
+					<h2 class="page-title" id="titulo">Nivel Escolar</h2>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -118,13 +117,12 @@ include "../../includes/sessionAdmin.php";
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_carrera">Id</option>
-							<option value="nombre">Siglas</option>
-							<option value="descripcion">Descripci&oacute;n</option>
+							<option value="id_semestre">Id</option>
+							<option value="descripcion">Nivel</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Carrera</button>
+					<button onclick="alta()" class="btn btn-default">Crear Nivel Escolar</button>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

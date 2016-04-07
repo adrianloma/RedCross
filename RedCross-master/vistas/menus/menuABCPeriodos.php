@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Carreras</title>
+	<title>Periodos</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -26,15 +26,12 @@ include "../../includes/sessionAdmin.php";
 	<script>
 
 		function Buscar(){
-
-			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + " > Carreras";
-
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCarreras.php?buscar=" + buscar + "&contiene=" + contiene;
+		    var url="../../controladores/edicion/gridPeriodo.php?buscar=" + buscar + "&contiene=" + contiene;
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -46,35 +43,30 @@ include "../../includes/sessionAdmin.php";
 			grid.innerHTML = "<thead>"+
 								"<tr>"+
 									"<th>id</th>"+
-									"<th>Siglas</th>"+
-									"<th>Descripci&oacute;n</th>"+
-									"<th>Fecha Creaci&oacute;n</th>"+
+									"<th>Descripcion</th>"+
+									"<th>Estatus</th>"+
 									"<th>Editar</th>"+
-									"<th>Baja</th>"+
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
 
-		function ver(id, siglas){
-			window.location.assign("menuABCSemestres.php?id_periodo="+getQueryVariable("id_periodo")+"&per_nombre="+getQueryVariable("per_nombre")+"&id_carrera="+id+"&siglas="+siglas);
+		function ver(id, periodo){
+			window.location.assign("menuABCCarreras.php?id_periodo=" + id + "&per_nombre=" + periodo );
 		}
 
 		function editar(id){
-			window.location.assign("../edicion/edicionCarrera.php?id_carrera="+id);
-		}
-
-		function baja(id){
-			window.location.assign("../bajas/bajaCarrera.php?id_carrera="+id);
+			window.location.assign("../edicion/edicionPeriodo.php?id_periodo="+id);
 		}
 
 		function alta(){
-			window.location.assign("../inscripcion/inscripcionCarrera.php");
+			window.location.assign("../inscripcion/inscripcionPeriodo.php");
 		}
 
 		function regresar(){
 			window.history.back();
 		}
+
 	</script>
 
 </head>
@@ -108,7 +100,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-10 maincontent">
 				<header class="page-header">
-					<h2 class="page-title" id="titulo">Carreras</h2>
+					<h1 class="page-title">Periodos</h1>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -118,13 +110,13 @@ include "../../includes/sessionAdmin.php";
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_carrera">Id</option>
-							<option value="nombre">Siglas</option>
+							<option value="id_periodo">Id</option>
 							<option value="descripcion">Descripci&oacute;n</option>
+							<option value="estatus">Estatus</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Carrera</button>
+					<button onclick="alta()" class="btn btn-default">Crear Periodo</button>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

@@ -9,8 +9,6 @@
 	$descripcion = $_POST["descripcion"];
 	$estatus = $_POST["estatus"];
 
-	echo $matricula;
-
 	$result = mysql_update("carrera", $conexion, array(
 		'c_nombre' => $nombre,
 		'c_desc' => $descripcion,
@@ -27,6 +25,6 @@
 
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");
-				window.location.href = \"../../vistas/menus/menuAdmin.php\"
+				window.history.go(-2);
 			</script>";
 ?>

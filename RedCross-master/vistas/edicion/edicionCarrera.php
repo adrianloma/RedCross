@@ -11,7 +11,7 @@ include "../../includes/conexion.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Inscripci&oacute;n</title>
+	<title>Edici&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -53,6 +53,10 @@ include "../../includes/conexion.php";
 	    	document.getElementById('estatus').value = arrayFields[5];
 
 		}
+
+		function regresar(){
+			window.history.back();
+		}
 </script>
 </head>
 
@@ -67,12 +71,12 @@ include "../../includes/conexion.php";
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Inscripci&oacute;n</a>
+				<a class="navbar-brand" href="#">Edici&oacute;n</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuABCCarreras.php">Regresar</a></li>
+					<li><a href="#" onclick="regresar()">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -80,7 +84,7 @@ include "../../includes/conexion.php";
 
 	<!-- Intro -->
 	<div class="container text-center">
-		<h2 class="thin">Inscripci&oacute;n de nueva Carrera al Sistema</h2>
+		<h2 class="thin">Edici&oacute;n de carrera</h2>
 		<br>
 	</div>
 	<!-- /Intro-->
@@ -125,7 +129,7 @@ include "../../includes/conexion.php";
 				</form>
 				<br>
 				<div class="row" style="text-align:center;">
-					<a href="../menus/menuABCCarreras.php">
+					<a href="#" onclick="regresar()">
 						<button style="width:75%;" class="btn btn-action" >Cancelar</button>
 					</a>
 				</div>

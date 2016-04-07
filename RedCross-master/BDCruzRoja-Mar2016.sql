@@ -198,7 +198,7 @@ CREATE TABLE `maestro` (
 CREATE TABLE `nivel_Escolar` (
   `id_nivelEscolar` int(11) NOT NULL COMMENT 'id del semestre',
   `ne_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
-  `id_carrera` date DEFAULT NULL COMMENT 'fecha de registro'
+  `id_carrera` int(11) DEFAULT NULL COMMENT 'fecha de registro'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 

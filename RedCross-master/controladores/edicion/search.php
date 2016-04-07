@@ -22,6 +22,14 @@
 	
 		$tabla = "carrera";
 		
+	}elseif ($tipo == "e") {
+	
+		$tabla = "periodo";
+		
+	}elseif ($tipo == "n") {
+	
+		$tabla = "nivel_escolar";
+		
 	}else{
 	
 		$tabla = "administrador";
@@ -29,8 +37,15 @@
 	}
 
 	$matricula = mysqli_escape_string($conexion, $matricula);
-	$sql="select * from " . $tabla . " where id_" . $tabla . "= $matricula";
-	echo $sql;
+
+	if($tipo == "n") {
+
+		$sql="select * from nivel_escolar where id_nivelEscolar = $matricula";
+	
+	}else{
+		$sql="select * from " . $tabla . " where id_" . $tabla . "= $matricula";
+	}
+
 	$result = mysqli_query($conexion, $sql);
 	$response = "";
 	$row = mysqli_fetch_assoc($result);

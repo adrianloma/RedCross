@@ -1,6 +1,7 @@
 <?php
 include "../../includes/sessionAdmin.php";
 include "../../includes/conexion.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@ include "../../includes/conexion.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Bajas</title>
+	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -27,41 +28,9 @@ include "../../includes/conexion.php";
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
-	<script>
-
-		function search(){
-			var searchId ="p"+getQueryVariable("id_carrera");
-
-			xhr=new XMLHttpRequest();
-			xhr.onload= fillFields;
-			var url="../../controladores/edicion/search.php?matricula=" + searchId;
-			xhr.open("GET", url, true);
-			xhr.send();
-		}
-
-		function fillFields(){
-			var fields = xhr.responseText.trim();
-			var arrayFields = fields.split("|");
-			if(arrayFields[0] == "-1"){
-				alert(arrayFields[1]);
-				return;
-			}
-
-			document.getElementById('matricula').value = arrayFields[1];
-			document.getElementById('nombre').value = arrayFields[2];
-			document.getElementById('descripcion').value = arrayFields[3];
-			document.getElementById('estatus').value = arrayFields[5];
-
-		}
-
-		function regresar(){
-			window.history.back();
-		}
-
-	</script>
 </head>
 
-<body class="home" onload="search()">
+<body class="home">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -72,11 +41,12 @@ include "../../includes/conexion.php";
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Bajas</a>
+				<a class="navbar-brand" href="#">Inscripci&oacute;n</a>
 			</div>
+
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" onclick="regresar()">Regresar</a></li>
+					<li><a href="../menus/menuABCPeriodos.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -84,7 +54,7 @@ include "../../includes/conexion.php";
 
 	<!-- Intro -->
 	<div class="container text-center">
-		<h2 class="thin">Bajas de Carreras</h2>
+		<h2 class="thin">Inscripci&oacute;n de nuevo periodo al Sistema</h2>
 		<br>
 	</div>
 	<!-- /Intro-->
@@ -93,47 +63,23 @@ include "../../includes/conexion.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" onsubmit="" action="../../controladores/bajas/carrera.php">
-					<input type="hidden" id="matricula" value="" name="matricula">
-					<div class="form-group">
-						<label for="" class="col-lg-2 control-label">Siglas</label>
-						<div class="col-lg-10">
-							<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Siglas de la carrera" readonly>
-						</div>
+				<form method="post" action="../../controladores/inscripcion/periodo.php">
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Descripción</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripci&oacute;n del periodo" required>
 					</div>
-					<br><br>
-					<div class="form-group">
-						<label for="textArea" class="col-lg-2 control-label">Descripci&oacute;n</label>
-						<div class="col-lg-10">
-							<textarea class="form-control" rows="3" id="descripcion" name="descripcion" readonly></textarea>
-						</div>
-					</div>
-					<br><br>
-					<br><br>
-					<div class="form-group">
-						<label for="" class="col-lg-2 control-label">Estatus</label>
-						<div class="col-lg-10">
-							<select class="form-control" id="estatus" name="estatus" required>
-								<option value="1">Alta</option>
-								<option value="0">Baja</option>
-							</select>
-						</div>
-					</div>
-					<br><br>
-					<br><br>
-					<div class="row" style="text-align:center;">
-						<a href="#">
-							<button style="width:75%;" align="center" class="btn btn-action" type="submit">Guardar</button>
-						</a>
-					</div>
-				</form>
-				<br>
-				<div class="row" style="text-align:center;">
-					<a href="#" onclick="regresar()">
-						<button style="width:75%;" class="btn btn-action" >Cancelar</button>
-					</a>
 				</div>
+				<br><br>
+				<br><br>
 			</div>
+			<br><br>
+			<div class="row" style="text-align:center;">
+				<a href="#">
+					<button style="width:50%;" align="center" class="btn btn-action" type="submit">Guardar</button>
+				</a>
+			</div> <!-- /row  -->
+		</form>
 		</div>
 	</div>
 	<!-- /Highlights -->

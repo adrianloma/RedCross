@@ -93,12 +93,6 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br>
 				<div>
-					<a href="menuABCCarreras.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Carreras">
-					</a>
-				</div>
-				<br>
-				<div>
 					<a href="menuABCPeriodos.php">
 						<input class="btn btn-action" style="width:100%;" type="submit" value="Periodos">
 					</a>
