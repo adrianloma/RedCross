@@ -7,20 +7,30 @@
 	$matricula=substr($_GET["matricula"], 1);
 
 	if($tipo == "a"){
+	
 		$tabla = "alumno";
-	}
-	elseif ($tipo == "m"){
+	
+	}elseif ($tipo == "m"){
+	
 		$tabla = "maestro";
-	}
-	elseif ($tipo == "c") {
+	
+	}elseif ($tipo == "c") {
+	
 		$tabla = "curso";
-	}
-	else{
+	
+	}elseif ($tipo == "p") {
+	
+		$tabla = "carrera";
+		
+	}else{
+	
 		$tabla = "administrador";
+	
 	}
 
 	$matricula = mysqli_escape_string($conexion, $matricula);
 	$sql="select * from " . $tabla . " where id_" . $tabla . "= $matricula";
+	echo $sql;
 	$result = mysqli_query($conexion, $sql);
 	$response = "";
 	$row = mysqli_fetch_assoc($result);

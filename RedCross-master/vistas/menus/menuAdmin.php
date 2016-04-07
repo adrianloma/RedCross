@@ -69,27 +69,39 @@ include "../../includes/sessionAdmin.php";
 					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
-					<form onsubmit="get_action(this);" >
-						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Alumnos">
-					</form>
+					<a href="menuABCAlumnos.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Alumnos">
+					</a>
 				</div>
 				<br>
 				<div>
-					<form onsubmit="get_action(this);" >
-						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Maestros">
-					</form>
+					<a href="menuABCMaestros.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Maestros">
+					</a>
 				</div>
 				<br>
 				<div>
-					<form onsubmit="get_action(this);" >
-						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Cursos">
-					</form>
+					<a href="menuABCCursos.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos">
+					</a>
 				</div>
 				<br>
 				<div>
-					<form onsubmit="get_action(this);" >
-						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Administradores">
-					</form>
+					<a href="menuABCAdmins.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Administradores">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="menuABCCarreras.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Carreras">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="menuABCPeriodos.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Periodos">
+					</a>
 				</div>
 				<br>
 				<div>

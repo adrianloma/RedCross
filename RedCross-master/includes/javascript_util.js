@@ -66,26 +66,6 @@ function isInt(elementId){
 	}
 }
 
-function get_action(form) {
-
-	var display = form['Display'].value;
-
-	switch(display){
-		case "Alumnos":
-			form.action = 'menuABCAlumnos.php';
-			break;
-		case "Maestros":
-			form.action = 'menuABCMaestros.php';
-			break;
-		case "Cursos":
-			form.action = 'menuABCCursos.php';
-			break;
-		case "Administradores":
-			form.action = 'menuABCAdmins.php';
-			break;
-	}
-}
-
 function getQueryVariable(variable) {
 	var query = window.location.search.substring(1);
 	var vars = query.split("&");

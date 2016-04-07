@@ -65,6 +65,10 @@ include "../../includes/sessionAdmin.php";
 		function baja(id){
 			window.location.assign("../bajas/bajaAlumno.php?id_alumno="+id);
 		}
+
+		function alta(){
+			window.location.assign("../inscripcion/inscripcionAlumno.php");
+		}
 	</script>
 
 </head>
@@ -121,8 +125,8 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
+					<button onclick="alta()" class="btn btn-default">Crear Alumno</button>
 				</form>
-
 			</article>
 			<!-- /Article -->
 

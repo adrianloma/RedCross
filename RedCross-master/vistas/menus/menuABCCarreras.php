@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Cursos</title>
+	<title>Carreras</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -31,7 +31,7 @@ include "../../includes/sessionAdmin.php";
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + "&contiene=" + contiene;
+		    var url="../../controladores/edicion/gridCarreras.php?buscar=" + buscar + "&contiene=" + contiene;
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -43,15 +43,9 @@ include "../../includes/sessionAdmin.php";
 			grid.innerHTML = "<thead>"+
 								"<tr>"+
 									"<th>id</th>"+
-									"<th>Nombre</th>"+
-									"<th>Maestro</th>"+
-									"<th>Aula</th>"+
-									"<th>Hora Inicio</th>"+
-									"<th>Hora Fin</th>"+
-									"<th>Dias</th>"+
-									"<th>Carrera</th>"+
-									"<th>Grupo</th>"+
-									"<th>Periodo</th>"+
+									"<th>Siglas</th>"+
+									"<th>Descripci&oacute;n</th>"+
+									"<th>Fecha Creaci&oacute;n</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
 								"</tr>"+
@@ -59,15 +53,15 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function editar(id){
-			window.location.assign("../edicion/edicionCurso.php?id_curso="+id);
+			window.location.assign("../edicion/edicionCarrera.php?id_carrera="+id);
 		}
 
 		function baja(id){
-			window.location.assign("../bajas/bajaCurso.php?id_curso="+id);
+			window.location.assign("../bajas/bajaCarrera.php?id_carrera="+id);
 		}
 
 		function alta(){
-			window.location.assign("../inscripcion/inscripcionCurso.php");
+			window.location.assign("../inscripcion/inscripcionCarrera.php");
 		}
 	</script>
 
@@ -102,7 +96,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Cursos</h1>
+					<h1 class="page-title">Carreras</h1>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -112,17 +106,13 @@ include "../../includes/sessionAdmin.php";
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_curso">Id</option>
-							<option value="nombre">Nombre</option>
-							<option value="maestro">Maestro</option>
-							<option value="aula">Aula</option>
-							<option value="carrera">Carrera</option>
-							<option value="grupo">Grupo</option>
-							<option value="periodo">Periodo</option>
+							<option value="id_carrera">Id</option>
+							<option value="nombre">Siglas</option>
+							<option value="descripcion">Descripci&oacute;n</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Curso</button>
+					<button onclick="alta()" class="btn btn-default">Crear Carrera</button>
 				</form>
 
 			</article>
