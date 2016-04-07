@@ -11,7 +11,7 @@ include "../../includes/conexion.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Edici&oacute;n</title>
+	<title>Bajas</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -68,7 +68,7 @@ include "../../includes/conexion.php";
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Edici&oacute;n</a>
+				<a class="navbar-brand" href="#">Bajas</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -81,7 +81,7 @@ include "../../includes/conexion.php";
 
 	<!-- Intro -->
 	<div class="container text-center">
-		<h2 class="thin">Edici&oacute;n de Nivel Escolar</h2>
+		<h2 class="thin">Bajas de Nivel Escolar</h2>
 		<br>
 	</div>
 	<!-- /Intro-->
@@ -90,12 +90,12 @@ include "../../includes/conexion.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" action="../../controladores/edicion/semestre.php">
+				<form method="post" action="../../controladores/bajas/semestre.php">
 					<input type="hidden" id="matricula" value="" name="matricula">
 					<div class="form-group">
 						<label for="" class="col-lg-2 control-label">Nivel Escolar</label>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="nivel" name="nivel" placeholder="Nivel Escolar, ejemplo: 1" required>
+							<input type="text" class="form-control" id="nivel" name="nivel" placeholder="Nivel Escolar, ejemplo: 1" readonly>
 						</div>
 					</div>
 					<br><br>
@@ -104,7 +104,7 @@ include "../../includes/conexion.php";
 				<br><br>
 				<div class="row" style="text-align:center;">
 					<a href="#">
-						<button style="width:75%;" align="center" class="btn btn-action" type="submit">Guardar</button>
+						<button style="width:75%;" align="center" class="btn btn-action" type="submit">Dar de baja</button>
 					</a>
 				</div> <!-- /row  -->
 			</form>

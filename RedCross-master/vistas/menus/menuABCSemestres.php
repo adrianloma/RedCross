@@ -34,7 +34,7 @@ include "../../includes/sessionAdmin.php";
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridSemestres.php?buscar=" + buscar + "&contiene=" + contiene + "&id_carrera=" + unescape(getQueryVariable("id_carrera"));
+		    var url="../../controladores/edicion/gridSemestres.php?buscar=" + buscar + "&contiene=" + contiene + "&id_carrera=" + unescape(getQueryVariable("id_carrera")) + "&id_periodo=" + unescape(getQueryVariable("id_periodo"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -64,11 +64,11 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function baja(id){
-			window.location.assign("../bajas/bajaSemestre.php?id_semestre="+id);
+			window.location.assign("../bajas/bajaSemestre.php?id_Semestre="+id);
 		}
 
 		function alta(){
-			window.location.assign("../inscripcion/inscripcionSemestre.php?id_carrera="+getQueryVariable("id_carrera"));
+			window.location.assign("../inscripcion/inscripcionSemestre.php?id_periodo="+getQueryVariable("id_periodo")+"&id_carrera="+getQueryVariable("id_carrera"));
 		}
 
 		function regresar(){

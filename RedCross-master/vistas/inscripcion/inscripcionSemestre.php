@@ -31,6 +31,7 @@ include "../../includes/conexion.php";
 	<script>
 		function carga() {
 			document.getElementById("id_carrera").value = getQueryVariable("id_carrera");
+			document.getElementById("id_periodo").value = getQueryVariable("id_periodo");
 		}
 
 		function regresar(){
@@ -89,6 +90,7 @@ include "../../includes/conexion.php";
 				</a>
 			</div> <!-- /row  -->
 			<input type="hidden" id="id_carrera" value="" name="id_carrera">
+			<input type="hidden" id="id_periodo" value="" name="id_periodo">
 		</form>
 		</div>
 	</div>

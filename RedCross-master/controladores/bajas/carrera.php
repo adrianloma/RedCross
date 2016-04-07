@@ -9,7 +9,6 @@
 	$descripcion = $_POST["descripcion"];
 	$estatus = $_POST["estatus"];
 
-	echo $matricula;
 
 	$result = mysql_update("carrera", $conexion, array(
 		'c_nombre' => $nombre,

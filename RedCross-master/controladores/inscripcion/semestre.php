@@ -5,11 +5,13 @@
 	include "../../includes/mysql_util.php";
 
 	$id_carrera = $_GET["id_carrera"];
+	$id_periodo = $_GET["id_periodo"];
 	$nivel = $_GET["nivel"];
 	
 	$result = mysql_insert_semestre("nivel_escolar", $conexion, array(
 		'ne_desc' => $nivel,
-		'id_carrera' => $id_carrera
+		'id_carrera' => $id_carrera,
+		'id_periodo' => $id_periodo
 	));
 
 	if ($result){

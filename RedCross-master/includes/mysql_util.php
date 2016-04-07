@@ -78,7 +78,7 @@
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 1 ; $i++)
+        for($i = 0 ; $i < 2 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
@@ -136,7 +136,11 @@
 	function mysql_delete($table, $conexion, $matricula) {
         $conn = array($conexion);      
 
-        $sql = "DELETE FROM $table  WHERE id_" . $table . "=" . $matricula;
+        if($table == "nivel_escolar"){
+            $sql = "delete from $table where id_nivelEscolar=" . $matricula;
+        }else{
+            $sql = "delete from $table where id_" . $table . "=" . $matricula;
+        }
 
         return mysqli_query($conexion, $sql);
     }
