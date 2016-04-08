@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Nivel Escolar</title>
+	<title>Grupos</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -27,7 +27,10 @@ include "../../includes/sessionAdmin.php";
 
 		function Buscar(){
 
-			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + " > " + unescape(getQueryVariable("siglas")) + " > Nivel Escolar";
+			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + 
+														" > " + unescape(getQueryVariable("siglas")) + 
+														" > Nivel Escolar:" +  unescape(getQueryVariable("semestre")) +
+														" > Grupos";
 
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;

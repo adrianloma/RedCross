@@ -42,7 +42,7 @@
 			  		<td>" . $row["c_nombre"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_nivelEscolar"] . ")\">Editar</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_nivelEscolar"] . ")\">Baja</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_nivelEscolar"] . ",'" . $row["c_nombre"] . "')\">Ver</button></td>
+				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_nivelEscolar"] . ",'" . $row["ne_desc"] . "')\">Ver</button></td>
 			  	</tr>";
     }
 
