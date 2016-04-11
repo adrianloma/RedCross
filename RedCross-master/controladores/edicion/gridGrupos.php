@@ -43,7 +43,7 @@
 	}
 
 
-	$sql .= " order by ne_desc";
+	$sql .= " order by g.gru_nombre";
 
 	$result = mysqli_query($conexion, $sql);
 

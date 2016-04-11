@@ -30,6 +30,10 @@
 	
 		$tabla = "nivel_escolar";
 		
+	}elseif ($tipo == "g") {
+	
+		$tabla = "grupo";
+		
 	}else{
 	
 		$tabla = "administrador";

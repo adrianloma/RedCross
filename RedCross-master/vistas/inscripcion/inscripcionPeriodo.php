@@ -72,7 +72,7 @@ include "../../includes/conexion.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Descripción</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripci&oacute;n del periodo" required>
+						<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ejemplo: Enero-Mayo 2016" required>
 					</div>
 				</div>
 				<br><br>
