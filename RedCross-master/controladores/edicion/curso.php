@@ -44,6 +44,6 @@ else{
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");
-				window.location.href = \"../../vistas/menus/menuAdmin.php\"
+				window.history.go(-2);
 			</script>";
 ?>

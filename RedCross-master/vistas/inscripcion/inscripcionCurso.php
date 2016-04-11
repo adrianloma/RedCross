@@ -28,9 +28,18 @@ include "../../includes/conexion.php";
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+	<script>
+		function carga() {
+			document.getElementById("grupo").value = getQueryVariable("id_grupo");
+		}
+
+		function regresar(){
+			window.history.back();
+		}
+	</script>
 </head>
 
-<body class="home">
+<body class="home" onload="carga()">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -46,7 +55,7 @@ include "../../includes/conexion.php";
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuABCCursos.php">Regresar</a></li>
+					<li><a href="#" onclick="regresar()">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -64,6 +73,7 @@ include "../../includes/conexion.php";
 		<div class="container">
 			<div class="row">
 				<form method="post" action="../../controladores/inscripcion/curso.php">
+				<input type="hidden" id="grupo" name="grupo" value="">
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre</label>
 					<div class="col-lg-10">

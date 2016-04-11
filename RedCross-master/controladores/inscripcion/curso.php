@@ -4,6 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
+$grupo = $_POST["grupo"];
 $nombre = $_POST["nombre"];
 $objetivoCurso = $_POST["objetivoCurso"];
 $unidades = $_POST["unidades"];
@@ -24,6 +25,7 @@ $lugar = $_POST['lugar'];
 
 
 $result = mysql_insert_curso("curso", $conexion, array(
+	'id_grupo'  => $grupo,
 	'cu_nombre' => $nombre,
 	'cu_objetivo' => $objetivoCurso,
 	'cu_numunidades' => $unidades,
@@ -45,6 +47,6 @@ else{
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");
-				window.location.href = \"../../vistas/menus/menuAdmin.php\"
+				window.history.go(-2);
 			</script>";
 ?>

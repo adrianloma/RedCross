@@ -26,12 +26,21 @@ include "../../includes/sessionAdmin.php";
 	<script>
 
 		function Buscar(){
+
+			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + 
+											" > " + unescape(getQueryVariable("siglas")) + 
+											" > Nivel Escolar:" +  unescape(getQueryVariable("semestre")) +
+											" > Grupo:" +  unescape(getQueryVariable("grupo")) +
+											" > Cursos";
+
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + "&contiene=" + contiene;
+		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + 
+		    														"&contiene=" + contiene +
+		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -49,11 +58,9 @@ include "../../includes/sessionAdmin.php";
 									"<th>Hora Inicio</th>"+
 									"<th>Hora Fin</th>"+
 									"<th>Dias</th>"+
-									"<th>Carrera</th>"+
-									"<th>Grupo</th>"+
-									"<th>Periodo</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
+									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
@@ -67,7 +74,15 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function alta(){
-			window.location.assign("../inscripcion/inscripcionCurso.php");
+			window.location.assign("../inscripcion/inscripcionCurso.php?id_grupo=" + unescape(getQueryVariable("id_grupo")));
+		}
+
+		function ver(id, grupo){
+			window.location.assign("../inscripcion/menuABCInscritos.php");
+		}
+
+		function regresar(){
+			window.history.back();
 		}
 	</script>
 
@@ -102,7 +117,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Cursos</h1>
+					<h2 class="page-title" id="titulo">Cursos</h2>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -116,13 +131,11 @@ include "../../includes/sessionAdmin.php";
 							<option value="nombre">Nombre</option>
 							<option value="maestro">Maestro</option>
 							<option value="aula">Aula</option>
-							<option value="carrera">Carrera</option>
-							<option value="grupo">Grupo</option>
-							<option value="periodo">Periodo</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
 					<button onclick="alta()" class="btn btn-default">Crear Curso</button>
+					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 
 			</article>

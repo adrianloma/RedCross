@@ -83,6 +83,9 @@ include "../../includes/conexion.php";
 	    }
 
 	  }
+	  	function regresar(){
+			window.history.back();
+		}
 	</script>
 </head>
 
@@ -101,7 +104,7 @@ include "../../includes/conexion.php";
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuABCCursos.php">Regresar</a></li>
+					<li><a href="#" onclick="regresar()">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -208,7 +211,7 @@ include "../../includes/conexion.php";
 				</a>
 			</form>
 				<br><br>
-				<a href="../menus/menuABCCursos.php">
+				<a href="#" onclick="regresar()">
 					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
 				</a>
 			</div>

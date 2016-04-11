@@ -48,7 +48,7 @@
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 9 ; $i++)
+        for($i = 0 ; $i < 10 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
