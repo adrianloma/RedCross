@@ -50,7 +50,12 @@ include "../../includes/conexion.php";
 			document.getElementById('matricula').value = arrayFields[1];
 			document.getElementById('descripcion').value = arrayFields[2];
 		}
-</script>
+
+		function regresar(){
+			window.history.back();
+		}
+
+	</script>
 </head>
 
 <body class="home" onload="search()">
@@ -69,7 +74,7 @@ include "../../includes/conexion.php";
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuABCPeriodos.php">Regresar</a></li>
+					<li><a href="#" onclick="regresar()">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -106,7 +111,7 @@ include "../../includes/conexion.php";
 				</form>
 				<br>
 				<div class="row" style="text-align:center;">
-					<a href="../menus/menuABCPeriodos.php">
+					<a href="#" onclick="regresar()">
 						<button style="width:75%;" class="btn btn-action" >Cancelar</button>
 					</a>
 				</div>

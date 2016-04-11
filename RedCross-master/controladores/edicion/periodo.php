@@ -19,6 +19,6 @@
 
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");
-				window.location.href = \"../../vistas/menus/menuABCPeriodos.php\"
+				window.history.go(-2);
 			</script>";
 ?>

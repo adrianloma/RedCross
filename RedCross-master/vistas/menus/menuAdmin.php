@@ -81,12 +81,6 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br>
 				<div>
-					<a href="menuABCCursos.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos">
-					</a>
-				</div>
-				<br>
-				<div>
 					<a href="menuABCAdmins.php">
 						<input class="btn btn-action" style="width:100%;" type="submit" value="Administradores">
 					</a>

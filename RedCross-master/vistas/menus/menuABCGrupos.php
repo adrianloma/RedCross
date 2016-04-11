@@ -37,7 +37,11 @@ include "../../includes/sessionAdmin.php";
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridSemestres.php?buscar=" + buscar + "&contiene=" + contiene + "&id_carrera=" + unescape(getQueryVariable("id_carrera")) + "&id_periodo=" + unescape(getQueryVariable("id_periodo"));
+		    var url="../../controladores/edicion/gridGrupos.php?buscar=" + buscar + 
+		    														"&contiene=" + contiene + 
+		    														"&id_carrera=" + unescape(getQueryVariable("id_carrera")) + 
+		    														"&id_periodo=" + unescape(getQueryVariable("id_periodo")) +
+		    														"&id_semestre=" + unescape(getQueryVariable("id_Semestre"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -49,8 +53,7 @@ include "../../includes/sessionAdmin.php";
 			grid.innerHTML = "<thead>"+
 								"<tr>"+
 									"<th>id</th>"+
-									"<th>Nivel Escolar</th>"+
-									"<th>Carrera</th>"+
+									"<th>Grupo</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
 									"<th>Ver</th>"+
@@ -58,26 +61,29 @@ include "../../includes/sessionAdmin.php";
 								"</thead>" + tabla;
 		}
 
-		function ver(id, semestre){
-			window.location.assign("menuABCGrupos.php?id_periodo="+getQueryVariable("id_periodo")+
+		function ver(id, grupo){
+			window.location.assign("menuABCCursos.php?id_periodo="+getQueryVariable("id_periodo")+
 													"&per_nombre="+getQueryVariable("per_nombre")+
 													"&id_carrera="+getQueryVariable("id_carrera")+
 													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+id+
-													"&semestre="+semestre);
+													"&id_Semestre="+getQueryVariable("id_Semestre")+
+													"&semestre="+getQueryVariable("semestre")+
+													"&id_grupo="+id+
+													"&grupo="+grupo);
 		}
 
 		function editar(id){
-			window.location.assign("../edicion/edicionSemestre.php?id_Semestre="+id);
+			window.location.assign("../edicion/edicionGrupo.php?id_grupo="+id);
 		}
 
 		function baja(id){
-			window.location.assign("../bajas/bajaSemestre.php?id_Semestre="+id);
+			window.location.assign("../bajas/bajaGrupo.php?id_grupo="+id);
 		}
 
 		function alta(){
-			window.location.assign("../inscripcion/inscripcionSemestre.php?id_periodo="+getQueryVariable("id_periodo")+
-																		"&id_carrera="+getQueryVariable("id_carrera"));
+			window.location.assign("../inscripcion/inscripcionGrupo.php?id_periodo="+getQueryVariable("id_periodo")+
+																		"&id_carrera="+getQueryVariable("id_carrera")+
+																		"&id_semestre="+getQueryVariable("id_Semestre"));
 		}
 
 		function regresar(){
@@ -116,7 +122,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-10 maincontent">
 				<header class="page-header">
-					<h2 class="page-title" id="titulo">Nivel Escolar</h2>
+					<h2 class="page-title" id="titulo">Grupos</h2>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -126,12 +132,12 @@ include "../../includes/sessionAdmin.php";
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_semestre">Id</option>
-							<option value="descripcion">Nivel</option>
+							<option value="id_grupo">Id</option>
+							<option value="nombre">Grupo</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Nivel Escolar</button>
+					<button onclick="alta()" class="btn btn-default">Crear Grupo</button>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

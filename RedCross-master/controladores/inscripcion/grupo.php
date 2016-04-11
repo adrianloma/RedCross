@@ -4,17 +4,19 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
-	$descripcion = $_POST["descripcion"];
-
-	$result = mysql_insert_periodo("periodo", $conexion, array(
-		'per_desc' => $descripcion,
-		'per_fechaCreacion' => date("Y-m-d"),
-		'per_estatus' => 1
+	$id_periodo = $_GET["id_periodo"];
+	$id_nivelEscolar = $_GET["id_semestre"];
+	$grupo = $_GET["grupo"];
+	
+	$result = mysql_insert_grupo("grupo", $conexion, array(
+		'gru_nombre' => $grupo,
+		'id_nivelEscolar' => $id_nivelEscolar,
+		'id_periodo' => $id_periodo
 	));
 
 	if ($result){
 		$newId = mysqli_insert_id($conexion);
-		$alertMsg = "Nuevo periodo agregado satisfactoriamente";
+		$alertMsg = "Nuevo grupo agregado satisfactoriamente";
 	}else{
 		$alertMsg = "Algo salio mal: " . mysqli_error($conexion);
 	}

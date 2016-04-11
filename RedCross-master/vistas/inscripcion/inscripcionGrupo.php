@@ -29,13 +29,19 @@ include "../../includes/conexion.php";
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 	<script>
+		function carga() {
+			document.getElementById("id_carrera").value = getQueryVariable("id_carrera");
+			document.getElementById("id_periodo").value = getQueryVariable("id_periodo");
+			document.getElementById("id_semestre").value = getQueryVariable("id_semestre");
+		}
+
 		function regresar(){
 			window.history.back();
 		}
 	</script>
 </head>
 
-<body class="home">
+<body class="home" onload="carga()">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -59,7 +65,7 @@ include "../../includes/conexion.php";
 
 	<!-- Intro -->
 	<div class="container text-center">
-		<h2 class="thin">Inscripci&oacute;n de nuevo periodo al Sistema</h2>
+		<h2 class="thin">Inscripci&oacute;n de nuevo grupo al Sistema</h2>
 		<br>
 	</div>
 	<!-- /Intro-->
@@ -68,11 +74,11 @@ include "../../includes/conexion.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" action="../../controladores/inscripcion/periodo.php">
+				<form method="GET" action="../../controladores/inscripcion/grupo.php">
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Descripción</label>
+					<label for="" class="col-lg-2 control-label">Nombre del Grupo</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripci&oacute;n del periodo" required>
+						<input type="text" class="form-control" id="grupo" name="grupo" placeholder="Ejemplo: 1A" required>
 					</div>
 				</div>
 				<br><br>
@@ -84,6 +90,9 @@ include "../../includes/conexion.php";
 					<button style="width:50%;" align="center" class="btn btn-action" type="submit">Guardar</button>
 				</a>
 			</div> <!-- /row  -->
+			<input type="hidden" id="id_carrera" value="" name="id_carrera">
+			<input type="hidden" id="id_periodo" value="" name="id_periodo">
+			<input type="hidden" id="id_semestre" value="" name="id_semestre">
 		</form>
 		</div>
 	</div>
