@@ -4,7 +4,7 @@
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 45 ; $i++)
+        for($i = 0 ; $i < 47 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
@@ -119,11 +119,26 @@
         return mysqli_query($conexion, $query);
     }
 
+    function mysql_insert_inscritos($table, $conexion, $inserts) {
+
+        $conn = array($conexion);
+        
+        for($i = 0 ; $i < 3 ; $i++)
+            array_push($conn, $conexion);
+
+        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
+        $keys = array_keys($inserts);
+
+        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
+        
+        return mysqli_query($conexion, $query);
+    }
+
     function mysql_update($table, $conexion, $updates, $matricula) {
 
         $conn = array($conexion);
         
-        for($i = 0 ; $i < 45 ; $i++)
+        for($i = 0 ; $i < 47 ; $i++)
             array_push($conn, $conexion);
 
         $values = array_map('mysqli_escape_string', $conn ,array_values($updates));
@@ -156,6 +171,15 @@
         }else{
             $sql = "delete from $table where id_" . $table . "=" . $matricula;
         }
+
+        return mysqli_query($conexion, $sql);
+    }
+
+    function mysql_delete_inscritos($conexion, $matricula, $id_curso) {
+        $conn = array($conexion);      
+
+        $sql = "delete from inscritos where id_alumno=" . $matricula ." and id_curso=" . $id_curso;
+
 
         return mysqli_query($conexion, $sql);
     }

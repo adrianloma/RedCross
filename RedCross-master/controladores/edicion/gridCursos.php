@@ -62,7 +62,6 @@
 			  		<td>" . $row["cu_dias"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_curso"] . ")\">Editar</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_curso"] . ")\">Baja</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_curso"] . ",'" . $row["cu_nombre"]."')\">Ver</button></td>
 			  	</tr>";
     }
 

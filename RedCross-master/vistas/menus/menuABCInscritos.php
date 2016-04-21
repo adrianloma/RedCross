@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Alumnos</title>
+	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -26,12 +26,23 @@ include "../../includes/sessionAdmin.php";
 	<script>
 
 		function Buscar(){
+
+			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + 
+											" > " + unescape(getQueryVariable("siglas")) + 
+											" > Nivel Escolar:" +  unescape(getQueryVariable("semestre")) +
+											" > Grupo:" +  unescape(getQueryVariable("grupo")) +
+											" > Inscribir Alumnos";
+
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridAlumno.php?buscar=" + buscar + "&contiene=" + contiene;
+		    var url="../../controladores/edicion/gridInscribir.php?buscar=" + buscar + 
+		    														"&contiene=" + contiene +
+		    														"&id_carrera=" + unescape(getQueryVariable("id_carrera"))+
+		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo"))+
+		    														"&id_Semestre=" + unescape(getQueryVariable("id_Semestre"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -48,26 +59,31 @@ include "../../includes/sessionAdmin.php";
 									"<th>Apellido Materno</th>"+
 									"<th>Correo</th>"+
 									"<th>CURP</th>"+
-									"<th>Carrera</th>"+
-									"<th>Nivel</th>"+
-									"<th>Grupo</th>"+
-									"<th>Estatus</th>"+
-									"<th>Editar</th>"+
-									"<th>Baja</th>"+
+									"<th>Inscribir</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
 
-		function editar(id){
-			window.location.assign("../edicion/edicionAlumno.php?id_alumno="+id);
+		function guardar(id_alumno, check){
+			xhr=new XMLHttpRequest();
+			xhr.onload= Buscar;
+
+		    if(check){
+		    	var url="../../controladores/edicion/inscribir.php?id_alumno=" + id_alumno + "&id_grupo=" + unescape(getQueryVariable("id_grupo")) + "&check=1";
+		    }else{
+		    	var url="../../controladores/edicion/inscribir.php?id_alumno=" + id_alumno + "&id_grupo=" + unescape(getQueryVariable("id_grupo")) + "&check=0";
+		    	if(!confirm("Al realizar esta acción se eliminaran todos los cursos a los que pertenece este alumno en el periodo actual ¿Esta seguro?")){
+		    		Buscar();
+		    		return;
+		    	}
+		    }
+
+		    xhr.open("GET", url, true);
+		    xhr.send();
 		}
 
-		function baja(id){
-			window.location.assign("../bajas/bajaAlumno.php?id_alumno="+id);
-		}
-
-		function alta(){
-			window.location.assign("../inscripcion/inscripcionAlumno.php");
+		function regresar(){
+			window.history.back();
 		}
 	</script>
 
@@ -100,9 +116,9 @@ include "../../includes/sessionAdmin.php";
 		<div class="row">
 
 			<!-- Article main content -->
-			<article class="col-sm-9 maincontent">
+			<article class="col-sm-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Alumnos</h1>
+					<h2 class="page-title" id="titulo">Inscritos</h2>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -118,15 +134,12 @@ include "../../includes/sessionAdmin.php";
 							<option value="a_apellidoMaterno">Apellido Materno</option>
 							<option value="a_email">Correo</option>
 							<option value="a_curp">CURP</option>
-							<option value="carrera">Carrera</option>
-							<option value="nivel">Nivel</option>
-							<option value="grupo">Grupo</option>
-							<option value="a_estatus">Estatus</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Alumno</button>
+					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
+
 			</article>
 			<!-- /Article -->
 

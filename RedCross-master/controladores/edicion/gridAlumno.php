@@ -17,14 +17,16 @@
 				a.a_email,
 			    a.a_curp,
 			    c.c_nombre,
-			    g.id_periodo,
+			    n.ne_desc,
 			    g.gru_nombre,
 			    a.a_estatus
 			from
 			    alumno 	a	left join grupo g
 								on	a.id_grupo = g.id_grupo
 							left join carrera c
-								on a.id_carrera = c.id_carrera";
+								on a.id_carrera = c.id_carrera
+							left join nivel_escolar n
+								on a.id_nivelEscolar = n.id_nivelEscolar";
 
 	switch ($contiene) {
 		case 'id_alumno':
@@ -48,8 +50,8 @@
 		case 'carrera':
 			$sql .= " where c.c_nombre LIKE '%$buscar%'";
 			break;
-		case 'periodo':
-			$sql .= " where g.id_periodo LIKE '%$buscar%'";
+		case 'nivel':
+			$sql .= " where n.ne_desc LIKE '%$buscar%'";
 			break;
 		case 'grupo':
 			$sql .= " where g.gru_nombre LIKE '%$buscar%'";
@@ -74,7 +76,7 @@
 			  		<td>" . $row["a_email"] . "</td>
 			  		<td>" . $row["a_curp"] . "</td>
 			  		<td>" . $row["c_nombre"] . "</td>
-			  		<td>" . $row["id_periodo"] . "</td>
+			  		<td>" . $row["ne_desc"] . "</td>
 			  		<td>" . $row["gru_nombre"] . "</td>
 			  		<td>" . $row["a_estatus"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_alumno"] . ")\">Editar</button></td>

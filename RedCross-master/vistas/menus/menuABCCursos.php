@@ -60,7 +60,6 @@ include "../../includes/sessionAdmin.php";
 									"<th>Dias</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
-									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
@@ -77,8 +76,15 @@ include "../../includes/sessionAdmin.php";
 			window.location.assign("../inscripcion/inscripcionCurso.php?id_grupo=" + unescape(getQueryVariable("id_grupo")));
 		}
 
-		function ver(id, grupo){
-			window.location.assign("../inscripcion/menuABCInscritos.php");
+		function inscribir(){
+			window.location.assign("menuABCInscritos.php?id_periodo="+getQueryVariable("id_periodo")+
+													"&per_nombre="+getQueryVariable("per_nombre")+
+													"&id_carrera="+getQueryVariable("id_carrera")+
+													"&siglas="+getQueryVariable("siglas")+
+													"&id_Semestre="+getQueryVariable("id_Semestre")+
+													"&semestre="+getQueryVariable("semestre")+
+													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
+													"&grupo="+ unescape(getQueryVariable("grupo")));
 		}
 
 		function regresar(){
@@ -115,7 +121,7 @@ include "../../includes/sessionAdmin.php";
 		<div class="row">
 
 			<!-- Article main content -->
-			<article class="col-sm-9 maincontent">
+			<article class="col-sm-12 maincontent">
 				<header class="page-header">
 					<h2 class="page-title" id="titulo">Cursos</h2>
 				</header>
@@ -135,6 +141,7 @@ include "../../includes/sessionAdmin.php";
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
 					<button onclick="alta()" class="btn btn-default">Crear Curso</button>
+					<button onclick="inscribir()" class="btn btn-default">Inscribir alumnos</button>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

@@ -50,6 +50,8 @@
 	$CelularPadre = $_POST["celularPadre"];
 	$CelularMadre = $_POST["celularMadre"];
 	$Estatus = $_POST["Estatus"];
+	$id_carrera = $_POST["carrera"];
+	$id_nivelEscolar = $_POST["nivel"];
 
 	$result = mysql_update("alumno", $conexion, array(
 		'a_nombre' => $nombres,
@@ -96,7 +98,9 @@
 		'a_entrevista' => $Entrevisto,
 		'a_celPadre' => $CelularPadre,
 		'a_celMadre' => $CelularMadre,
-		'a_estatus' => $Estatus
+		'a_estatus' => $Estatus,
+		'id_carrera' => $id_carrera,
+		'id_nivelEscolar' => $id_nivelEscolar
 
 	), $matricula);
 
