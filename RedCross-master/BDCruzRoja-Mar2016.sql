@@ -111,7 +111,8 @@ CREATE TABLE `alumno` (
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL,
   `id_grupo` int(11) DEFAULT NULL COMMENT 'grupo al que pertenece el alumno',
-  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno'
+  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno',
+  `id_nivelEscolar` int(11) DEFAULT NULL COMMENT 'Nivel al que pertenece el alumno'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=1 ;
 
 --
