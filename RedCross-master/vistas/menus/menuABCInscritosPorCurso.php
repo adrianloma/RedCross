@@ -10,7 +10,7 @@ include "../../includes/sessionAdmin.php";
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Cursos</title>
+	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -31,16 +31,19 @@ include "../../includes/sessionAdmin.php";
 											" > " + unescape(getQueryVariable("siglas")) + 
 											" > Nivel Escolar:" +  unescape(getQueryVariable("semestre")) +
 											" > Grupo:" +  unescape(getQueryVariable("grupo")) +
-											" > Cursos";
+											" > " + unescape(getQueryVariable("curso"));
 
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + 
+		    var url="../../controladores/edicion/gridInscribirPorCurso.php?buscar=" + buscar + 
 		    														"&contiene=" + contiene +
-		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo"));
+		    														"&id_carrera=" + unescape(getQueryVariable("id_carrera"))+
+		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo"))+
+		    														"&id_Semestre=" + unescape(getQueryVariable("id_Semestre")+
+		    														"&id_curso=" + unescape(getQueryVariable("id_curso")));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -53,52 +56,27 @@ include "../../includes/sessionAdmin.php";
 								"<tr>"+
 									"<th>id</th>"+
 									"<th>Nombre</th>"+
-									"<th>Maestro</th>"+
-									"<th>Aula</th>"+
-									"<th>Hora Inicio</th>"+
-									"<th>Hora Fin</th>"+
-									"<th>Dias</th>"+
-									"<th>Editar</th>"+
-									"<th>Baja</th>"+
-									"<th>Ver</th>"+
+									"<th>Apellido Paterno</th>"+
+									"<th>Apellido Materno</th>"+
+									"<th>Correo</th>"+
+									"<th>CURP</th>"+
+									"<th>Remover</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
 
-		function editar(id){
-			window.location.assign("../edicion/edicionCurso.php?id_curso="+id);
-		}
+		function guardar(id_alumno){
+			xhr=new XMLHttpRequest();
+			xhr.onload= Buscar;
 
-		function baja(id){
-			window.location.assign("../bajas/bajaCurso.php?id_curso="+id);
-		}
+	    	var url="../../controladores/edicion/inscribirPorCurso.php?id_alumno=" + id_alumno + "&id_curso=" + unescape(getQueryVariable("id_curso"));
+	    	if(!confirm("Al realizar esta acción se eliminara el curso al que pertenece este alumno en el periodo actual ¿Esta seguro?")){
+	    		Buscar();
+	    		return;
+	    	}
 
-		function alta(){
-			window.location.assign("../inscripcion/inscripcionCurso.php?id_grupo=" + unescape(getQueryVariable("id_grupo")));
-		}
-
-		function inscribir(){
-			window.location.assign("menuABCInscritos.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo")));
-		}
-
-		function ver(id_curso, nombre){
-			window.location.assign("menuABCInscritosPorCurso.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo"))+
-													"&id_curso="+id_curso+
-													"&curso="+ nombre);
+		    xhr.open("GET", url, true);
+		    xhr.send();
 		}
 
 		function regresar(){
@@ -137,7 +115,7 @@ include "../../includes/sessionAdmin.php";
 			<!-- Article main content -->
 			<article class="col-sm-12 maincontent">
 				<header class="page-header">
-					<h2 class="page-title" id="titulo">Cursos</h2>
+					<h2 class="page-title" id="titulo">Inscritos</h2>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -147,15 +125,15 @@ include "../../includes/sessionAdmin.php";
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_curso">Id</option>
-							<option value="nombre">Nombre</option>
-							<option value="maestro">Maestro</option>
-							<option value="aula">Aula</option>
+							<option value="id_alumno">Id</option>
+							<option value="a_nombre">Nombre</option>
+							<option value="a_apellidoPaterno">Apellido Paterno</option>
+							<option value="a_apellidoMaterno">Apellido Materno</option>
+							<option value="a_email">Correo</option>
+							<option value="a_curp">CURP</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Curso</button>
-					<button onclick="inscribir()" class="btn btn-default">Inscribir alumnos</button>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 
