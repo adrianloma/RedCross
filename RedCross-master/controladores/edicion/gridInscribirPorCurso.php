@@ -13,51 +13,87 @@
 	$buscar = mysqli_escape_string($conexion, $buscar);
 	$contiene = mysqli_escape_string($conexion, $contiene);
 
-	$sql="	select 
-			    a.id_alumno,
-			    a.a_nombre,
-			    a.a_apellidPaterno,
-			    a.a_apellidoMaterno,
-			    a.a_email,
-			    a.a_curp
-			from
-			    alumno a inner join	nivel_escolar n 
-							ON a.id_nivelEscolar = n.id_nivelEscolar
-						inner join inscritos i
-							on a.id_alumno = i.id_alumno
-			where
-			    a.id_carrera = $id_carrera
-			        and (a.id_grupo IS NULL
-							or a.id_grupo = $id_grupo
-							or a.id_grupo = 0)
-			        and a.a_estatus = 'Activo'
-			        and a.id_nivelEscolar = $id_nivelEscolar
-					and i.id_curso = $id_curso";
+	$sql2 = "";
 
 	switch ($contiene) {
 		case 'id_alumno':
-			$sql .= " and a.id_alumno LIKE '%$buscar%'";
+			$sql2 .= " and a.id_alumno LIKE '%$buscar%' ";
 			break;
 		case 'a_nombre':
-			$sql .= " and a.a_nombre LIKE '%$buscar%'";
+			$sql2 .= " and a.a_nombre LIKE '%$buscar%' ";
 			break;
 		case 'a_apellidoPaterno':
-			$sql .= " and a.a_apellidPaterno LIKE '%$buscar%'";
+			$sql2 .= " and a.a_apellidPaterno LIKE '%$buscar%'";
 			break;
 		case 'a_apellidoMaterno':
-			$sql .= " and a.a_apellidoMaterno LIKE '%$buscar%'";
+			$sql2 .= " and a.a_apellidoMaterno LIKE '%$buscar%' ";
 			break;
 		case 'a_email':
-			$sql .= " and a.a_email LIKE '%$buscar%'";
+			$sql2 .= " and a.a_email LIKE '%$buscar%' ";
 			break;
 		case 'a_curp':
-			$sql .= " and a.a_curp LIKE '%$buscar%'";
+			$sql2 .= " and a.a_curp LIKE '%$buscar%' ";
 			break;
 		default:
 			break;
 	}
 
-	$sql .= " order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno;";
+	$sql = "SELECT 
+			    id_nivelEscolar
+			FROM
+			    nivel_escolar
+			WHERE
+			    id_carrera = $id_carrera
+			HAVING id_nivelEscolar > $id_nivelEscolar
+			ORDER BY id_nivelEscolar 
+			LIMIT 1";
+
+	$result = mysqli_query($conexion, $sql);
+
+	while($row = mysqli_fetch_assoc($result)) {
+		$id_nivelEscolarNuevo = $row['id_nivelEscolar'];
+	}
+
+	$sql="	(SELECT 
+		    a.id_alumno,
+		    a.a_nombre,
+		    a.a_apellidPaterno,
+		    a.a_apellidoMaterno,
+		    a.a_email,
+		    a.a_curp
+		FROM
+		    alumno a
+		        INNER JOIN
+		    nivel_escolar n ON a.id_nivelEscolar = n.id_nivelEscolar
+		        INNER JOIN
+		    inscritos i ON a.id_alumno = i.id_alumno
+		WHERE
+		    a.id_carrera = $id_carrera
+		        AND (a.id_grupo IS NULL OR a.id_grupo = $id_grupo
+		        OR a.id_grupo = 0)
+		        AND a.a_estatus = 'Activo'
+		        AND a.id_nivelEscolar = $id_nivelEscolar
+		        AND i.id_curso = $id_curso ". $sql2 ."
+		order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno) 
+
+		UNION 
+
+		(SELECT 
+		    a.id_alumno,
+		    a.a_nombre,
+		    a.a_apellidPaterno,
+		    a.a_apellidoMaterno,
+		    a.a_email,
+		    a.a_curp
+		FROM
+		    alumno a
+		        INNER JOIN
+		    inscritos i ON a.id_alumno = i.id_alumno
+		WHERE
+		    i.id_curso = $id_curso
+		    AND a.id_nivelEscolar = $id_nivelEscolarNuevo ". $sql2 ."
+		order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno)";
+
 
 	$result = mysqli_query($conexion, $sql);
 

@@ -23,7 +23,7 @@
 			limit 1";
 
 	$result = mysqli_query($conexion, $sql);
-
+	$id_nivelEscolarViejo = 0;
 	while($row = mysqli_fetch_assoc($result)) {
 		$id_nivelEscolarViejo = $row['id_nivelEscolar'];
 	}
@@ -50,6 +50,7 @@
 			    p.id_periodo = $id_periodo
 					AND i.inscr_Cursado = 1
 			        AND (g.id_nivelEscolar = $id_nivelEscolarViejo or g.id_nivelEscolar = $id_nivelEscolar)
+			        AND a.id_nivelEscolar = $id_nivelEscolar
 			        AND i.inscr_calificacion < 70
 			        AND a.a_estatus = 'Activo'
 			        AND a.id_carrera = $id_carrera";
