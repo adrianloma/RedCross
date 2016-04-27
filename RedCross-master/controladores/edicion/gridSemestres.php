@@ -6,12 +6,10 @@
 	$buscar = $_GET["buscar"];
 	$contiene = $_GET["contiene"];
 	$id_carrera = $_GET["id_carrera"];
-	$id_periodo = $_GET["id_periodo"];
 
 	$buscar = mysqli_escape_string($conexion, $buscar);
 	$contiene = mysqli_escape_string($conexion, $contiene);
 	$id_carrera = mysqli_escape_string($conexion, $id_carrera);
-	$id_periodo = mysqli_escape_string($conexion, $id_periodo);
 
 	$sql="select 
 			    *
@@ -21,10 +19,10 @@
 
 	switch ($contiene) {
 		case 'id_semestre':
-			$sql .= " where n.id_nivelEscolar LIKE '%$buscar%' and c.id_carrera = $id_carrera and n.id_periodo = $id_periodo";
+			$sql .= " where n.id_nivelEscolar LIKE '%$buscar%' and c.id_carrera = $id_carrera";
 			break;
 		case 'descripcion':
-			$sql .= " where n.ne_desc LIKE '%$buscar%'  and c.id_carrera = $id_carrera  and n.id_periodo = $id_periodo";
+			$sql .= " where n.ne_desc LIKE '%$buscar%'  and c.id_carrera = $id_carrera";
 			break;
 		default:
 			break;
@@ -41,7 +39,6 @@
 			  		<td>" . $row["ne_desc"] . "</td>
 			  		<td>" . $row["c_nombre"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_nivelEscolar"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_nivelEscolar"] . ")\">Baja</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_nivelEscolar"] . ",'" . $row["ne_desc"] . "')\">Ver</button></td>
 			  	</tr>";
     }

@@ -11,7 +11,7 @@
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Cursos</title>
+	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -32,17 +32,18 @@
 											" > " + unescape(getQueryVariable("siglas")) + 
 											" > Nivel Escolar:" +  unescape(getQueryVariable("semestre")) +
 											" > Grupo:" +  unescape(getQueryVariable("grupo")) +
-											" > Cursos";
+											" > Alumnos con materias pendientes";
 
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + 
-		    														"&contiene=" + contiene +
-		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo")) +
-		    														"&id_periodo=" + unescape(getQueryVariable("id_periodo"));
+		    var url="../../controladores/edicion/gridMateriaPendiente.php?buscar=" + buscar + 
+						    														"&contiene=" + contiene +
+						    														"&id_periodo=" + unescape(getQueryVariable("id_periodo"))+
+						    														"&id_Semestre=" + unescape(getQueryVariable("id_Semestre"))+
+						    														"&id_carrera=" + unescape(getQueryVariable("id_carrera"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -51,73 +52,30 @@
 		function fillFields(){
 			var grid = document.getElementById("grid");
 			var tabla = xhr.responseText;
-<?php
-			if($periodo_activo == 1){
-				echo "grid.innerHTML = \"<thead>\"+
-											\"<tr>\"+
-												\"<th>id</th>\"+
-												\"<th>Nombre</th>\"+
-												\"<th>Maestro</th>\"+
-												\"<th>Aula</th>\"+
-												\"<th>Hora Inicio</th>\"+
-												\"<th>Hora Fin</th>\"+
-												\"<th>Dias</th>\"+
-												\"<th>Editar</th>\"+
-												\"<th>Baja</th>\"+
-												\"<th>Ver</th>\"+
-											\"</tr>\"+
-											\"</thead>\" + tabla;";
-			}else{
-				echo "grid.innerHTML = \"<thead>\"+
-											\"<tr>\"+
-												\"<th>id</th>\"+
-												\"<th>Nombre</th>\"+
-												\"<th>Maestro</th>\"+
-												\"<th>Aula</th>\"+
-												\"<th>Hora Inicio</th>\"+
-												\"<th>Hora Fin</th>\"+
-												\"<th>Dias</th>\"+
-											\"</tr>\"+
-											\"</thead>\" + tabla;";
-			}
-?>
+			grid.innerHTML = "<thead>"+
+								"<tr>"+
+									"<th>id</th>"+
+									"<th>Nombre</th>"+
+									"<th>Apellido Paterno</th>"+
+									"<th>Apellido Materno</th>"+
+									"<th>Correo</th>"+
+									"<th>CURP</th>"+
+									"<th>Materias reprobadas</th>"+
+									"<th>Inscripci&oacute;n</th>"+
+								"</tr>"+
+								"</thead>" + tabla;
 		}
 
-		function editar(id){
-			window.location.assign("../edicion/edicionCurso.php?id_curso="+id);
+
+		function historial(id_alumno, nombre, id_periodo, id_nivelEscolarViejo, id_nivelEscolar){
+			window.open("historial.php?id_alumno="+id_alumno+
+										"&nombre="+nombre+
+										"&id_periodo="+id_periodo+
+										"&id_nivelEscolarViejo="+id_nivelEscolarViejo+
+										"&id_nivelEscolar="+id_nivelEscolar);
 		}
 
-		function baja(id){
-			window.location.assign("../bajas/bajaCurso.php?id_curso="+id);
-		}
-
-		function alta(){
-			window.location.assign("../inscripcion/inscripcionCurso.php?id_grupo=" + unescape(getQueryVariable("id_grupo")));
-		}
-
-		function inscribir(){
-			window.location.assign("menuABCInscritos.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo")));
-		}
-
-		function inscribirMateriasPendientes(){
-			window.location.assign("menuABCMateriaPendiente.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo")));
-		}
-
-		function ver(id_curso, nombre){
+		function inscribir(id_curso, nombre){
 			window.location.assign("menuABCInscritosPorCurso.php?id_periodo="+getQueryVariable("id_periodo")+
 													"&per_nombre="+getQueryVariable("per_nombre")+
 													"&id_carrera="+getQueryVariable("id_carrera")+
@@ -176,20 +134,15 @@
 					<div class="form-group">
 						<label for="contiene">en</label>
 						<select class="form-control" id="contiene">
-							<option value="id_curso">Id</option>
-							<option value="nombre">Nombre</option>
-							<option value="maestro">Maestro</option>
-							<option value="aula">Aula</option>
+							<option value="id_alumno">Id</option>
+							<option value="a_nombre">Nombre</option>
+							<option value="a_apellidoPaterno">Apellido Paterno</option>
+							<option value="a_apellidoMaterno">Apellido Materno</option>
+							<option value="a_email">Correo</option>
+							<option value="a_curp">CURP</option>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-<?php
-					if($periodo_activo == 1){
-						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Curso</button>";
-						echo "<button onclick=\"inscribir()\" class=\"btn btn-default\">Inscribir alumnos</button>";
-						echo "<button onclick=\"inscribirMateriasPendientes()\" class=\"btn btn-default\">Alumnos con materias pendientes</button>";
-					}
-?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

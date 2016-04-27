@@ -29,13 +29,13 @@
 		case 'id_grupo':
 			$sql .= " where g.id_grupo LIKE '%$buscar%' 
 							and c.id_carrera = $id_carrera 
-							and n.id_periodo = $id_periodo 
+							and p.id_periodo = $id_periodo 
 							and n.id_nivelEscolar = $id_nivelEscolar";
 			break;
 		case 'nombre':
 			$sql .= " where g.gru_nombre LIKE '%$buscar%'  
 							and c.id_carrera = $id_carrera  
-							and n.id_periodo = $id_periodo 
+							and p.id_periodo = $id_periodo 
 							and n.id_nivelEscolar = $id_nivelEscolar";
 			break;
 		default:
@@ -52,7 +52,6 @@
 			  		<td>" . $row["id_grupo"] . "</td>
 			  		<td>" . $row["gru_nombre"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_grupo"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_grupo"] . ")\">Baja</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_grupo"] . ",'" . $row["gru_nombre"] . "')\">Ver</button></td>
 			  	</tr>";
     }

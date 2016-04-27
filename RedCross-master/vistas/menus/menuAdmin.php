@@ -98,18 +98,6 @@ include "../../includes/sessionAdmin.php";
 					</a>
 				</div>
 				<br>
-				<div>
-					<button class="btn btn-action" style="width:100%;" onclick="confirmNewSemester()"> Nuevo Semestre </button>
-					<form onsubmit="" id="resetSemestre" action="../../controladores/inscripcion/resetSemestre.php" method="POST">
-					</form>
-				</div>
-				<br>
-				<div>
-					<a href="../edicion/reinscribirAlumno.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Reinscribir alumno">
-					</a>
-				</div>
-				<br>
 			</article>
 			<!-- /Article -->
 
