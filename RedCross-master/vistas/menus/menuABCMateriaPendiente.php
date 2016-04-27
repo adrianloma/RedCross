@@ -75,17 +75,16 @@
 										"&id_nivelEscolar="+id_nivelEscolar);
 		}
 
-		function inscribir(id_curso, nombre){
-			window.location.assign("menuABCInscritosPorCurso.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo"))+
-													"&id_curso="+id_curso+
-													"&curso="+ nombre);
+		function inscribir(id_alumno, id_nivelEscolar, alumno){
+			window.location.assign("menuABCInscribirCursosReprobados.php?id_alumno=" + id_alumno + 
+																			"&id_nivelEscolar=" + id_nivelEscolar +	
+																			"&id_periodo="+getQueryVariable("id_periodo")+
+																			"&per_nombre="+getQueryVariable("per_nombre")+
+																			"&id_carrera="+getQueryVariable("id_carrera")+
+																			"&siglas="+getQueryVariable("siglas")+
+																			"&id_Semestre="+getQueryVariable("id_Semestre")+
+																			"&semestre="+getQueryVariable("semestre")+
+																			"&alumno="+alumno);
 		}
 
 		function regresar(){

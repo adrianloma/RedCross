@@ -1,7 +1,6 @@
 <?php
-	include "../../includes/sessionAdmin.php";
-	include "../../includes/conexion.php";
-	include "../../includes/periodo_util.php";
+include "../../includes/sessionAdmin.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Cursos</title>
+	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -31,18 +30,19 @@
 			document.getElementById('titulo').innerHTML = unescape(getQueryVariable("per_nombre")) + 
 											" > " + unescape(getQueryVariable("siglas")) + 
 											" > Nivel Escolar:" +  unescape(getQueryVariable("semestre")) +
-											" > Grupo:" +  unescape(getQueryVariable("grupo")) +
-											" > Cursos";
+											" > Alumno: " + unescape(getQueryVariable("alumno"));
 
 			var buscar = document.getElementById('buscar').value;
 			var contiene = document.getElementById('contiene').value;
 			
 		    xhr=new XMLHttpRequest();
 		    xhr.onload= fillFields;
-		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + 
-		    														"&contiene=" + contiene +
-		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo")) +
-		    														"&id_periodo=" + unescape(getQueryVariable("id_periodo"));
+		    var url="../../controladores/edicion/gridInscribirCursosReprobados.php?buscar=" + buscar + 
+						    														"&contiene=" + contiene +
+						    														"&id_carrera=" + unescape(getQueryVariable("id_carrera"))+
+						    														"&id_nivelEscolar=" + unescape(getQueryVariable("id_nivelEscolar"))+
+						    														"&id_periodo=" + unescape(getQueryVariable("id_periodo"))+
+						    														"&id_alumno=" + unescape(getQueryVariable("id_alumno"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -51,83 +51,36 @@
 		function fillFields(){
 			var grid = document.getElementById("grid");
 			var tabla = xhr.responseText;
-<?php
-			if($periodo_activo == 1){
-				echo "grid.innerHTML = \"<thead>\"+
-											\"<tr>\"+
-												\"<th>id</th>\"+
-												\"<th>Nombre</th>\"+
-												\"<th>Maestro</th>\"+
-												\"<th>Aula</th>\"+
-												\"<th>Hora Inicio</th>\"+
-												\"<th>Hora Fin</th>\"+
-												\"<th>Dias</th>\"+
-												\"<th>Editar</th>\"+
-												\"<th>Baja</th>\"+
-												\"<th>Ver</th>\"+
-											\"</tr>\"+
-											\"</thead>\" + tabla;";
-			}else{
-				echo "grid.innerHTML = \"<thead>\"+
-											\"<tr>\"+
-												\"<th>id</th>\"+
-												\"<th>Nombre</th>\"+
-												\"<th>Maestro</th>\"+
-												\"<th>Aula</th>\"+
-												\"<th>Hora Inicio</th>\"+
-												\"<th>Hora Fin</th>\"+
-												\"<th>Dias</th>\"+
-											\"</tr>\"+
-											\"</thead>\" + tabla;";
-			}
-?>
+			grid.innerHTML = "<thead>"+
+										"<tr>"+
+											"<th>id</th>"+
+											"<th>Nombre</th>"+
+											"<th>Maestro</th>"+
+											"<th>Aula</th>"+
+											"<th>Hora Inicio</th>"+
+											"<th>Hora Fin</th>"+
+											"<th>Dias</th>"+
+											"<th>Inscribir</th>"+
+										"</tr>"+
+										"</thead>" + tabla;
 		}
 
-		function editar(id){
-			window.location.assign("../edicion/edicionCurso.php?id_curso="+id);
-		}
+		function guardar(id_alumno, check, id_curso){
+			xhr=new XMLHttpRequest();
+			xhr.onload= Buscar;
 
-		function baja(id){
-			window.location.assign("../bajas/bajaCurso.php?id_curso="+id);
-		}
+		    if(check){
+		    	var url="../../controladores/edicion/inscribirCursosReprobados.php?id_alumno=" + id_alumno + "&id_curso=" + id_curso + "&check=1";
+		    }else{
+		    	var url="../../controladores/edicion/inscribirCursosReprobados.php?id_alumno=" + id_alumno + "&id_curso=" + id_curso + "&check=0";
+		    	if(!confirm("Al realizar esta acción se eliminaran el curso al que pertenece este alumno en el periodo actual ¿Esta seguro?")){
+		    		Buscar();
+		    		return;
+		    	}
+		    }
 
-		function alta(){
-			window.location.assign("../inscripcion/inscripcionCurso.php?id_grupo=" + unescape(getQueryVariable("id_grupo")));
-		}
-
-		function inscribir(){
-			window.location.assign("menuABCInscritos.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo")));
-		}
-
-		function inscribirMateriasPendientes(){
-			window.location.assign("menuABCMateriaPendiente.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo")));
-		}
-
-		function ver(id_curso, nombre){
-			window.location.assign("menuABCInscritosPorCurso.php?id_periodo="+getQueryVariable("id_periodo")+
-													"&per_nombre="+getQueryVariable("per_nombre")+
-													"&id_carrera="+getQueryVariable("id_carrera")+
-													"&siglas="+getQueryVariable("siglas")+
-													"&id_Semestre="+getQueryVariable("id_Semestre")+
-													"&semestre="+getQueryVariable("semestre")+
-													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
-													"&grupo="+ unescape(getQueryVariable("grupo"))+
-													"&id_curso="+id_curso+
-													"&curso="+ nombre);
+		    xhr.open("GET", url, true);
+		    xhr.send();
 		}
 
 		function regresar(){
@@ -166,7 +119,7 @@
 			<!-- Article main content -->
 			<article class="col-sm-12 maincontent">
 				<header class="page-header">
-					<h2 class="page-title" id="titulo">Cursos</h2>
+					<h2 class="page-title" id="titulo">Inscritos</h2>
 				</header>
 				<form class="form-inline" onsubmit="return Buscar()">
 					<div class="form-group">
@@ -183,13 +136,6 @@
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-<?php
-					if($periodo_activo == 1){
-						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Curso</button>";
-						echo "<button onclick=\"inscribir()\" class=\"btn btn-default\">Inscribir alumnos regulares</button>";
-						echo "<button onclick=\"inscribirMateriasPendientes()\" class=\"btn btn-default\">Alumnos con materias pendientes</button>";
-					}
-?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

@@ -42,7 +42,8 @@ include "../../includes/sessionAdmin.php";
 		    														"&contiene=" + contiene +
 		    														"&id_carrera=" + unescape(getQueryVariable("id_carrera"))+
 		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo"))+
-		    														"&id_Semestre=" + unescape(getQueryVariable("id_Semestre"));
+		    														"&id_Semestre=" + unescape(getQueryVariable("id_Semestre"))+
+		    														"&id_periodo=" + unescape(getQueryVariable("id_periodo"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;

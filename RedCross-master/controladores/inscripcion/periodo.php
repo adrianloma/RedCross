@@ -98,40 +98,6 @@
 	
 	/************************** FIN **************************/
 
-	/************************** Los alumnos que no pasan al siguiente semestre *************************
-	// Los que no pasan al siguiente semestre (2 materias reprobadas o mas o Tienen alguna materia reprobada con alta prioridad)
-	$sql = "SELECT 
-				    a.id_alumno,
-				    count(a.id_alumno) reprobadas
-				FROM
-				    alumno a inner join inscritos i
-								on a.id_alumno = i.id_alumno
-				where
-					inscr_calificacion < 70
-						AND inscr_cursado = 0
-				        AND a.a_estatus = 'Activo'
-				group by
-					 a.id_alumno
-				having reprobadas > 1 or a.id_alumno in (SELECT 
-																a.id_alumno
-															FROM
-																alumno a inner join inscritos i
-																			on a.id_alumno = i.id_alumno
-																		 inner join curso c 
-																			on c.id_curso = i.id_curso
-															where
-																i.inscr_calificacion < 70
-																	AND i.inscr_cursado = 0
-																	AND c.cu_isPrioridadAlta = 'Si'
-																	AND a.a_estatus = 'Activo')";
-	
-	$result = mysql_query($sql);
-	while($row = mysqli_fetch_assoc($result)) {
-
-	}
-
-	************************* FIN **************************/
-
 	//Se registra que todos los cursos ya fueron terminados
 	mysqli_query($conexion, "UPDATE inscritos SET inscr_Cursado = 1");
 

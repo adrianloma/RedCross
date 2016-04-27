@@ -8,26 +8,74 @@
 	$id_grupo = $_GET["id_grupo"];
 	$id_carrera = $_GET["id_carrera"];
 	$id_nivelEscolar = $_GET["id_Semestre"];
+	$id_periodo = $_GET["id_periodo"] - 1;
 
 	$buscar = mysqli_escape_string($conexion, $buscar);
 	$contiene = mysqli_escape_string($conexion, $contiene);
 
-	$sql="	select 
+	/*Query que despliega todos los alumnos que son regulares y los que llevan una materia extra*/
+	$sql="SELECT 
 			    a.id_alumno,
-				a.a_nombre,
-				a.a_apellidPaterno,
-				a.a_apellidoMaterno,
-				a.a_email,
+			    a.a_nombre,
+			    a.a_apellidPaterno,
+			    a.a_apellidoMaterno,
+			    a.a_email,
 			    a.a_curp,
 			    a.id_grupo
-			from
-			    alumno 	a inner join nivel_escolar n
-							on a.id_nivelEscolar = n.id_nivelEscolar 
-			where
-				a.id_carrera = $id_carrera
-			    and (a.id_grupo is NULL or a.id_grupo = $id_grupo or a.id_grupo = 0)
-			    and a.a_estatus = 'Activo'
-			    and a.id_nivelEscolar = $id_nivelEscolar";
+			FROM
+			    alumno a
+			        INNER JOIN
+			    nivel_escolar n ON a.id_nivelEscolar = n.id_nivelEscolar
+			WHERE
+			    a.id_carrera = $id_carrera 
+			        AND (a.id_grupo IS NULL 
+			        		OR a.id_grupo = $id_grupo
+			        		OR a.id_grupo = 0)
+			        AND a.a_estatus = 'Activo'
+			        AND a.id_nivelEscolar = $id_nivelEscolar
+			        AND a.id_alumno NOT IN (SELECT  
+													a.id_alumno
+												FROM
+													alumno a
+														INNER JOIN
+													inscritos i ON i.id_alumno = a.id_alumno
+														INNER JOIN
+													curso c ON i.id_curso = c.id_curso
+														INNER JOIN
+													grupo g ON g.id_grupo = c.id_grupo
+														INNER JOIN
+													periodo p ON p.id_periodo = g.id_periodo
+												WHERE
+													p.id_periodo = $id_periodo 
+														AND a.id_carrera = $id_carrera 
+														AND i.inscr_Cursado = 1 
+														AND g.id_nivelEscolar = $id_nivelEscolar
+														AND i.inscr_calificacion < 70
+														AND a.a_estatus = 'Activo'
+														AND c.cu_isPrioridadAlta = 'Si' 
+												GROUP BY a.id_alumno)
+					AND a.id_alumno not in (SELECT
+													a.id_alumno
+												FROM
+													alumno a 
+														inner join 
+													inscritos i on a.id_alumno = i.id_alumno
+														INNER JOIN
+													curso c ON i.id_curso = c.id_curso
+														INNER JOIN
+													grupo g ON g.id_grupo = c.id_grupo
+														INNER JOIN
+													periodo p ON p.id_periodo = g.id_periodo
+												where
+													p.id_periodo = $id_periodo
+														AND a.id_carrera = $id_carrera
+														AND i.inscr_Cursado = 1 
+														AND g.id_nivelEscolar = $id_nivelEscolar
+			                                            and inscr_calificacion < 70
+														AND a.a_estatus = 'Activo'
+												group by
+													 a.id_alumno
+												having count(a.id_alumno) > 1)";
 
 	switch ($contiene) {
 		case 'id_alumno':

@@ -34,7 +34,8 @@
 			    a.a_apellidpaterno,
 			    a.a_apellidomaterno,
 			    a.a_email,
-			    a.a_curp
+			    a.a_curp,
+			    g.id_nivelEscolar
 			FROM
 			    inscritos i
 			        INNER JOIN
@@ -89,7 +90,7 @@
 			  		<td>" . $row["a_email"] . "</td>
 			  		<td>" . $row["a_curp"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"historial(" . $row["id_alumno"]. ",'" . $row["a_nombre"] . " " .  $row["a_apellidpaterno"] ."'," . $id_periodo .",". $id_nivelEscolarViejo.",". $id_nivelEscolar .")\">Ver</button></td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"inscribir(" . $row["id_alumno"] .",". $id_nivelEscolar  . ")\">Ir</button></td>
+			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"inscribir(" . $row["id_alumno"] .",". $row["id_nivelEscolar"]. ",'" . $row["a_nombre"] . " " .  $row["a_apellidpaterno"] . "')\">Ir</button></td>
 			  	</tr>";
     }
 
