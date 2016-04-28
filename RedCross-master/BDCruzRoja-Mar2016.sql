@@ -242,15 +242,33 @@ CREATE TABLE `grupo` (
 --
 
 CREATE TABLE `permisos` (
-  `id_permiso` int(11) NOT NULL COMMENT 'id del permisos',
+  `id_permiso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del permiso',
   `id_administrador` int(11) DEFAULT NULL COMMENT 'administrador relicionado al permiso',
-  `p_abcAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de administradores', 
-  `p_abcMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de maestro', 
-  `p_abcAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de alumno',  
-  `p_abcPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de periodo',  
-  `p_abcGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas bajas cambios de grupos y cursos',  
-  `p_verReportes` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso ver los reportes que genera el sistema'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `p_aAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de administradores',
+  `p_bAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de administradores',
+  `p_cAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de administradores',
+  `p_aMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de maestro',
+  `p_bMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de maestro',
+  `p_cMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de maestro',
+
+  `p_aAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de alumno',
+  `p_bAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de alumno',
+  `p_cAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de alumno',
+
+  `p_aPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de periodo',
+  `p_bPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de periodo',
+  `p_cPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de periodo',
+
+  `p_aGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de grupos y cursos',
+  `p_bGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de grupos y cursos',
+  `p_cGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de grupos y cursos',
+
+  `p_verReportes` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso ver los reportes que genera el sistema',
+
+
+  PRIMARY KEY (`id_permiso`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Indices de la tabla `permisos`

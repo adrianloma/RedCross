@@ -56,6 +56,7 @@
 			  		<td>" . $row["d_curp"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_administrador"] . ")\">Editar</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_administrador"] . ")\">Baja</button></td>
+				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"permisos(" . $row["id_administrador"] . ")\">Permisos</button></td>
 			  	</tr>";
     }
 

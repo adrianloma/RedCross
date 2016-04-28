@@ -50,6 +50,7 @@ include "../../includes/sessionAdmin.php";
 									"<th>CURP</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
+									"<th>Permisos</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
@@ -64,6 +65,10 @@ include "../../includes/sessionAdmin.php";
 
 		function alta(){
 			window.location.assign("../inscripcion/inscripcionAdmin.php");
+		}
+
+		function permisos(id){
+			window.location.assign("../permisos/permisosAdmin.php?id_administrador="+id);
 		}
 	</script>
 
