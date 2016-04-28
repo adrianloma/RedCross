@@ -93,7 +93,7 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br>
 				<div>
-					<a href="menuReportes.php">
+					<a href="../reportes/menuReportes.php">
 						<input class="btn btn-action" style="width:100%;" type="submit" value="Herramienta de generaci&oacute;n de Reportes">
 					</a>
 				</div>

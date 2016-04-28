@@ -8,27 +8,21 @@
   // simple query
 
   $query = "SELECT 
-                c.cu_nombre,
-                i.id_curso,
-                a.id_alumno,
-                a.a_nombre,
-                a.a_apellidpaterno,
-                a.a_apellidomaterno,
-                a.a_email
-            FROM
-                alumno a
-                    INNER JOIN
-                inscritos i ON a.id_alumno = i.id_alumno
-                    INNER JOIN
-                curso c ON i.id_curso = c.id_curso
-            ORDER BY c.cu_nombre DESC";
-
-$headings = array('Materia', 'Clave Materia', 'Matricula', 'Nombre','Apellido Paterno', 'Apellido Materno', 'Email');
+                  id_carrera,
+                  c_nombre,
+                  c_desc,
+                  c_fechaCreacion,
+                  if(c_estatus = 1,'Activo','Baja') as Estatus
+              FROM
+                  carrera
+              order by
+                c_nombre";
+  $headings = array('id', 'Siglas','Nombre', 'Fecha Creacion', 'Estatus');
 
   if ($result = mysqli_query($conexion, $query) or die(mysql_error())) {
     // Create a new PHPExcel object
     $objPHPExcel = new PHPExcel();
-    $objPHPExcel->getActiveSheet()->setTitle('Lista de Alumnos por Curso');
+    $objPHPExcel->getActiveSheet()->setTitle('Lista de Carreras');
 
     $rowNumber = 1;
     $col = 'A';
@@ -55,7 +49,7 @@ $headings = array('Materia', 'Clave Materia', 'Matricula', 'Nombre','Apellido Pa
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="reporteAlumnosxSemestre.xls"');
+    header('Content-Disposition: attachment;filename="reporteCarreras.xls"');
     header('Cache-Control: max-age=0');
 
     $objWriter->save('php://output');
