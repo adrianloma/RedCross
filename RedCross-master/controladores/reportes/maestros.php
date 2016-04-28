@@ -1,50 +1,60 @@
 <?php
-// connection with the database
-include "../../includes/conexion.php";
+  // connection with the database
+  include "../../includes/conexion.php";
 
-// require the PHPExcel file
-require '../../includes/PHPExcel.php';
+  // require the PHPExcel file
+  require '../../includes/PHPExcel.php';
 
-// simple query
+  // simple query
 
-$query = "SELECT id_maestro, m_nombre, m_apellidpaterno, m_apellidomaterno, m_curp, m_email, m_fecharegistro FROM maestro ORDER by m_nombre DESC";
-$headings = array('Matricula', 'Nombre','Apellido Paterno', 'Apellido Materno', 'CURP', 'Email', 'Fecha de Registro');
+  $query = "SELECT 
+                  id_maestro,
+                  m_nombre,
+                  m_apellidopaterno,
+                  m_apellidomaterno,
+                  m_curp,
+                  m_email,
+                  m_fecharegistro
+              FROM
+                  maestro
+              ORDER BY m_nombre DESC";
+  $headings = array('Matricula', 'Nombre','Apellido Paterno', 'Apellido Materno', 'CURP', 'Email', 'Fecha de Registro');
 
-if ($result = mysql_query($query) or die(mysql_error())) {
-  // Create a new PHPExcel object
-  $objPHPExcel = new PHPExcel();
-  $objPHPExcel->getActiveSheet()->setTitle('Lista de Maestros');
+  if ($result = mysqli_query($conexion, $query) or die(mysql_error())) {
+    // Create a new PHPExcel object
+    $objPHPExcel = new PHPExcel();
+    $objPHPExcel->getActiveSheet()->setTitle('Lista de Maestros');
 
-  $rowNumber = 1;
-  $col = 'A';
-  foreach($headings as $heading) {
-    $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$heading);
-    $col++;
-  }
-
-  // Loop through the result set
-  $rowNumber = 2;
-  while ($row = mysql_fetch_row($result)) {
+    $rowNumber = 1;
     $col = 'A';
-    foreach($row as $cell) {
-      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$cell);
+    foreach($headings as $heading) {
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$heading);
       $col++;
     }
-    $rowNumber++;
+
+    // Loop through the result set
+    $rowNumber = 2;
+    while ($row = mysqli_fetch_assoc($result)) {
+      $col = 'A';
+      foreach($row as $cell) {
+        $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$cell);
+        $col++;
+      }
+      $rowNumber++;
+    }
+
+    // Freeze pane so that the heading line won't scroll
+    $objPHPExcel->getActiveSheet()->freezePane('A2');
+
+    // Save as an Excel BIFF (xls) file
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="reporteMaestros.xls"');
+    header('Cache-Control: max-age=0');
+
+    $objWriter->save('php://output');
+    exit();
   }
-
-  // Freeze pane so that the heading line won't scroll
-  $objPHPExcel->getActiveSheet()->freezePane('A2');
-
-  // Save as an Excel BIFF (xls) file
-  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-
-  header('Content-Type: application/vnd.ms-excel');
-  header('Content-Disposition: attachment;filename="reporteMaestros.xls"');
-  header('Cache-Control: max-age=0');
-
-  $objWriter->save('php://output');
-  exit();
-}
-echo 'A problem has occurred... no data retrieved from the database';
+  echo 'A problem has occurred... no data retrieved from the database';
 ?>
