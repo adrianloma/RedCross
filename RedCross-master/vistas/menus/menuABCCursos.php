@@ -1,6 +1,7 @@
 <?php
-include "../../includes/sessionAdmin.php";
-
+	include "../../includes/sessionAdmin.php";
+	include "../../includes/conexion.php";
+	include "../../includes/periodo_util.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,8 @@ include "../../includes/sessionAdmin.php";
 		    xhr.onload= fillFields;
 		    var url="../../controladores/edicion/gridCursos.php?buscar=" + buscar + 
 		    														"&contiene=" + contiene +
-		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo"));
+		    														"&id_grupo=" + unescape(getQueryVariable("id_grupo")) +
+		    														"&id_periodo=" + unescape(getQueryVariable("id_periodo"));
 		    xhr.open("GET", url, true);
 		    xhr.send();
 		    return false;
@@ -49,20 +51,36 @@ include "../../includes/sessionAdmin.php";
 		function fillFields(){
 			var grid = document.getElementById("grid");
 			var tabla = xhr.responseText;
-			grid.innerHTML = "<thead>"+
-								"<tr>"+
-									"<th>id</th>"+
-									"<th>Nombre</th>"+
-									"<th>Maestro</th>"+
-									"<th>Aula</th>"+
-									"<th>Hora Inicio</th>"+
-									"<th>Hora Fin</th>"+
-									"<th>Dias</th>"+
-									"<th>Editar</th>"+
-									"<th>Baja</th>"+
-									"<th>Ver</th>"+
-								"</tr>"+
-								"</thead>" + tabla;
+<?php
+			if($periodo_activo == 1){
+				echo "grid.innerHTML = \"<thead>\"+
+											\"<tr>\"+
+												\"<th>id</th>\"+
+												\"<th>Nombre</th>\"+
+												\"<th>Maestro</th>\"+
+												\"<th>Aula</th>\"+
+												\"<th>Hora Inicio</th>\"+
+												\"<th>Hora Fin</th>\"+
+												\"<th>Dias</th>\"+
+												\"<th>Editar</th>\"+
+												\"<th>Baja</th>\"+
+												\"<th>Ver</th>\"+
+											\"</tr>\"+
+											\"</thead>\" + tabla;";
+			}else{
+				echo "grid.innerHTML = \"<thead>\"+
+											\"<tr>\"+
+												\"<th>id</th>\"+
+												\"<th>Nombre</th>\"+
+												\"<th>Maestro</th>\"+
+												\"<th>Aula</th>\"+
+												\"<th>Hora Inicio</th>\"+
+												\"<th>Hora Fin</th>\"+
+												\"<th>Dias</th>\"+
+											\"</tr>\"+
+											\"</thead>\" + tabla;";
+			}
+?>
 		}
 
 		function editar(id){
@@ -77,8 +95,39 @@ include "../../includes/sessionAdmin.php";
 			window.location.assign("../inscripcion/inscripcionCurso.php?id_grupo=" + unescape(getQueryVariable("id_grupo")));
 		}
 
-		function ver(id, grupo){
-			window.location.assign("../inscripcion/menuABCInscritos.php");
+		function inscribir(){
+			window.location.assign("menuABCInscritos.php?id_periodo="+getQueryVariable("id_periodo")+
+													"&per_nombre="+getQueryVariable("per_nombre")+
+													"&id_carrera="+getQueryVariable("id_carrera")+
+													"&siglas="+getQueryVariable("siglas")+
+													"&id_Semestre="+getQueryVariable("id_Semestre")+
+													"&semestre="+getQueryVariable("semestre")+
+													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
+													"&grupo="+ unescape(getQueryVariable("grupo")));
+		}
+
+		function inscribirMateriasPendientes(){
+			window.location.assign("menuABCMateriaPendiente.php?id_periodo="+getQueryVariable("id_periodo")+
+													"&per_nombre="+getQueryVariable("per_nombre")+
+													"&id_carrera="+getQueryVariable("id_carrera")+
+													"&siglas="+getQueryVariable("siglas")+
+													"&id_Semestre="+getQueryVariable("id_Semestre")+
+													"&semestre="+getQueryVariable("semestre")+
+													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
+													"&grupo="+ unescape(getQueryVariable("grupo")));
+		}
+
+		function ver(id_curso, nombre){
+			window.location.assign("menuABCInscritosPorCurso.php?id_periodo="+getQueryVariable("id_periodo")+
+													"&per_nombre="+getQueryVariable("per_nombre")+
+													"&id_carrera="+getQueryVariable("id_carrera")+
+													"&siglas="+getQueryVariable("siglas")+
+													"&id_Semestre="+getQueryVariable("id_Semestre")+
+													"&semestre="+getQueryVariable("semestre")+
+													"&id_grupo="+unescape(getQueryVariable("id_grupo"))+
+													"&grupo="+ unescape(getQueryVariable("grupo"))+
+													"&id_curso="+id_curso+
+													"&curso="+ nombre);
 		}
 
 		function regresar(){
@@ -115,7 +164,7 @@ include "../../includes/sessionAdmin.php";
 		<div class="row">
 
 			<!-- Article main content -->
-			<article class="col-sm-9 maincontent">
+			<article class="col-sm-12 maincontent">
 				<header class="page-header">
 					<h2 class="page-title" id="titulo">Cursos</h2>
 				</header>
@@ -134,7 +183,13 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Curso</button>
+<?php
+					if($periodo_activo == 1){
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Curso</button>";
+						echo "<button onclick=\"inscribir()\" class=\"btn btn-default\">Inscribir alumnos regulares</button>";
+						echo "<button onclick=\"inscribirMateriasPendientes()\" class=\"btn btn-default\">Alumnos con materias pendientes</button>";
+					}
+?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

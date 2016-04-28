@@ -32,6 +32,14 @@ include "../../includes/conexion.php";
 		function regresar(){
 			window.history.back();
 		}
+
+		function validar(){
+			if(!confirm("¡Cuidado! Al dar de alta un nuevo periodo el anterior se irá a historial y este quedara como activo. ¿Esta seguro?")){
+				return false;
+			}
+			return true;
+		}
+
 	</script>
 </head>
 
@@ -68,7 +76,7 @@ include "../../includes/conexion.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" action="../../controladores/inscripcion/periodo.php">
+				<form method="post" onsubmit="return validar()" action="../../controladores/inscripcion/periodo.php">
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Descripción</label>
 					<div class="col-lg-10">

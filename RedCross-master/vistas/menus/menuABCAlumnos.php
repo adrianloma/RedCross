@@ -49,7 +49,7 @@ include "../../includes/sessionAdmin.php";
 									"<th>Correo</th>"+
 									"<th>CURP</th>"+
 									"<th>Carrera</th>"+
-									"<th>Periodo</th>"+
+									"<th>Nivel</th>"+
 									"<th>Grupo</th>"+
 									"<th>Estatus</th>"+
 									"<th>Editar</th>"+
@@ -119,7 +119,7 @@ include "../../includes/sessionAdmin.php";
 							<option value="a_email">Correo</option>
 							<option value="a_curp">CURP</option>
 							<option value="carrera">Carrera</option>
-							<option value="periodo">Periodo</option>
+							<option value="nivel">Nivel</option>
 							<option value="grupo">Grupo</option>
 							<option value="a_estatus">Estatus</option>
 						</select>

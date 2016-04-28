@@ -1,6 +1,7 @@
 <?php
-include "../../includes/sessionAdmin.php";
-
+	include "../../includes/sessionAdmin.php";
+	include "../../includes/conexion.php";
+	include "../../includes/periodo_util.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +50,6 @@ include "../../includes/sessionAdmin.php";
 									"<th>Nivel Escolar</th>"+
 									"<th>Carrera</th>"+
 									"<th>Editar</th>"+
-									"<th>Baja</th>"+
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
@@ -128,7 +128,10 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Nivel Escolar</button>
+<?php
+					if($periodo_activo == 1)
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Nivel Escolar</button>";
+?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

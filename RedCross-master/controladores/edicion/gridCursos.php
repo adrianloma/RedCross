@@ -2,6 +2,7 @@
 	include "../../includes/sessionAdmin.php";
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
+	include "../../includes/periodo_util.php";
 
 	$buscar = $_GET["buscar"];
 	$contiene = $_GET["contiene"];
@@ -52,7 +53,8 @@
 	$result = mysqli_query($conexion, $sql);
 
 	while($row = mysqli_fetch_assoc($result)) {
-        echo "	<tr>
+        if($periodo_activo == 1){
+        	echo "	<tr>
 			  		<td>c" . $row["id_curso"] . "</td>
 			  		<td>" . $row["cu_nombre"] . "</td>
 			  		<td>" . $row["m_nombre"] . " " .  $row["m_apellidopaterno"] ."</td>
@@ -62,8 +64,19 @@
 			  		<td>" . $row["cu_dias"] . "</td>
 			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_curso"] . ")\">Editar</button></td>
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_curso"] . ")\">Baja</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_curso"] . ",'" . $row["cu_nombre"]."')\">Ver</button></td>
+				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_curso"] . ",'".$row["cu_nombre"]."')\">Alumnos</button></td>
 			  	</tr>";
+		}else{
+			echo "	<tr>
+				  		<td>c" . $row["id_curso"] . "</td>
+				  		<td>" . $row["cu_nombre"] . "</td>
+				  		<td>" . $row["m_nombre"] . " " .  $row["m_apellidopaterno"] ."</td>
+				  		<td>" . $row["cu_aula"] . "</td>
+				  		<td>" . $row["cu_horaInicio"] . "</td>
+				  		<td>" . $row["cu_horaFinal"] . "</td>
+				  		<td>" . $row["cu_dias"] . "</td>
+				  	</tr>";
+		}
     }
 
 ?>

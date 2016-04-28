@@ -49,6 +49,22 @@
 	$Contrasena = $_POST["Contrasena"];
 	$CelularPadre = $_POST["celularPadre"];
 	$CelularMadre = $_POST["celularMadre"];
+	$Carrera = $_POST["carrera"];
+
+	$sql="select
+			    n.id_nivelEscolar
+			from
+			    nivel_escolar n inner join periodo p 
+							on n.id_periodo = p.id_periodo
+			where
+				n.id_carrera = $Carrera
+			    and p.per_estatus = 1
+			order by ne_desc
+			limit 1";
+	$result = mysqli_query($conexion,$sql);
+	while ($row = mysqli_fetch_assoc($result)){
+		$id_nivelEscolar = $row['id_nivelEscolar'];
+	}
 
 	$result = mysql_insert_Alumno("alumno", $conexion, array(
 		'a_contra' => md5($Contrasena),
@@ -96,7 +112,9 @@
 		'a_entrevista' => $Entrevisto,
 		'a_fecharegistro' => date("Y-m-d"),
 		'a_celPadre' => $CelularPadre,
-		'a_celMadre' => $CelularMadre
+		'a_celMadre' => $CelularMadre,
+		'id_carrera' => $Carrera,
+		'id_nivelEscolar' => $id_nivelEscolar
 
 	));
 

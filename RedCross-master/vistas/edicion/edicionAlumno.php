@@ -1,6 +1,6 @@
 <?php
-include "../../includes/sessionAdmin.php";
-
+	include "../../includes/sessionAdmin.php";
+	include "../../includes/conexion.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,6 +102,28 @@ include "../../includes/sessionAdmin.php";
 		selectOption(document.getElementById('Estatus'), arrayFields[46]);
 		document.getElementById('celularPadre').value = arrayFields[47];
 		document.getElementById('celularMadre').value = arrayFields[48];
+
+		var carreras = document.getElementById('carrera');
+	    for(var x=0; x < carreras.length; x++){
+	    	if(carreras[x].value == arrayFields[50]){
+	    		carreras[x].selected = true;
+	    	}
+	    }
+	}
+
+	function cambiarNiveles(seleccionado){
+		var valor = seleccionado.value;
+		xhr=new XMLHttpRequest();
+	    xhr.onload= cambiaNivel;
+	    var url="../../controladores/edicion/niveles.php?id_carrera=" + valor;
+	    xhr.open("GET", url, true);
+	    xhr.send();
+	}
+
+	function cambiaNivel(){
+		var opciones = xhr.responseText.trim();
+		document.getElementById('nivel').options.length=0;
+		document.getElementById('nivel').innerHTML = opciones;
 	}
 
 	</script>
@@ -466,6 +488,63 @@ include "../../includes/sessionAdmin.php";
 					<label for="" class="col-lg-2 control-label">¿Acudi&oacute; a la entrevista?</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="Entrevisto" name="Entrevisto" placeholder="" required>
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label">Carrera</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="carrera" name="carrera" onchange="cambiarNiveles(this)" required>
+							<option value="">-</option>
+							<?php
+								$sql="select
+											id_carrera,
+										    c_nombre
+										from
+											carrera
+										where
+											c_estatus = 1";
+								$result = mysqli_query($conexion,$sql);
+								while ($row = mysqli_fetch_assoc($result)){
+									echo "<option value=\"".$row['id_carrera'] ."\"> ".$row['c_nombre']."</option>";
+								}
+							?>
+						</select>
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label">Nivel Escolar</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="nivel" name="nivel" required>
+							<option value="">-</option>
+							<?php
+								$sql="select id_carrera,id_nivelEscolar from alumno where id_alumno = " . $_GET['id_alumno'];
+								$result = mysqli_query($conexion,$sql);
+								while ($row = mysqli_fetch_assoc($result)){
+									$id_carrera = $row['id_carrera'];
+									$id_nivelEscolar = $row['id_nivelEscolar'];
+								}
+
+								$sql="select 
+										    n.id_nivelEscolar,
+										    n.ne_desc
+										from
+											nivel_escolar n inner join periodo p
+														on n.id_periodo = p.id_periodo
+										where
+											id_carrera = $id_carrera
+											and p.per_estatus = 1;";
+								$result = mysqli_query($conexion,$sql);
+								while ($row = mysqli_fetch_assoc($result)){
+									if($id_nivelEscolar == $row['id_nivelEscolar']){
+										echo "<option value=\"".$row['id_nivelEscolar'] ."\" selected> ".$row['ne_desc']."</option>";
+									}else{
+										echo "<option value=\"".$row['id_nivelEscolar'] ."\"> ".$row['ne_desc']."</option>";
+									}
+								}
+							?>
+						</select>
 					</div>
 				</div>
 				<br><br>

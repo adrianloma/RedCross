@@ -1,6 +1,7 @@
 <?php
-include "../../includes/sessionAdmin.php";
-
+	include "../../includes/sessionAdmin.php";
+	include "../../includes/conexion.php";
+	include "../../includes/periodo_util.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,6 @@ include "../../includes/sessionAdmin.php";
 									"<th>Descripci&oacute;n</th>"+
 									"<th>Fecha Creaci&oacute;n</th>"+
 									"<th>Editar</th>"+
-									"<th>Baja</th>"+
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
@@ -124,7 +124,10 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Carrera</button>
+<?php
+					if($periodo_activo == 1)
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Carrera</button>";
+?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 
