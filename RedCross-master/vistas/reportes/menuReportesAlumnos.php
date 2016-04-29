@@ -68,19 +68,19 @@
 				<br>
 				<div>
 					<a href="../../controladores/reportes/reporteAlumnosInscritos.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Alumnos inscritos en cursos (Pendiente)">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Alumnos inscritos en cursos">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="../../controladores/reportes/reporteCalificaciones.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de calificaciones y asistencias periodo actual (Pendiente)">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de calificaciones y asistencias periodo actual">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="../../controladores/reportes/reporteHistorial.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Historial de todos los alumnos (Pendiente)">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Historial de todos los alumnos">
 					</a>
 				</div>
 				<br>

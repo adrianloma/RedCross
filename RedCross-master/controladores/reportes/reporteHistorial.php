@@ -7,37 +7,77 @@
 
   // simple query
 
-  $query = "  SELECT 
-                  a.id_alumno,        a.a_nombre,             a.a_apellidpaterno, a.a_apellidomaterno,  a.a_fechanac,
-                  a.a_lugarnac,       a.a_nacionalidad,       a.a_sexo,           a.a_estadocivil,      a.a_gposanguineo,
-                  a.a_rh,             a.a_curp,               a.a_servmedico,     a.a_trabajo,          a.a_enfermedades,
-                  a.a_alergias,       a.a_debilidadmotriz,    a.a_domicilio,      a.a_cp,               a.a_colonia,
-                  a.a_municipio,      a.a_numlocal,           a.a_nompapa,        a.a_ocupacionpapa,    a.a_empresapapa,
-                  a.a_sueldopapa,     a.a_nommama,            a.a_ocupacionmama,  a.a_empresamama,      a.a_sueldomama,
-                  a.a_otrosestudios,  a.a_suspencionestudios, a.a_matreprobadas,  a.a_aval,             a.a_promocionesc,
-                  a.a_objcruzroja,    a.a_objenfermeria,      a.a_otracarrera,    a.a_ceneval,          a.a_regescuela,
-                  a.a_psicometrico,   a.a_entrevista,         a.a_email,          a.a_fecharegistro,    a.a_estatus,
-                  a.a_celPadre,       a.a_celMadre
-              FROM
-                  alumno a
-              ORDER BY a.id_alumno";
+  $query = "SELECT 
+                a.id_alumno,
+                a.a_nombre,
+                a.a_apellidpaterno,
+                a.a_apellidomaterno,
+                a.a_email,
+                a.a_estatus,
+                ca.c_nombre,
+                p.per_desc,
+                n.ne_desc,
+                g.gru_nombre,
+                m.id_maestro,
+                m.m_nombre,
+                m.m_apellidopaterno,
+                m.m_apellidomaterno,
+                c.id_curso,
+                c.cu_nombre,
+                i.inscr_calificacion1,
+                i.inscr_calificacion2,
+                i.inscr_calificacion3,
+                ifNULL(i.inscr_calificacion,0) as CalificacionFinal,
+                ifNULL(i.inscr_asistencia,0) as Asistencia,
+                i.inscr_fecharegistro,
+                if(i.inscr_cursado = 1,'Si','No') as Cursado
+            FROM
+                maestro m
+                    INNER JOIN
+                curso c ON m.id_maestro = c.id_maestro
+                    INNER JOIN
+                grupo g ON g.id_grupo = c.id_grupo
+                    INNER JOIN
+                periodo p ON p.id_periodo = g.id_periodo
+                    INNER JOIN
+                nivel_Escolar n ON n.id_nivelEscolar = g.id_nivelEscolar
+                    INNER JOIN
+                carrera ca ON ca.id_carrera = n.id_carrera
+                inner join
+              inscritos i on i.id_curso = c.id_curso
+                inner join
+              alumno a on a.id_alumno = i.id_alumno
+            order by per_desc,c_nombre, id_alumno";
 
 
-  $headings = array(  'id_alumno',        'a_nombre',             'a_apellidpaterno', 'a_apellidomaterno',  'a_fechanac',
-                      'a_lugarnac',       'a_nacionalidad',       'a_sexo',           'a_estadocivil',      'a_gposanguineo',
-                      'a_rh',             'a_curp',               'a_servmedico',     'a_trabajo',          'a_enfermedades',
-                      'a_alergias',       'a_debilidadmotriz',    'a_domicilio',      'a_cp',               'a_colonia',
-                      'a_municipio',      'a_numlocal',           'a_nompapa',        'a_ocupacionpapa',    'a_empresapapa',
-                      'a_sueldopapa',     'a_nommama',            'a_ocupacionmama',  'a_empresamama',      'a_sueldomama',
-                      'a_otrosestudios',  'a_suspencionestudios', 'a_matreprobadas',  'a_aval',             'a_promocionesc',
-                      'a_objcruzroja',    'a_objenfermeria',      'a_otracarrera',    'a_ceneval',          'a_regescuela',
-                      'a_psicometrico',   'a_entrevista',         'a_email',          'a_fecharegistro',    'a_estatus',
-                      'a_celPadre',       'a_celMadre');
+  $headings = array(  'Matricula Alumno',
+                      'a_nombre',
+                      'a_apellidpaterno',
+                      'a_apellidomaterno',
+                      'a_email',
+                      'a_estatus',
+                      'Carrera',
+                      'Periodo',
+                      'Nivel Escolar',
+                      'gru_nombre',
+                      'Matricula Maestro',
+                      'm_nombre',
+                      'm_apellidopaterno',
+                      'm_apellidomaterno',
+                      'id_curso',
+                      'cu_nombre',
+                      'inscr_calificacion1',
+                      'inscr_calificacion2',
+                      'inscr_calificacion3',
+                      'inscr_calificacion',
+                      'inscr_asistencia',
+                      'inscr_fecharegistro',
+                      'Cursado');
 
   if ($result = mysqli_query($conexion, $query) or die(mysql_error())) {
     // Create a new PHPExcel object
     $objPHPExcel = new PHPExcel();
-    $objPHPExcel->getActiveSheet()->setTitle('Lista de Alumnos');
+    $objPHPExcel->getActiveSheet()->setTitle('Historial Todos Alumnos');
 
     $rowNumber = 1;
     $col = 'A';
@@ -64,7 +104,7 @@
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="reporteAlumnos.xls"');
+    header('Content-Disposition: attachment;filename="reporteHistorial.xls"');
     header('Cache-Control: max-age=0');
 
     $objWriter->save('php://output');

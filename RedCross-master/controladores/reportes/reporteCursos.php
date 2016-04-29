@@ -25,12 +25,7 @@
                     INNER JOIN
                 carrera ca ON ca.id_carrera = n.id_carrera
             WHERE
-                p.id_periodo = (SELECT 
-                                    id_periodo
-                                  FROM
-                                    periodo
-                                  ORDER BY id_periodo DESC
-                                  LIMIT 1)";
+                p.per_estatus = 1";
 
   $headings = array(  'id_maestro',      'm_nombre',           'm_apellidopaterno',  'm_apellidomaterno',  'm_email',
                       'carrera',        'nivel_Escolar',            'gru_nombre',         'cu_nombre',          'cu_objetivo',
