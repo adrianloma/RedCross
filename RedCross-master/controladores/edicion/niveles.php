@@ -11,11 +11,9 @@
 			    n.id_nivelEscolar,
 			    n.ne_desc
 			from
-				nivel_escolar n inner join periodo p
-							on n.id_periodo = p.id_periodo
+				nivel_escolar n
 			where
-				id_carrera = $id_carrera
-				and p.per_estatus = 1;";
+				n.id_carrera = $id_carrera";
 	$result = mysqli_query($conexion,$sql);
 
 	echo "<option value=''>-</option>";

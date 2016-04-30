@@ -86,6 +86,11 @@ include "../../includes/sessionAlumno.php";
 							<th>Calificaci&oacute;n 2ndo parcial</th>
 							<th>Calificaci&oacute;n 3er parcial</th>
 							<th>Calificaci&oacute;n Final</th>
+							<th>Asistencia</th>
+							<th>Cursado</th>
+							<th>Periodo</th>
+							<th>Nivel Escolar</th>
+							<th>Carrera</th>
 						</tr>
 					</thead>
 					<tbody id="tbodyCursos">

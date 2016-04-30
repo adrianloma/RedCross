@@ -61,8 +61,8 @@ include "../../includes/sessionMaestro.php";
 					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
-					<a href="../../controladores/reportes/maestrosyCursos.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de cursos del periodo">
+					<a href="../tablas/tablaHorarioMaestro.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Ver mi horario">
 					</a>
 				</div>
 				<br>

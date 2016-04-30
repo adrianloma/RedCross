@@ -527,15 +527,12 @@
 									$id_nivelEscolar = $row['id_nivelEscolar'];
 								}
 
-								$sql="select 
-										    n.id_nivelEscolar,
-										    n.ne_desc
-										from
-											nivel_escolar n inner join periodo p
-														on n.id_periodo = p.id_periodo
-										where
-											id_carrera = $id_carrera
-											and p.per_estatus = 1;";
+								$sql="SELECT 
+										    n.id_nivelEscolar, n.ne_desc
+										FROM
+										    nivel_escolar n
+										WHERE
+										    n.id_carrera = $id_carrera";
 								$result = mysqli_query($conexion,$sql);
 								while ($row = mysqli_fetch_assoc($result)){
 									if($id_nivelEscolar == $row['id_nivelEscolar']){

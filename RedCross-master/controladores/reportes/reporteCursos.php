@@ -35,7 +35,7 @@
   if ($result = mysqli_query($conexion, $query) or die(mysql_error())) {
     // Create a new PHPExcel object
     $objPHPExcel = new PHPExcel();
-    $objPHPExcel->getActiveSheet()->setTitle('Lista de Maestros y Cursos');
+    $objPHPExcel->getActiveSheet()->setTitle('Lista de Cursos Per Act');
 
     $rowNumber = 1;
     $col = 'A';
@@ -62,7 +62,7 @@
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="reporteMaestrosCursos.xls"');
+    header('Content-Disposition: attachment;filename="reporteCursos.xls"');
     header('Cache-Control: max-age=0');
 
     $objWriter->save('php://output');

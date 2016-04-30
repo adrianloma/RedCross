@@ -61,13 +61,13 @@
 					<h1 class="page-title">Generador de reportes: Cursos</h1>
 				</header>
 				<div>
-					<a href="../../controladores/reportes/.php">
+					<a href="../../controladores/reportes/reporteCursosTodo.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Todos los cursos">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="../../controladores/reportes/.php">
+					<a href="../../controladores/reportes/reporteCursos.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos del periodo actual">
 					</a>
 				</div>

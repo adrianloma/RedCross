@@ -61,25 +61,25 @@
 					<h1 class="page-title">Generador de reportes: Alumnos</h1>
 				</header>
 				<div>
-					<a href="../../controladores/reportes/.php">
+					<a href="../../controladores/reportes/reporteAlumnos.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Todos los alumnos">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="../../controladores/reportes/.php">
+					<a href="../../controladores/reportes/reporteAlumnosInscritos.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Alumnos inscritos en cursos">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="../../controladores/reportes/.php">
+					<a href="../../controladores/reportes/reporteCalificaciones.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de calificaciones y asistencias periodo actual">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="../../controladores/reportes/.php">
+					<a href="../../controladores/reportes/reporteHistorial.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Historial de todos los alumnos">
 					</a>
 				</div>

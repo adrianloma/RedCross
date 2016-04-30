@@ -1,269 +1,398 @@
 <?php
 include "../../includes/sessionAdmin.php";
+include "../../includes/conexion.php";
+
+$query = "SELECT  d_nombre, "
+        . "d_apellidopaterno, "
+        . "d_apellidomaterno, "
+        . "d_fechanac, "
+        . "d_lugarnac, "
+        . "d_nacionalidad, "
+        . "d_sexo, "
+        . "d_estadocivil, "
+        . "d_gposanguineo, "
+        . "d_rh, "
+        . "d_curp, "
+        . "d_servmedico, "
+        . "d_trabajo, "
+        . "d_enfermedades, "
+        . "d_alergias, "
+        . "d_debilidadmotriz, "
+        . "d_domicilio, "
+        . "d_numext, "
+        . "d_numint, "
+        . "d_cp, "
+        . "d_colonia, "
+        . "d_municipio, "
+        . "d_numlocal, "
+        . "d_numcelular, "
+        . "d_escolaridad, "
+        . "d_otrosestudios, "
+        . "d_email "
+        . "FROM administrador "
+        . "WHERE id_administrador = " 
+        . $_GET['id_administrador'];
+
+$result = mysqli_query($conexion, mysqli_real_escape_string($conexion, $query));
+$response = "";
+$row = "";
+if($result){
+  $row = mysqli_fetch_assoc($result);
+  foreach ($row as $col_value) {
+      $response = $response . '|' . $col_value;
+  }
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+  <meta charset="utf-8">
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-	<title>Edici&oacute;n</title>
+  <title>Edici&oacute;n</title>
 
-	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
+  <link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
-	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
-	<!-- Custom styles for our template -->
-	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script src="../../includes/javascript_util.js"></script>
+  <!-- Custom styles for our template -->
+  <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="../../includes/javascript_util.js"></script>
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="assets/js/html5shiv.js"></script>
-	<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="assets/js/html5shiv.js"></script>
+  <script src="assets/js/respond.min.js"></script>
+  <![endif]-->
 
-	<script>
-	function selectOption(select, textOption){
-	for(option in select.options){
-		if(textOption == option.text){
-			option.selected = true;
-			break;
-		}
-	}
-	}
-		function search(){
-		var searchId = document.getElementById('searchId').value;
-		console.log(searchId);
-		if(!isValidMatricula(searchId) || (searchId[0] != 'd' &&  searchId[0] != 'D')){
-			alert("Favor de ingresar una matricula valida");
-			return;
-		}
-			xhr=new XMLHttpRequest();
-			xhr.onload= fillFields;
-			var url="../../controladores/edicion/search.php?matricula=" + searchId;
-			xhr.open("GET", url, true);
-			xhr.send();
-		}
-		function fillFields(){
-			//alert(xhr.responseText);
-			//console.log(xhr.responseText);
-			var fields = xhr.responseText.trim();
-			var arrayFields = fields.split("|");
-			if(arrayFields[0] == "-1"){
-				alert(arrayFields[1]);
-				return;
-			}
+<script>
+    var admin_data = <?php echo json_encode($row); ?>;
+    
+    window.onload = function(){
+      if (admin_data != null && admin_data != "" ) {
+        document.getElementById("nombres").value = admin_data.d_nombre;
+        document.getElementById("APaterno").value = admin_data.d_apellidopaterno;
+        document.getElementById("AMaterno").value = admin_data.d_apellidomaterno;
+        document.getElementById("FechaNacimiento").value = admin_data.d_fechanac;
+        document.getElementById("LugarNacimiento").value = admin_data.d_lugarnac;
+        document.getElementById("Nacionalidad").value = admin_data.d_nacionalidad;
+        document.getElementById("RH").value = admin_data.d_rh;
+        document.getElementById("CURP").value = admin_data.d_curp;
+        document.getElementById("ServicioMedico").value = admin_data.d_servmedico;
+        document.getElementById("ActualmenteLaborando").value = admin_data.d_trabajo;
+        document.getElementById("Enfermedades").value = admin_data.d_enfermedades;
+        document.getElementById("Alergias").value = admin_data.d_alergias;
+        document.getElementById("DebilidadMotriz").value = admin_data.d_debilidadmotriz;
+        document.getElementById("Direccion").value = admin_data.d_domicilio;
+        document.getElementById("NumInterior").value = admin_data.d_numint;
+        document.getElementById("NumExterior").value = admin_data.d_numext;
+        document.getElementById("CP").value = admin_data.d_cp;
+        document.getElementById("Colonia").value = admin_data.d_colonia;
+        document.getElementById("Municipio").value = admin_data.d_municipio;
+        document.getElementById("TelefonoLocal").value = admin_data.d_numlocal;
+        document.getElementById("TelefonoCelular").value = admin_data.d_numcelular;
+        document.getElementById("Escolaridad").value = admin_data.d_escolaridad;
+        document.getElementById("OtrosEstudios").value = admin_data.d_otrosestudios;
+        document.getElementById("Email").value = admin_data.d_email;
+        selectOption(document.getElementById("Sexo"), admin_data.d_sexo);
+        selectOption(document.getElementById("EstadoCivil"), admin_data.d_estadocivil);
+        selectOption(document.getElementById("GrupoSanguineo"), admin_data.d_gposanguineo);
+      } else {
+        alert( "Hubo un error al tratar de obtener la información. Por favor intente de nuevo." );
+        history.back();
+      }
+    }
 
 
-			document.getElementById('matricula').value = arrayFields[1];
-			document.getElementById('nombres').value = arrayFields[3];
-			document.getElementById('APaterno').value = arrayFields[4];
-			document.getElementById('AMaterno').value = arrayFields[5];
-			document.getElementById('FechaNacimiento').value = arrayFields[6];
-			document.getElementById('CURP').value = arrayFields[14];
-			document.getElementById('Enfermedades').value = arrayFields[17];
-			document.getElementById('Alergias').value = arrayFields[18];
-			document.getElementById('Telefono').value = arrayFields[26];
-			document.getElementById('Email').value = arrayFields[30];
-
-		}
-	</script>
-	</head>
+  </script>
+  </head>
 
 <body class="home">
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Edici&oacute;n</a>
-			</div>
-			<form class="navbar-form navbar-left" role="search" onSubmit="return false;">
-				<div class="form-group">
-					<input type="text" id="searchId" class="form-control" placeholder="Ingresar ID">
-				</div>
-				<button onclick="search()" class="btn btn-default">Buscar</button>
-			</form>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Edici&oacute;n</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../menus/menuAdmin.php">Regresar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-	<!-- Intro -->
-	<div class="container text-center">
-		<h2 class="thin">Edici&oacute;n de datos de Administrador</h2>
-		<br>
-	</div>
-	<!-- /Intro-->
+  <!-- Intro -->
+  <div class="container text-center">
+    <h2 class="thin">Edici&oacute;n de datos de Administrador</h2>
+    <br>
+  </div>
+  <!-- /Intro-->
 
-	<!-- Highlights - jumbotron -->
-	<form method="post" action="../../controladores/edicion/administrador.php">
-		<input type="hidden"  id="matricula" name="matricula" value="">
-	<div class="">
-		<div class="container">
-			<div class="row">
-				<!-- CURP del alumno -->
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombre" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
-					<div class="col-lg-10">
-							<input type="text" class="form-control" id="APaterno" name="APaterno" placeholder="Apellido Paterno" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="AMaterno" name="AMaterno" placeholder="Apellido Materno" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
-					<div class="col-lg-10">
-						<input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">CURP</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="CURP" name="CURP" placeholder="CURP" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Enfermedades</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Enfermedades" name="Enfermedades" placeholder="Liste enfermedades que padece" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Alergias</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Alergias" name="Alergias" placeholder="Liste alergias que padece" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Telefono" name="Telefono" placeholder="Tel&eacute;fono" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Email</label>
-					<div class="col-lg-10">
-						<input type="email" class="form-control" id="Email" name="Email" placeholder="Email" >
-					</div>
-				</div>
-				<br><br>
-			</div> <!-- /row  -->
-			<br><br>
-			<div class="col-lg-12 text-right">
-				<a href="#">
-					<button style="width:100%;" class="btn btn-action" type="submit">Guardar</button>
-				</a>
-				<br><br>
-				<a href="#">
-					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
-				</a>
-			</div>
-		</div>
-	</div>
-	<!-- /Highlights -->
-	<footer id="footer" class="top-space">
+  <!-- Highlights - jumbotron -->
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <form method="post" onsubmit="return validaFormaAdmin()" action="../../controladores/edicion/administrador.php">
+        <input type="hidden"  id="matricula" name="matricula" value="<?php echo $_GET['id_administrador'] ?>">
 
-		<div class="footer1">
-			<div class="container">
-				<div class="row">
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Nombre(s)</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombre" ></div></div></br></br>
 
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Informaci&oacute;n</h3>
-						<div class="widget-body">
-							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
-								<a href="mailto:#">cruz.roja@cr.com</a><br>
-								81-1477-1477
-							</p>
-						</div>
-					</div>
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Apellido Paterno</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="APaterno" name="APaterno" placeholder="Apellido Paterno" ></div></div></br></br>
 
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Redes Sociales</h3>
-						<div class="widget-body">
-							<p class="follow-me-icons clearfix">
-								<a href=""><i class="fa fa-twitter fa-2"></i></a>
-								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>
-						</div>
-					</div>
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Apellido Materno</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="AMaterno" name="AMaterno" placeholder="Apellido Materno" ></div></div></br></br>
 
-					<div class="col-md-6 widget">
-						<h3 class="widget-title">Información</h3>
-						<div class="widget-body">
-							<p>Sitio web de la Cruz Roja Mexicana.</p>
-						</div>
-					</div>
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Fecha Nacimiento</label> 
+            <div class="col-lg-10">
+              <input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" placeholder="dd/mm/aaaa" ></div></div></br></br>
 
-				</div> <!-- /row of widgets -->
-			</div>
-		</div>
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Lugar de Nacimiento</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="LugarNacimiento" name="LugarNacimiento" placeholder="Ciudad" required></div></div></br></br>
 
-		<div class="footer2">
-			<div class="container">
-				<div class="row">
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Nacionalidad</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Nacionalidad" name="Nacionalidad" placeholder="Pa&iacute;s" required></div></div></br></br>
 
-					<div class="col-md-6 widget">
-						<div class="widget-body">
-							<p class="simplenav">
-								<a href="#">Home</a> |
-								<a href="#">Contacto</a> |
-								<b><a href="#">Iniciar sesi&oacute;n</a></b>
-							</p>
-						</div>
-					</div>
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Sexo</label> 
+            <div class="col-lg-10">
+              <select class="form-control" id="Sexo" name="Sexo" required>
+                <option value="">-</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select></div></div></br></br>
 
-					<div class="col-md-6 widget">
-						<div class="widget-body">
-							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja.
-							</p>
-						</div>
-					</div>
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Estado Civil</label> 
+            <div class="col-lg-10">
+              <select class="form-control" id="EstadoCivil" name="EstadoCivil" required>
+                <option value="">-</option>
+                <option value="Soltero">Soltero</option>
+                <option value="Casado">Casado</option>
+                <option value="Divorciado">Divorciado</option>
+                <option value="Viudo">Viudo</option>
+              </select></div></div></br></br>
 
-				</div> <!-- /row of widgets -->
-			</div>
-		</div>
-	</footer>
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Grupo Sangu&iacute;neo</label> 
+            <div class="col-lg-10">
+              <select class="form-control" id="GrupoSanguineo" name="GrupoSanguineo" required>
+                <option value="">-</option>
+                <option value="O-">O-</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="A+">A+</option>
+                <option value="B-">B-</option>
+                <option value="B+">B+</option>
+                <option value="AB-">AB-</option>
+                <option value="AB+">AB+</option>
+              </select></div></div></br></br>
 
-	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<script src="assets/js/headroom.min.js"></script>
-	<script src="assets/js/jQuery.headroom.min.js"></script>
-	<script src="assets/js/template.js"></script>
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">RH</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="RH" name="RH" placeholder="RH" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">CURP</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="CURP" name="CURP" placeholder="CURP" ></div></div></br></br>
+
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">¿Con cual servicio m&eacute;dico cuenta?</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="ServicioMedico" name="ServicioMedico" placeholder=""></div></div></br></br>
+
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Trabajo Actual</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="ActualmenteLaborando" name="ActualmenteLaborando" placeholder=""></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Enfermedades</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Enfermedades" name="Enfermedades" placeholder="Liste enfermedades que padece"></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Alergias</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Alergias" name="Alergias" placeholder="Liste alergias que padece"></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">¿Tiene alg&uacute;n tipo de debilidad motriz?</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="DebilidadMotriz" name="DebilidadMotriz" placeholder="Liste debilidades motrices que padece, omitir en caso de no tener"></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Direcci&oacute;n</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Direcci&oacute;n con numero ext/int" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">N&uacute;mero interior</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="NumInterior" name="NumInterior" placeholder="Direcci&oacute;n con numero ext/int" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">N&uacute;mero exterior</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="NumExterior" name="NumExterior" placeholder="Direcci&oacute;n con numero ext/int" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">C&oacute;digo postal</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="CP" name="CP" placeholder="C&oacute;digo postal" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Colonia</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Colonia" name="Colonia" placeholder="Colonia" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Municipio</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Municipio" name="Municipio" placeholder="Municipio" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Tel&eacute;fono local</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="TelefonoLocal" name="TelefonoLocal" placeholder="Tel&eacute;fono" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Tel&eacute;fono celular</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="TelefonoCelular" name="TelefonoCelular" placeholder="Tel&eacute;fono" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Nivel de escolaridad</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="Escolaridad" name="Escolaridad" placeholder="Nivel de escolaridad" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Otros estudios</label> 
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="OtrosEstudios" name="OtrosEstudios" placeholder="Otros estudios" required></div></div></br></br>
+
+          <div class="form-group">
+            <label for="" class="col-lg-2 control-label">Email</label> 
+            <div class="col-lg-10">
+              <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" ></div></div></br></br><br/><br/>
+        <div class="row" style="text-align:center;">
+          <input style="width:46%;" align="center" class="btn btn-action" value="Guardar" type="submit"></input>
+        </div> <!-- /row  -->
+        </form>
+      </div>
+      </br></br>
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+        <a href="../menus/menuABCAdmins.php" style="display: block;margin-left: auto;margin-right: auto;" >
+          <button style="width:100%;" aling="center" class="btn btn-action" type="submit">Cancelar</button>
+        </a>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+
+  </div>
+
+
+ <!-- /Highlights -->
+  <footer id="footer" class="top-space">
+
+    <div class="footer1">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-3 widget">
+            <h3 class="widget-title">Informaci&oacute;n</h3>
+            <div class="widget-body">
+              <p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
+                <a href="mailto:#">cruz.roja@cr.com</a><br>
+                81-1477-1477
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-3 widget">
+            <h3 class="widget-title">Redes Sociales</h3>
+            <div class="widget-body">
+              <p class="follow-me-icons clearfix">
+                <a href=""><i class="fa fa-twitter fa-2"></i></a>
+                <a href=""><i class="fa fa-facebook fa-2"></i></a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 widget">
+            <h3 class="widget-title">Información</h3>
+            <div class="widget-body">
+              <p>Sitio web de la Cruz Roja Mexicana.</p>
+            </div>
+          </div>
+
+        </div> <!-- /row of widgets -->
+      </div>
+    </div>
+
+    <div class="footer2">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-6 widget">
+            <div class="widget-body">
+              <p class="simplenav">
+                <a href="#">Home</a> |
+                <a href="#">Contacto</a> |
+                <b><a href="#">Iniciar sesi&oacute;n</a></b>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 widget">
+            <div class="widget-body">
+              <p class="text-right">
+                Copyright &copy; 2015, Cruz Roja.
+              </p>
+            </div>
+          </div>
+
+        </div> <!-- /row of widgets -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="assets/js/headroom.min.js"></script>
+  <script src="assets/js/jQuery.headroom.min.js"></script>
+  <script src="assets/js/template.js"></script>
 </body>
 </html>

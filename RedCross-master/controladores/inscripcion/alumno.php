@@ -54,12 +54,11 @@
 	$sql="select
 			    n.id_nivelEscolar
 			from
-			    nivel_escolar n inner join periodo p 
-							on n.id_periodo = p.id_periodo
+			    nivel_escolar n inner join grupo g 
+							on n.id_nivelEscolar = g.id_nivelEscolar
 			where
 				n.id_carrera = $Carrera
-			    and p.per_estatus = 1
-			order by ne_desc
+			order by n.ne_desc
 			limit 1";
 	$result = mysqli_query($conexion,$sql);
 	while ($row = mysqli_fetch_assoc($result)){
