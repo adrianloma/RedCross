@@ -1,5 +1,6 @@
 <?php
     
+
     function mysql_insert_Alumno($table, $conexion, $inserts) {
 
         $conn = array($conexion);
