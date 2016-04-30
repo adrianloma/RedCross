@@ -242,7 +242,7 @@ CREATE TABLE `grupo` (
 --
 
 CREATE TABLE `permisos` (
-  `id_permiso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del permiso',
+  `id_permiso` int(11) NOT NULL COMMENT 'id del permiso',
   `id_administrador` int(11) DEFAULT NULL COMMENT 'administrador relicionado al permiso',
   `p_aAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de administradores',
   `p_bAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de administradores',
@@ -250,23 +250,16 @@ CREATE TABLE `permisos` (
   `p_aMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de maestro',
   `p_bMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de maestro',
   `p_cMaestro` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de maestro',
-
   `p_aAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de alumno',
   `p_bAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de alumno',
   `p_cAlumno` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de alumno',
-
   `p_aPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de periodo',
   `p_bPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de periodo',
   `p_cPeriodo` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de periodo',
-
   `p_aGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de grupos y cursos',
   `p_bGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para bajas de grupos y cursos',
   `p_cGruposCursos` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para cambios de grupos y cursos',
-
-  `p_verReportes` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso ver los reportes que genera el sistema',
-
-
-  PRIMARY KEY (`id_permiso`)
+  `p_verReportes` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso ver los reportes que genera el sistema'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -402,6 +395,3 @@ MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del grupo',AUTO_IN
 
 ALTER TABLE `maestro`
 MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del maestro',AUTO_INCREMENT=1;
-
-
-1 3416a75f4cea9109507cacd8e2f2aefc
