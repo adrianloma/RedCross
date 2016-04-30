@@ -95,12 +95,6 @@ include "../../includes/sessionAdmin.php";
 				</button>
 				<a class="navbar-brand" href="#">Edici&oacute;n</a>
 			</div>
-			<form class="navbar-form navbar-left" role="search" onSubmit="return false;">
-				<div class="form-group">
-					<input type="text" id="searchId" class="form-control" placeholder="Ingresar ID">
-				</div>
-				<button onclick="search()" class="btn btn-default">Buscar</button>
-			</form>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
