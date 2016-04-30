@@ -16,7 +16,7 @@
 				m_apellidoMaterno,
 				m_email,
 			    m_curp,
-			    m_estatus
+			    if(m_estatus = 1, 'Activo', 'Inactivo') as m_estatus
 			from
 			    maestro";
 
@@ -24,19 +24,19 @@
 		case 'id_maestro':
 			$sql .= " where id_maestro LIKE '%$buscar%'";
 			break;
-		case 'a_nombre':
+		case 'm_nombre':
 			$sql .= " where m_nombre LIKE '%$buscar%'";
 			break;
-		case 'a_apellidoPaterno':
+		case 'm_apellidoPaterno':
 			$sql .= " where m_apellidoPaterno LIKE '%$buscar%'";
 			break;
-		case 'a_apellidoMaterno':
+		case 'm_apellidoMaterno':
 			$sql .= " where m_apellidoMaterno LIKE '%$buscar%'";
 			break;
-		case 'a_email':
+		case 'm_email':
 			$sql .= " where m_email LIKE '%$buscar%'";
 			break;
-		case 'a_curp':
+		case 'm_curp':
 			$sql .= " where m_curp LIKE '%$buscar%'";
 			break;
 		case 'm_estatus':
