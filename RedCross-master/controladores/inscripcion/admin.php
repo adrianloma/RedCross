@@ -34,7 +34,6 @@
 	$NumInterior = $_POST["NumInterior"];
 	$NumExterior = $_POST["NumExterior"];
 
-
 	$result = mysql_insert_Admin("administrador", $conexion, array(
 		'd_contra' => md5($Contrasena),
 		'd_nombre' => $nombres,
@@ -66,9 +65,7 @@
     'd_numext' => $NumExterior,
     'd_edad' => 0,
     'd_escolaridad' => $Escolaridad
-
 	));
-
 
 	$newId = mysqli_insert_id($conexion);
 
