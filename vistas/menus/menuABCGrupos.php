@@ -55,7 +55,10 @@
 								"<tr>"+
 									"<th>id</th>"+
 									"<th>Grupo</th>"+
-									"<th>Editar</th>"+
+									<?php
+									if($_SESSION['cambioGrupoCursos'] == 1)
+										echo '"<th>Editar</th>" +';						
+									?>
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
@@ -138,7 +141,7 @@
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
 <?php
-					if($periodo_activo == 1)
+					if($periodo_activo == 1 && $_SESSION['altaGrupoCursos'] == 1)
 						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Grupo</button>";
 ?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>

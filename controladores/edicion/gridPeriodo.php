@@ -43,9 +43,12 @@
         echo "	<tr>
 			  		<td>" . $row["id_periodo"] . "</td>
 			  		<td>" . $row["per_desc"] . "</td>
-			  		<td>" . $per_estatus . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_periodo"] . ")\">Editar</button></td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_periodo"] . ",'" . $row["per_desc"] ."')\">Ver</button></td>
+			  		<td>" . $per_estatus . "</td>";
+		  			if($_SESSION['cambioPeriodo'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_periodo"] . ")\">Editar</button></td>";
+
+			  		
+			  		echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_periodo"] . ",'" . $row["per_desc"] ."')\">Ver</button></td>
 			  	</tr>";
     }
 

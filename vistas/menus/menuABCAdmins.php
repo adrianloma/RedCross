@@ -47,9 +47,16 @@ include "../../includes/sessionAdmin.php";
 									"<th>Apellido Materno</th>"+
 									"<th>Correo</th>"+
 									"<th>CURP</th>"+
-									"<th>Editar</th>"+
-									"<th>Baja</th>"+
-									"<th>Permisos</th>"+
+									<?php
+									if($_SESSION['cambioAdmin'] == 1)
+										echo '"<th>Editar</th>" +';
+									if($_SESSION['bajaAdmin'] == 1)
+										echo '"<th>Baja</th>" +';
+									if($_SESSION['verReportes'] == 1)
+										echo '"<th>Permisos</th>" +';
+									?>
+									
+
 								"</tr>"+
 								"</thead>" + tabla;
 		}

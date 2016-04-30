@@ -52,8 +52,16 @@ include "../../includes/sessionAdmin.php";
 									"<th>Nivel</th>"+
 									"<th>Grupo</th>"+
 									"<th>Estatus</th>"+
-									"<th>Editar</th>"+
-									"<th>Baja</th>"+
+
+									<?php
+									if($_SESSION['cambioAlumno'] == 1)
+										echo '"<th>Editar</th>" +';
+									if($_SESSION['bajaAlumno'] == 1)
+										echo '"<th>Baja</th>" +';						
+									?>
+
+
+									
 								"</tr>"+
 								"</thead>" + tabla;
 		}
@@ -125,7 +133,11 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Alumno</button>
+					<?php
+					if($_SESSION['altaAlumno'] == 1)
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Alumno</button>";
+					?>
+					
 				</form>
 			</article>
 			<!-- /Article -->

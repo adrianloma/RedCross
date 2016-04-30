@@ -49,8 +49,15 @@ include "../../includes/sessionAdmin.php";
 									"<th>Correo</th>"+
 									"<th>CURP</th>"+
 									"<th>Estatus</th>"+
-									"<th>Editar</th>"+
-									"<th>Baja</th>"+
+
+									<?php
+									if($_SESSION['cambioMaestro'] == 1)
+										echo '"<th>Editar</th>" +';
+									if($_SESSION['bajaMaestro'] == 1)
+										echo '"<th>Baja</th>" +';						
+									?>
+
+									
 								"</tr>"+
 								"</thead>" + tabla;
 		}
@@ -119,7 +126,12 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Maestro</button>
+					<?php
+					if($_SESSION['altaMaestro'] == 1)
+						echo "<button onclick=\alta()\" class=\"btn btn-default\">Crear Maestro</button>";
+					?>
+
+					
 				</form>
 
 			</article>

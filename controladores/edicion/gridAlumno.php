@@ -71,9 +71,19 @@
 			  		<td>" . $row["c_nombre"] . "</td>
 			  		<td>" . $row["ne_desc"] . "</td>
 			  		<td>" . $row["gru_nombre"] . "</td>
-			  		<td>" . $row["a_estatus"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_alumno"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_alumno"] . ")\">Baja</button></td>
-			  	</tr>";
+			  		<td>" . $row["a_estatus"] . "</td>";
+
+
+			  		if($_SESSION['cambioAlumno'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_alumno"] . ")\">Editar</button></td>";
+
+					if($_SESSION['bajaAlumno'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_alumno"] . ")\">Baja</button></td>";
+
+
+					echo "</tr>";
+			  		
+				  	
+			  	
     }
 ?>

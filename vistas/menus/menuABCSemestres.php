@@ -49,7 +49,10 @@
 									"<th>id</th>"+
 									"<th>Nivel Escolar</th>"+
 									"<th>Carrera</th>"+
-									"<th>Editar</th>"+
+									<?php
+									if($_SESSION['cambioGrupoCursos'] == 1)
+										echo '"<th>Editar</th>" +';						
+									?>
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
@@ -129,7 +132,7 @@
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
 <?php
-					if($periodo_activo == 1)
+					if($periodo_activo == 1 && $_SESSION['altaGrupoCursos'] == 1)
 						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Nivel Escolar</button>";
 ?>
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>

@@ -50,7 +50,11 @@
 									"<th>Siglas</th>"+
 									"<th>Descripci&oacute;n</th>"+
 									"<th>Fecha Creaci&oacute;n</th>"+
-									"<th>Editar</th>"+
+									<?php
+									if($_SESSION['cambioGrupoCursos'] == 1)
+										echo '"<th>Editar</th>" +';
+													
+									?>
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
@@ -124,10 +128,11 @@
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-<?php
-					if($periodo_activo == 1)
+				<?php
+					if($periodo_activo == 1 && $_SESSION['altaGrupoCursos'] == 1)
 						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Carrera</button>";
-?>
+				?>
+
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

@@ -45,7 +45,15 @@ include "../../includes/sessionAdmin.php";
 									"<th>id</th>"+
 									"<th>Descripcion</th>"+
 									"<th>Estatus</th>"+
-									"<th>Editar</th>"+
+
+									<?php
+									if($_SESSION['cambioPeriodo'] == 1)
+										echo '"<th>Editar</th>" +';
+													
+									?>
+
+
+									
 									"<th>Ver</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
@@ -116,7 +124,11 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Periodo</button>
+					<?php
+					if($_SESSION['altaPeriodo'] == 1)
+						echo "<button onclick=\alta()\" class=\"btn btn-default\">Crear Periodo</button>";
+					?>
+
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 

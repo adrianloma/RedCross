@@ -61,10 +61,12 @@
 												\"<th>Aula</th>\"+
 												\"<th>Hora Inicio</th>\"+
 												\"<th>Hora Fin</th>\"+
-												\"<th>Dias</th>\"+
-												\"<th>Editar</th>\"+
-												\"<th>Baja</th>\"+
-												\"<th>Ver</th>\"+
+												\"<th>Dias</th>\"+";
+												if($_SESSION['cambioGrupoCursos'] == 1) {
+													echo "\"<th>Editar</th>\"+
+													\"<th>Baja</th>\"+";
+												} 				
+												echo "\"<th>Ver</th>\"+
 											\"</tr>\"+
 											\"</thead>\" + tabla;";
 			}else{
@@ -184,7 +186,7 @@
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
 <?php
-					if($periodo_activo == 1){
+					if($periodo_activo == 1 && $_SESSION['altaGrupoCursos'] == 1){
 						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Curso</button>";
 						echo "<button onclick=\"inscribir()\" class=\"btn btn-default\">Inscribir alumnos regulares</button>";
 						echo "<button onclick=\"inscribirMateriasPendientes()\" class=\"btn btn-default\">Alumnos con materias pendientes</button>";

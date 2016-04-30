@@ -37,9 +37,12 @@
         echo "	<tr>
 			  		<td>" . $row["id_nivelEscolar"] . "</td>
 			  		<td>" . $row["ne_desc"] . "</td>
-			  		<td>" . $row["c_nombre"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_nivelEscolar"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_nivelEscolar"] . ",'" . $row["ne_desc"] . "')\">Ver</button></td>
+			  		<td>" . $row["c_nombre"] . "</td>";
+
+		  			if($_SESSION['cambioGrupoCursos'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_nivelEscolar"] . ")\">Editar</button></td>";
+			  		
+				  	echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_nivelEscolar"] . ",'" . $row["ne_desc"] . "')\">Ver</button></td>
 			  	</tr>";
     }
 
