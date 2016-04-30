@@ -6,8 +6,11 @@
 	
 	
 	$matricula = substr($_POST["matricula"], 1);;
-	
-	$result = mysql_delete("maestro",$conexion, $matricula);
+	$Estatus = $_POST["Estatus"];
+
+	$result = mysql_update("maestro", $conexion, array(
+		'm_estatus' => $Estatus
+	), $matricula);
 	
 	if (mysqli_affected_rows($conexion) > 0){
 			$alertMsg = "Maestro dado de baja satisfactoriamente";

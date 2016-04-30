@@ -347,6 +347,15 @@ include "../../includes/sessionAdmin.php";
 					</div>
 				</div>
 				<br><br>
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label">Estatus</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="Estatus" name="Estatus">
+							<option value="1">Activo</option>
+							<option value="0">Inactivo</option>
+						</select>
+					</div>
+				</div>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="col-lg-12 text-right">
