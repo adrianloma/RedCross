@@ -71,8 +71,8 @@ if($result){
 	<![endif]-->
 
 	<script>
- var admin_data = <?php echo json_encode($row); ?>;
-    
+    var admin_data = <?php echo json_encode($row); ?>;
+
     window.onload = function(){
       if (admin_data != null && admin_data != "" ) {
         document.getElementById("nombres").value = admin_data.d_nombre;
@@ -111,10 +111,29 @@ function confirmDelete(){
   if( window.confirm("Si se borra este administrador, no habra manera de recuperarlo, ¿estas seguro?"))
   {
     if( window.confirm("Por ultima vez, quiere borrar este administrador?")){
-      return true; 
+      var xmlhttp = new XMLHttpRequest();
+      var response = "";
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              response = JSON.parse(xmlhttp.responseText);
+              if(response.error == ""){
+                alert("Se borro exitosamente");
+                history.back();
+              }
+              else{
+                alert("Hubo un error. \n" + response.error);
+                history.back();
+              }
+          }
+      };
+      xmlhttp.open("GET", "../../controladores/bajas/admin.php?matricula=" + <?php echo $_GET['id_administrador']; ?>, true);
+      xmlhttp.send();      
+      return false;
     }
   }
   return false;
+
+
 }
 	</script>
 	</head>
@@ -151,8 +170,8 @@ function confirmDelete(){
 <div class="">
     <div class="container">
       <div class="row">
-        <form method="post" onsubmit="return confirmDelete()" action="../../controladores/bajas/admin.php">
-        <input type="hidden"  id="matricula" namatricula" value="<?php echo $_GET['id_administrador'] ?>">
+        <form method="post" onsubmit="return confirmDelete()">
+        <input type="hidden"  id="matricula" name="matricula" value="<?php echo $_GET['id_administrador'] ?>">
 
           <div class="form-group">
             <label for="" class="col-lg-2 control-label">Nombre(s)</label> 
