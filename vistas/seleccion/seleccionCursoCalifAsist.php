@@ -33,6 +33,13 @@
 		function fillFields(){
 			document.getElementById('tbodyCursos').innerHTML = xhr.responseText.trim();
 		}
+
+
+		function ver (id_curso) {
+			window.location.assign("seleccionAlumnoCalifAsist.php?id_curso=" + id_curso );
+		}
+
+
 	</script>
 
 </head>
@@ -77,6 +84,7 @@
 							<th>Día</th>
 							<th>Horario</th>
 							<th>Sal&oacute;n</th>
+							<th>Ver alumnos</th>
 						</tr>
 					</thead>
 					<tbody id="tbodyCursos">

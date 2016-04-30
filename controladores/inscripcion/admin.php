@@ -107,7 +107,7 @@
   }
     echo "<script language=\"javascript\">
           alert(\"$alertMsg\");
-          window.location.href = \"../../vistas/menus/menuAdmin.php\"
+          window.location.href = \"../../vistas/menus/menuABCAdmins.php\"
         </script>";
 
 ?>

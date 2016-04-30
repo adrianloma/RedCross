@@ -131,7 +131,7 @@ include "../../includes/sessionAdmin.php";
 					<button type="submit" class="btn btn-default">Buscar</button>
 					<?php
 					if($_SESSION['altaMaestro'] == 1)
-						echo "<button onclick=\alta()\" class=\"btn btn-default\">Crear Maestro</button>";
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Maestro</button>";
 					?>
 
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
