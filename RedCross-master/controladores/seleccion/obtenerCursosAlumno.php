@@ -51,3 +51,4 @@
 		$formCont = $formCont + 1;
 	}
 	echo $tableBody;
+?>
