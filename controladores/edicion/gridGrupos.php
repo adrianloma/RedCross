@@ -50,9 +50,13 @@
 	while($row = mysqli_fetch_assoc($result)) {
         echo "	<tr>
 			  		<td>" . $row["id_grupo"] . "</td>
-			  		<td>" . $row["gru_nombre"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_grupo"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_grupo"] . ",'" . $row["gru_nombre"] . "')\">Ver</button></td>
+			  		<td>" . $row["gru_nombre"] . "</td>";
+
+			  		if($_SESSION['cambioGrupoCursos'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_grupo"] . ")\">Editar</button></td>";
+
+			  		
+				  	echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_grupo"] . ",'" . $row["gru_nombre"] . "')\">Ver</button></td>
 			  	</tr>";
     }
 

@@ -37,9 +37,14 @@
 			  		<td>c" . $row["id_carrera"] . "</td>
 			  		<td>" . $row["c_nombre"] . "</td>
 			  		<td>" . $row["c_desc"] . "</td>
-			  		<td>" . $row["c_fechaCreacion"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_carrera"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_carrera"] . ",'" . $row["c_nombre"] . "')\">Ver</button></td>
+			  		<td>" . $row["c_fechaCreacion"] . "</td>";
+
+			  		if($_SESSION['cambioGrupoCursos'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_carrera"] . ")\">Editar</button></td>";
+
+
+			  		
+				  	echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(" . $row["id_carrera"] . ",'" . $row["c_nombre"] . "')\">Ver</button></td>
 			  	</tr>";
     }
 

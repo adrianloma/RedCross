@@ -58,10 +58,17 @@
 			  		<td>" . $row["m_apellidoMaterno"] . "</td>
 			  		<td>" . $row["m_email"] . "</td>
 			  		<td>" . $row["m_curp"] . "</td>
-			  		<td>" . $row["m_estatus"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_maestro"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_maestro"] . ")\">Baja</button></td>
-			  	</tr>";
+			  		<td>" . $row["m_estatus"] . "</td>";
+
+			  		if($_SESSION['cambioMaestro'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_maestro"] . ")\">Editar</button></td>";
+
+					if($_SESSION['bajaMaestro'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_maestro"] . ")\">Baja</button></td>";
+
+
+
+  		echo "</tr>";
     }
 
 ?>

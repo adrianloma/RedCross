@@ -135,21 +135,21 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="m_nombre" name="m_nombre" placeholder="Nombre(s)" >
+						<input type="text" class="form-control" id="m_nombre" name="m_nombre" placeholder="Nombre(s)" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="m_apellidopaterno" name="m_apellidopaterno" placeholder="Apellido Paterno" >
+						<input type="text" class="form-control" id="m_apellidopaterno" name="m_apellidopaterno" placeholder="Apellido Paterno" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="m_apellidomaterno" name="m_apellidomaterno" placeholder="Apellido Materno" >
+						<input type="text" class="form-control" id="m_apellidomaterno" name="m_apellidomaterno" placeholder="Apellido Materno" required>
 					</div>
 				</div>
 				<br><br>
@@ -167,7 +167,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Edad</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_edad')" id="m_edad" name="m_edad" placeholder="Edad (n&uacute;mero)" >
+						<input type="text" class="form-control" id="m_edad" name="m_edad" placeholder="Edad (n&uacute;mero)" required>
 					</div>
 				</div>
 				<br><br>	
@@ -187,28 +187,28 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Fecha de Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="date" class="form-control" id="m_fechanac" name="m_fechanac" placeholder="dd/mm/aaaa" >
+						<input type="date" class="form-control" id="m_fechanac" name="m_fechanac" placeholder="dd/mm/aaaa" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Lugar de Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="m_lugarnac" name="m_lugarnac" placeholder="Lugar de Nacimiento" >
+						<input type="text" class="form-control" id="m_lugarnac" name="m_lugarnac" placeholder="Lugar de Nacimiento" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nacionalidad</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="m_nacionalidad" name="m_nacionalidad" placeholder="Nacionalidad" >
+						<input type="text" class="form-control" id="m_nacionalidad" name="m_nacionalidad" placeholder="Nacionalidad" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">CURP</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="m_curp" name="m_curp" placeholder="CURP" >
+						<input type="text" class="form-control" id="m_curp" name="m_curp" placeholder="CURP" required>
 					</div>
 				</div>
 				<br><br>
@@ -291,21 +291,21 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_cp')" id="m_numlocal" name="m_numlocal" placeholder="Tel&eacute;fono" >
+						<input type="text" class="form-control" id="m_numlocal" name="m_numlocal" placeholder="Tel&eacute;fono" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tel&eacute;fono celular</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_numcelular')" id="m_numcelular" name="m_numcelular" placeholder="Tel&eacute;fono celular" >
+						<input type="text" class="form-control" id="m_numcelular" name="m_numcelular" placeholder="Tel&eacute;fono celular" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="m_email" name="m_email" placeholder="Email" >
+						<input type="email" class="form-control" id="m_email" name="m_email" placeholder="Email" required>
 					</div>
 				</div>
 				<br><br>	
@@ -319,7 +319,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">C&oacute;digo postal</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_cp')" id="m_cp" name="m_cp" placeholder="C&oacute;digo postal" required>
+						<input type="text" class="form-control" id="m_cp" name="m_cp" placeholder="C&oacute;digo postal" required>
 					</div>
 				</div>
 				<br><br>
@@ -340,14 +340,14 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">N&uacute;mero exterior</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_numext')" id="m_numext" name="m_numext" placeholder="N&uacute;mero exterior" required>
+						<input type="text" class="form-control" id="m_numext" name="m_numext" placeholder="N&uacute;mero exterior" required>
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">N&uacute;mero interior</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" onchange="isFloat('m_numint')" id="m_numint" name="m_numint" placeholder="N&uacute;mero interior" required>
+						<input type="text" class="form-control" id="m_numint" name="m_numint" placeholder="N&uacute;mero interior">
 					</div>
 				</div>
 				<br><br>
@@ -367,70 +367,7 @@ include "../../includes/sessionAdmin.php";
 	</div>
 
 	<!-- /Highlights -->
-	<footer id="footer" class="top-space">
-
-		<div class="footer1">
-			<div class="container">
-				<div class="row">
-
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Informaci&oacute;n</h3>
-						<div class="widget-body">
-							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
-								<a href="mailto:#">cruz.roja@cr.com</a><br>
-								81-1477-1477
-							</p>
-						</div>
-					</div>
-
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Redes Sociales</h3>
-						<div class="widget-body">
-							<p class="follow-me-icons clearfix">
-								<a href=""><i class="fa fa-twitter fa-2"></i></a>
-								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>
-						</div>
-					</div>
-
-					<div class="col-md-6 widget">
-						<h3 class="widget-title">Información</h3>
-						<div class="widget-body">
-							<p>Sitio web de la Cruz Roja Mexicana.</p>
-						</div>
-					</div>
-
-				</div> <!-- /row of widgets -->
-			</div>
-		</div>
-
-		<div class="footer2">
-			<div class="container">
-				<div class="row">
-
-					<div class="col-md-6 widget">
-						<div class="widget-body">
-							<p class="simplenav">
-								<a href="#">Home</a> |
-								<a href="#">Contacto</a> |
-								<b><a href="#">Iniciar sesi&oacute;n</a></b>
-							</p>
-						</div>
-					</div>
-
-					<div class="col-md-6 widget">
-						<div class="widget-body">
-							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja.
-							</p>
-						</div>
-					</div>
-
-				</div> <!-- /row of widgets -->
-			</div>
-		</div>
-	</footer>
-
+<?php include "../../includes/footer.php"; ?>
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

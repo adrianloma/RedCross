@@ -9,6 +9,10 @@ $matricula = $_GET['matricula'];
 if( is_numeric($matricula) ){
   $sql = "DELETE FROM administrador WHERE id_administrador = $matricula";
   mysqli_query( $conexion, mysqli_real_escape_string($conexion, $sql));
+
+  $sql = "DELETE FROM permiso WHERE id_administrador = $matricula";
+  mysqli_query( $conexion, mysqli_real_escape_string($conexion, $sql));
+
   printf("{ \"error\": \"%s\"}", mysqli_error($conexion));
 }
 

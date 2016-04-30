@@ -53,11 +53,18 @@
 			  		<td>" . $row["d_apellidoPaterno"] . "</td>
 			  		<td>" . $row["d_apellidoMaterno"] . "</td>
 			  		<td>" . $row["d_email"] . "</td>
-			  		<td>" . $row["d_curp"] . "</td>
-			  		<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_administrador"] . ")\">Editar</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_administrador"] . ")\">Baja</button></td>
-				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"permisos(" . $row["id_administrador"] . ")\">Permisos</button></td>
-			  	</tr>";
+			  		<td>" . $row["d_curp"] . "</td>";
+					
+					if($_SESSION['cambioAdmin'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"editar(" . $row["id_administrador"] . ")\">Editar</button></td>";
+					
+					if($_SESSION['bajaAdmin'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_administrador"] . ")\">Baja</button></td>";
+
+					if($_SESSION['verReportes'] == 1)
+						echo "<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"permisos(" . $row["id_administrador"] . ")\">Permisos</button></td>";
+			  		
+				  	echo "</tr>";
     }
 
 ?>
