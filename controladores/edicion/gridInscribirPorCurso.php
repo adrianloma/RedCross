@@ -38,61 +38,89 @@
 			break;
 	}
 
-	$sql = "SELECT 
-			    id_nivelEscolar
-			FROM
-			    nivel_escolar
-			WHERE
-			    id_carrera = $id_carrera
-			HAVING id_nivelEscolar > $id_nivelEscolar
-			ORDER BY id_nivelEscolar 
-			LIMIT 1";
+	$sql = "	SELECT 
+				    id_nivelEscolar
+				FROM
+				    nivel_escolar
+				WHERE
+				    id_carrera = $id_carrera
+				HAVING id_nivelEscolar > $id_nivelEscolar
+				ORDER BY id_nivelEscolar 
+				LIMIT 1";
 
 	$result = mysqli_query($conexion, $sql);
+
+	$id_nivelEscolarNuevo = "";
 
 	while($row = mysqli_fetch_assoc($result)) {
 		$id_nivelEscolarNuevo = $row['id_nivelEscolar'];
 	}
 
-	$sql="	(SELECT 
-		    a.id_alumno,
-		    a.a_nombre,
-		    a.a_apellidPaterno,
-		    a.a_apellidoMaterno,
-		    a.a_email,
-		    a.a_curp
-		FROM
-		    alumno a
-		        INNER JOIN
-		    nivel_escolar n ON a.id_nivelEscolar = n.id_nivelEscolar
-		        INNER JOIN
-		    inscritos i ON a.id_alumno = i.id_alumno
-		WHERE
-		    a.id_carrera = $id_carrera
-		        AND (a.id_grupo IS NULL OR a.id_grupo = $id_grupo
-		        OR a.id_grupo = 0)
-		        AND a.a_estatus = 'Activo'
-		        AND a.id_nivelEscolar = $id_nivelEscolar
-		        AND i.id_curso = $id_curso ". $sql2 ."
-		order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno) 
+	if($id_nivelEscolarNuevo != ""){
+		$sql="	(SELECT 
+				    a.id_alumno,
+				    a.a_nombre,
+				    a.a_apellidPaterno,
+				    a.a_apellidoMaterno,
+				    a.a_email,
+				    a.a_curp
+				FROM
+				    alumno a
+				        INNER JOIN
+				    nivel_escolar n ON a.id_nivelEscolar = n.id_nivelEscolar
+				        INNER JOIN
+				    inscritos i ON a.id_alumno = i.id_alumno
+				WHERE
+				    a.id_carrera = $id_carrera
+				        AND (a.id_grupo IS NULL OR a.id_grupo = $id_grupo
+				        OR a.id_grupo = 0)
+				        AND a.a_estatus = 'Activo'
+				        AND a.id_nivelEscolar = $id_nivelEscolar
+				        AND i.id_curso = $id_curso ". $sql2 ."
+				order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno) 
 
-		UNION 
+				UNION 
 
-		(SELECT 
-		    a.id_alumno,
-		    a.a_nombre,
-		    a.a_apellidPaterno,
-		    a.a_apellidoMaterno,
-		    a.a_email,
-		    a.a_curp
-		FROM
-		    alumno a
-		        INNER JOIN
-		    inscritos i ON a.id_alumno = i.id_alumno
-		WHERE
-		    i.id_curso = $id_curso
-		    AND a.id_nivelEscolar = $id_nivelEscolarNuevo ". $sql2 ."
-		order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno)";
+				(SELECT 
+				    a.id_alumno,
+				    a.a_nombre,
+				    a.a_apellidPaterno,
+				    a.a_apellidoMaterno,
+				    a.a_email,
+				    a.a_curp
+				FROM
+				    alumno a
+				        INNER JOIN
+				    inscritos i ON a.id_alumno = i.id_alumno
+				WHERE
+				    i.id_curso = $id_curso
+				    AND a.id_nivelEscolar = $id_nivelEscolarNuevo ". $sql2 ."
+				order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno)";
+	}else{
+		$sql="	SELECT 
+				    a.id_alumno,
+				    a.a_nombre,
+				    a.a_apellidPaterno,
+				    a.a_apellidoMaterno,
+				    a.a_email,
+				    a.a_curp
+				FROM
+				    alumno a
+				        INNER JOIN
+				    nivel_escolar n ON a.id_nivelEscolar = n.id_nivelEscolar
+				        INNER JOIN
+				    inscritos i ON a.id_alumno = i.id_alumno
+				WHERE
+				    a.id_carrera = $id_carrera
+				        AND (a.id_grupo IS NULL OR a.id_grupo = $id_grupo
+				        OR a.id_grupo = 0)
+				        AND a.a_estatus = 'Activo'
+				        AND a.id_nivelEscolar = $id_nivelEscolar
+				        AND i.id_curso = $id_curso ". $sql2 ."
+				order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno";
+	}
+
+	
 
 
 	$result = mysqli_query($conexion, $sql);
