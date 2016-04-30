@@ -241,7 +241,7 @@ CREATE TABLE `grupo` (
 -- Estructura de tabla para la tabla `permisos`
 --
 
-CREATE TABLE `permisos` (
+CREATE TABLE `permiso` (
   `id_permiso` int(11) NOT NULL COMMENT 'id del permiso',
   `id_administrador` int(11) DEFAULT NULL COMMENT 'administrador relicionado al permiso',
   `p_aAdmin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'permiso para altas de administradores',
@@ -267,7 +267,7 @@ CREATE TABLE `permisos` (
 -- Indices de la tabla `permisos`
 --
 
-ALTER TABLE `permisos`
+ALTER TABLE `permiso`
  ADD PRIMARY KEY (`id_permiso`);
 
 --
@@ -372,7 +372,7 @@ MODIFY `id_periodo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del periodo',AUT
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 
-ALTER TABLE `permisos`
+ALTER TABLE `permiso`
 MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del permiso',AUTO_INCREMENT=1;
 
 --
