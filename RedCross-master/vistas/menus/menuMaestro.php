@@ -67,14 +67,8 @@ include "../../includes/sessionMaestro.php";
 				</div>
 				<br>
 				<div>
-					<a href="../seleccion/seleccionCursoCalif.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Asignar calificaciones finales">
-					</a>
-				</div>
-				<br>
-				<div>
-					<a href="../seleccion/seleccionCursoAsistencia.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Tomar lista">
+					<a href="../seleccion/seleccionCursoCalifAsist.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Asignar calificaciones y asistencias">
 					</a>
 				</div>
 				<br>
