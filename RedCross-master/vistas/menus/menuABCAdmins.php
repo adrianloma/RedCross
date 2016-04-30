@@ -1,6 +1,5 @@
 <?php
 include "../../includes/sessionAdmin.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +67,7 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function permisos(id){
-			window.location.assign("../permisos/permisosAdmin.php?id_administrador="+id);
+			window.location.assign("../edicion/edicionPermisos.php?id_administrador="+id);
 		}
 	</script>
 
@@ -122,7 +121,10 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Administrador</button>
+					<?php
+					if($_SESSION['altaAdmin'] == 1)
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Administrador</button>";
+					?>
 				</form>
 
 			</article>

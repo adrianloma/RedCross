@@ -28,6 +28,20 @@
         $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
         return mysqli_query($conexion, $query);
     }
+
+    function mysql_insert_permiso($table, $conexion, $inserts) {
+
+        $conn = array($conexion);
+        
+        for($i = 0 ; $i < 16 ; $i++)
+            array_push($conn, $conexion);
+
+        $values = array_map('mysqli_escape_string', $conn , array_values($inserts));
+        $keys = array_keys($inserts);
+
+        $query = 'INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')';
+        return mysqli_query($conexion, $query);
+    }
 	
 	function mysql_insert_Maestro($table, $conexion, $inserts) {
 

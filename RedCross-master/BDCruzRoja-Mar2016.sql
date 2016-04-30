@@ -111,8 +111,7 @@ CREATE TABLE `alumno` (
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL,
   `id_grupo` int(11) DEFAULT NULL COMMENT 'grupo al que pertenece el alumno',
-  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno',
-  `id_nivelEscolar` int(11) DEFAULT NULL COMMENT 'Nivel al que pertenece el alumno'
+  `id_carrera` int(11) DEFAULT NULL COMMENT 'carrera a la que pertenece el alumno'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=1 ;
 
 --
@@ -199,7 +198,8 @@ CREATE TABLE `maestro` (
 CREATE TABLE `nivel_Escolar` (
   `id_nivelEscolar` int(11) NOT NULL COMMENT 'id del semestre',
   `ne_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
-  `id_carrera` int(11) DEFAULT NULL COMMENT 'id de la carrera que pertence'
+  `id_carrera` int(11) DEFAULT NULL COMMENT 'id de la carrera que pertence',
+  `id_periodo` int(11) DEFAULT NULL COMMENT 'id del periodo al que pertenece'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 
@@ -402,3 +402,6 @@ MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del grupo',AUTO_IN
 
 ALTER TABLE `maestro`
 MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del maestro',AUTO_INCREMENT=1;
+
+
+1 3416a75f4cea9109507cacd8e2f2aefc

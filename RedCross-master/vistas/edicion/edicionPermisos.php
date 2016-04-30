@@ -39,45 +39,50 @@ include "../../includes/sessionAdmin.php";
 	}
 	}
 		function search(){
-		var searchId = document.getElementById('searchId').value;
-		console.log(searchId);
-		if(!isValidMatricula(searchId) || (searchId[0] != 'd' &&  searchId[0] != 'D')){
-			alert("Favor de ingresar una matricula valida");
-			return;
-		}
+			var searchId ="r"+getQueryVariable("id_administrador");
+
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
 			var url="../../controladores/edicion/search.php?matricula=" + searchId;
 			xhr.open("GET", url, true);
 			xhr.send();
 		}
+			
 		function fillFields(){
 			//alert(xhr.responseText);
-			//console.log(xhr.responseText);
+			console.log(xhr.responseText);
 			var fields = xhr.responseText.trim();
 			var arrayFields = fields.split("|");
 			if(arrayFields[0] == "-1"){
 				alert(arrayFields[1]);
 				return;
 			}
-
-
-			document.getElementById('matricula').value = arrayFields[1];
-			document.getElementById('nombres').value = arrayFields[3];
-			document.getElementById('APaterno').value = arrayFields[4];
-			document.getElementById('AMaterno').value = arrayFields[5];
-			document.getElementById('FechaNacimiento').value = arrayFields[6];
-			document.getElementById('CURP').value = arrayFields[14];
-			document.getElementById('Enfermedades').value = arrayFields[17];
-			document.getElementById('Alergias').value = arrayFields[18];
-			document.getElementById('Telefono').value = arrayFields[26];
-			document.getElementById('Email').value = arrayFields[30];
+			document.getElementById('id_permiso').value ='r' + parseInt(arrayFields[1]);
+			document.getElementById('altaAdmin').checked = parseInt(arrayFields[3]);
+			document.getElementById('bajaAdmin').checked = parseInt(arrayFields[4]);
+			document.getElementById('cambioAdmin').checked = parseInt(arrayFields[5]);
+			document.getElementById('altaMaestro').checked = parseInt(arrayFields[6]);
+			document.getElementById('bajaMaestro').checked = parseInt(arrayFields[7]);
+			document.getElementById('cambioMaestro').checked = parseInt(arrayFields[8]);
+			document.getElementById('altaAlumno').checked = parseInt(arrayFields[9]);
+			document.getElementById('bajaAlumno').checked = parseInt(arrayFields[10]);
+			document.getElementById('cambioAlumno').checked = parseInt(arrayFields[11]);
+			document.getElementById('altaPeriodo').checked = parseInt(arrayFields[12]);
+			document.getElementById('bajaPeriodo').checked = parseInt(arrayFields[13]);
+			document.getElementById('cambioPeriodo').checked = parseInt(arrayFields[14]);
+			document.getElementById('altaGrupoCursos').checked = parseInt(arrayFields[15]);
+			document.getElementById('bajaGrupoCursos').checked = parseInt(arrayFields[16]);
+			document.getElementById('cambioGrupoCursos').checked = parseInt(arrayFields[17]);
+			document.getElementById('verReportes').checked = parseInt(arrayFields[18]);
 
 		}
+
+
+
 	</script>
 	</head>
 
-<body class="home">
+<body class="home" onload="search()">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -106,81 +111,131 @@ include "../../includes/sessionAdmin.php";
 
 	<!-- Intro -->
 	<div class="container text-center">
-		<h2 class="thin">Edici&oacute;n de datos de Administrador</h2>
+		<h2 class="thin">Edici&oacute;n de permisos de Administrador</h2>
 		<br>
 	</div>
 	<!-- /Intro-->
 
 	<!-- Highlights - jumbotron -->
-	<form method="post" action="../../controladores/edicion/administrador.php">
-		<input type="hidden"  id="matricula" name="matricula" value="">
+	<form method="post" action="../../controladores/edicion/permisos.php">
+		<input type="hidden"  id="id_permiso" name="id_permiso" value="">
 	<div class="">
 		<div class="container">
 			<div class="row">
 				<!-- CURP del alumno -->
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
+					<label for="" class="col-lg-2 control-label">Administradores: Alta</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombre" >
+						<input type="checkbox" class="form-control" id="altaAdmin" name="altaAdmin" placeholder="altaAdmin" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
+					<label for="" class="col-lg-2 control-label">Administradores: Baja</label>
 					<div class="col-lg-10">
-							<input type="text" class="form-control" id="APaterno" name="APaterno" placeholder="Apellido Paterno" >
+						<input type="checkbox" class="form-control" id="bajaAdmin" name="bajaAdmin" placeholder="bajaAdmin" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
+					<label for="" class="col-lg-2 control-label">Administradores: Cambio</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="AMaterno" name="AMaterno" placeholder="Apellido Materno" >
+						<input type="checkbox" class="form-control" id="cambioAdmin" name="cambioAdmin" placeholder="cambioAdmin" >	
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
+					<label for="" class="col-lg-2 control-label">Maestro: Alta</label>
 					<div class="col-lg-10">
-						<input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
+						<input type="checkbox" class="form-control" id="altaMaestro" name="altaMaestro" placeholder="altaMaestro" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">CURP</label>
+					<label for="" class="col-lg-2 control-label">Maestro: Baja</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="CURP" name="CURP" placeholder="CURP" >
+						<input type="checkbox" class="form-control" id="bajaMaestro" name="bajaMaestro" placeholder="bajaMaestro" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Enfermedades</label>
+					<label for="" class="col-lg-2 control-label">Maestro: Cambio</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Enfermedades" name="Enfermedades" placeholder="Liste enfermedades que padece" >
+						<input type="checkbox" class="form-control" id="cambioMaestro" name="cambioMaestro" placeholder="cambioMaestro" >	
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Alergias</label>
+					<label for="" class="col-lg-2 control-label">Alumno: Alta</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Alergias" name="Alergias" placeholder="Liste alergias que padece" >
+						<input type="checkbox" class="form-control" id="altaAlumno" name="altaAlumno" placeholder="altaAlumno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
+					<label for="" class="col-lg-2 control-label">Alumno: Baja</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Telefono" name="Telefono" placeholder="Tel&eacute;fono" >
+						<input type="checkbox" class="form-control" id="bajaAlumno" name="bajaAlumno" placeholder="bajaAlumno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Email</label>
+					<label for="" class="col-lg-2 control-label">Alumno: Cambio</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="Email" name="Email" placeholder="Email" >
+						<input type="checkbox" class="form-control" id="cambioAlumno" name="cambioAlumno" placeholder="cambioAlumno" >			
 					</div>
 				</div>
 				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Periodo: Alta</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="altaPeriodo" name="altaPeriodo" placeholder="altaAdmin" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Periodo: Baja</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="bajaPeriodo" name="bajaPeriodo" placeholder="bajaPeriodo" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Periodo: Cambio</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="cambioPeriodo" name="cambioPeriodo" placeholder="cambioPeriodo" >	
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Grupos&Cursos: Alta</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="altaGrupoCursos" name="altaGrupoCursos" placeholder="altaGrupoCursos" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Grupos&Cursos: Baja</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="bajaGrupoCursos" name="bajaGrupoCursos" placeholder="bajaGrupoCursos" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Grupos&Cursos: Cambio</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="cambioGrupoCursos" name="cambioGrupoCursos" placeholder="cambioGrupoCursos" >	
+					</div>
+				</div>
+				<br><br>	
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Ver reportes</label>
+					<div class="col-lg-10">
+						<input type="checkbox" class="form-control" id="verReportes" name="verReportes" placeholder="verReportes" >	
+					</div>
+				</div>
+				<br><br>
+
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="col-lg-12 text-right">
@@ -188,7 +243,7 @@ include "../../includes/sessionAdmin.php";
 					<button style="width:100%;" class="btn btn-action" type="submit">Guardar</button>
 				</a>
 				<br><br>
-				<a href="#">
+				<a href="../menus/menuABCAdmins.php">
 					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
 				</a>
 			</div>
