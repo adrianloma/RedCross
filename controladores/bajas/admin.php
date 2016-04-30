@@ -12,4 +12,3 @@ if( is_numeric($matricula) ){
   printf("{ \"error\": \"%s\"}", mysqli_error($conexion));
 }
 
-
