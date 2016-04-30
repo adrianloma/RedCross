@@ -34,6 +34,10 @@
 	
 		$tabla = "grupo";
 		
+	}elseif ($tipo == "r") {
+	
+		$tabla = "permiso";
+		
 	}else{
 	
 		$tabla = "administrador";
@@ -41,13 +45,17 @@
 	}
 
 	$matricula = mysqli_escape_string($conexion, $matricula);
-
 	if($tipo == "n") {
 
 		$sql="select * from nivel_escolar where id_nivelEscolar = $matricula";
 	
-	}else{
+	} else if($tipo == "r") {
+		$sql="select * from permiso where id_administrador = $matricula";
+		
+	} else {
+
 		$sql="select * from " . $tabla . " where id_" . $tabla . "= $matricula";
+	
 	}
 
 	$result = mysqli_query($conexion, $sql);

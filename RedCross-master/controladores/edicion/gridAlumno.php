@@ -2,13 +2,10 @@
 	include "../../includes/sessionAdmin.php";
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
-
 	$buscar = $_GET["buscar"];
 	$contiene = $_GET["contiene"];
-
 	$buscar = mysqli_escape_string($conexion, $buscar);
 	$contiene = mysqli_escape_string($conexion, $contiene);
-
 	$sql="select 
 			    a.id_alumno,
 				a.a_nombre,
@@ -27,7 +24,6 @@
 								on a.id_carrera = c.id_carrera
 							left join nivel_escolar n
 								on a.id_nivelEscolar = n.id_nivelEscolar";
-
 	switch ($contiene) {
 		case 'id_alumno':
 			$sql .= " where a.id_alumno LIKE '%$buscar%'";
@@ -62,11 +58,8 @@
 		default:
 			break;
 	}
-
 	$sql .= " order by a.a_nombre, a.a_apellidPaterno, a.a_apellidoMaterno;";
-
 	$result = mysqli_query($conexion, $sql);
-
 	while($row = mysqli_fetch_assoc($result)) {
         echo "	<tr>
 			  		<td>a" . $row["id_alumno"] . "</td>
@@ -83,5 +76,4 @@
 				  	<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"baja(" . $row["id_alumno"] . ")\">Baja</button></td>
 			  	</tr>";
     }
-
 ?>

@@ -46,6 +46,7 @@
 		$nombre=$row[$tipo . '_nombre'];
 	}	
 
+
 	//Si la clave ingresada es igual a la de la base de datos deja ingresar
 	if(md5($clave) == $password && $usuario != ""){
 		session_start();
@@ -57,7 +58,29 @@
 			echo "<script language=\"javascript\">
 					window.location.href = \"../../vistas/menus/menuAlumno.php\"
 				</script>";
-		}elseif ( $tipo == "d"){
+		}elseif ( $tipo == "d") {
+			//Establece variables de permiso
+			$sqlPermiso = "select * from permiso where id_administrador =" . $usuario;
+			$result = mysqli_query($conexion, $sqlPermiso);
+			while($row = mysqli_fetch_assoc($result)) {
+				$_SESSION['altaAdmin']=$row['p_aAdmin'];
+				$_SESSION['bajaAdmin']=$row['p_bAdmin'];
+				$_SESSION['cambioAdmin']=$row['p_cAdmin'];
+				$_SESSION['altaMaestro']=$row['p_aMaestro'];
+				$_SESSION['bajaMaestro']=$row['p_bMaestro'];
+				$_SESSION['cambioMaestro']=$row['p_cMaestro'];
+				$_SESSION['altaAlumno']=$row['p_aAlumno'];
+				$_SESSION['bajaAlumno']=$row['p_bAlumno'];
+				$_SESSION['cambioAlumno']=$row['p_cAlumno'];
+				$_SESSION['altaPeriodo']=$row['p_aPeriodo'];
+				$_SESSION['bajaPeriodo']=$row['p_bPeriodo'];
+				$_SESSION['cambioPeriodo']=$row['p_cPeriodo'];
+				$_SESSION['altaGrupoCursos']=$row['p_aGruposCursos'];
+				$_SESSION['bajaGrupoCursos']=$row['p_aGruposCursos'];
+				$_SESSION['cambioGrupoCursos']=$row['p_aGruposCursos'];
+				$_SESSION['verReportes']=$row['p_verReportes'];
+			}	
+
 			echo "<script language=\"javascript\">
 					window.location.href = \"../../vistas/menus/menuAdmin.php\"
 				</script>";

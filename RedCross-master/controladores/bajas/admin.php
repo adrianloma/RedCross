@@ -4,10 +4,12 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
-$matricula = $_GET['id_administrador'];
+$matricula = $_GET['matricula'];
 
 if( is_numeric($matricula) ){
-  $sql = "DELTE FROM administrador WHERE id_administrador = $matricula";
-  mysqli_query( $conexion, mysqli_real_escape_string($sql));
-  printf("Error: %s\n", mysqli_error($link));
+  $sql = "DELETE FROM administrador WHERE id_administrador = $matricula";
+  mysqli_query( $conexion, mysqli_real_escape_string($conexion, $sql));
+  printf("{ \"error\": \"%s\"}", mysqli_error($conexion));
 }
+
+

@@ -34,6 +34,7 @@
 	$NumInterior = $_POST["NumInterior"];
 	$NumExterior = $_POST["NumExterior"];
 
+
 	$result = mysql_insert_Admin("administrador", $conexion, array(
 		'd_contra' => md5($Contrasena),
 		'd_nombre' => $nombres,
@@ -70,6 +71,35 @@
 	$newId = mysqli_insert_id($conexion);
 
   if ($result){
+    $alertMsg = "Nuevo administrador agregado satisfactoriamente";
+  }
+  else{
+    $alertMsg = "Algo salio mal: " . mysqli_error($conexion);
+  }
+
+	$newIdPermiso = mysqli_insert_id($conexion);
+
+  	$resultPermiso = mysql_insert_permiso("permiso", $conexion, array(
+		'id_administrador' => $newId,		
+		'p_aAdmin' => 0,
+		'p_bAdmin' => 0,
+		'p_cAdmin' => 0,
+		'p_aMaestro' => 0,
+		'p_bMaestro' => 0,
+		'p_cMaestro' => 0,
+		'p_aAlumno' => 0,
+		'p_bAlumno' => 0,
+		'p_cAlumno' => 0,
+		'p_aPeriodo' => 0,
+		'p_bPeriodo' => 0,
+		'p_cPeriodo' => 0,
+		'p_aGruposCursos' => 0,
+		'p_bGruposCursos' => 0,
+		'p_cGruposCursos' => 0,
+		'p_verReportes' => 0
+	));
+
+  if ($resultPermiso){
     $alertMsg = "Nuevo administrador agregado satisfactoriamente";
   }
   else{

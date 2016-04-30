@@ -56,6 +56,7 @@
 			alert(arrayFields[1]);
 			return;
 		}
+		
 		document.getElementById('matricula').value = 'a' + arrayFields[1];
 		document.getElementById('nombres').value = arrayFields[3];
 		document.getElementById('APaterno').value = arrayFields[4];

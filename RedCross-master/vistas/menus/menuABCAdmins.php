@@ -1,6 +1,5 @@
 <?php
 include "../../includes/sessionAdmin.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +49,7 @@ include "../../includes/sessionAdmin.php";
 									"<th>CURP</th>"+
 									"<th>Editar</th>"+
 									"<th>Baja</th>"+
+									"<th>Permisos</th>"+
 								"</tr>"+
 								"</thead>" + tabla;
 		}
@@ -64,6 +64,10 @@ include "../../includes/sessionAdmin.php";
 
 		function alta(){
 			window.location.assign("../inscripcion/inscripcionAdmin.php");
+		}
+
+		function permisos(id){
+			window.location.assign("../edicion/edicionPermisos.php?id_administrador="+id);
 		}
 	</script>
 
@@ -117,7 +121,10 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
-					<button onclick="alta()" class="btn btn-default">Crear Administrador</button>
+					<?php
+					if($_SESSION['altaAdmin'] == 1)
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Administrador</button>";
+					?>
 				</form>
 
 			</article>
