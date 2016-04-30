@@ -66,6 +66,9 @@ include "../../includes/sessionAdmin.php";
 		function alta(){
 			window.location.assign("../inscripcion/inscripcionMaestro.php");
 		}
+		function regresar(){
+			window.history.back();
+		}
 	</script>
 
 </head>
@@ -97,7 +100,7 @@ include "../../includes/sessionAdmin.php";
 		<div class="row">
 
 			<!-- Article main content -->
-			<article class="col-sm-9 maincontent">
+			<article class="col-sm-12 maincontent">
 				<header class="page-header">
 					<h1 class="page-title">Maestros</h1>
 				</header>
@@ -120,6 +123,7 @@ include "../../includes/sessionAdmin.php";
 					</div>
 					<button type="submit" class="btn btn-default">Buscar</button>
 					<button onclick="alta()" class="btn btn-default">Crear Maestro</button>
+					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 
 			</article>

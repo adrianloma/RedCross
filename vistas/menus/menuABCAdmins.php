@@ -69,6 +69,9 @@ include "../../includes/sessionAdmin.php";
 		function permisos(id){
 			window.location.assign("../edicion/edicionPermisos.php?id_administrador="+id);
 		}
+		function regresar(){
+			window.history.back();
+		}
 	</script>
 
 </head>
@@ -100,7 +103,7 @@ include "../../includes/sessionAdmin.php";
 		<div class="row">
 
 			<!-- Article main content -->
-			<article class="col-sm-9 maincontent">
+			<article class="col-sm-12 maincontent">
 				<header class="page-header">
 					<h1 class="page-title">Administradores</h1>
 				</header>
@@ -125,6 +128,7 @@ include "../../includes/sessionAdmin.php";
 					if($_SESSION['altaAdmin'] == 1)
 						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Administrador</button>";
 					?>
+					<button onclick="regresar()" class="btn btn-default">Regresar</button>
 				</form>
 
 			</article>
