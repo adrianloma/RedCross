@@ -21,11 +21,20 @@
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+
+	<script src="../../includes/javascript_util.js"></script>
+
 	<script>
+
+
+		var curso;
 		function loadCourses(){
+
+			curso = unescape(getQueryVariable("id_curso"));
+
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
-			var url="../../controladores/seleccion/obtenerCursosMaestroCalifAsist.php";
+			var url="../../controladores/seleccion/obtenerAlumnosCursoCalifAsist.php?id_curso="+curso;
 			xhr.open("GET", url, true);
 			xhr.send();
 		}
@@ -34,10 +43,48 @@
 			document.getElementById('tbodyCursos').innerHTML = xhr.responseText.trim();
 		}
 
+		function guardarCambios () {
 
-		function ver (id_curso) {
-			window.location.assign("seleccionAlumnoCalifAsist.php?id_curso=" + id_curso );
+			var alumnos = [];
+
+			$("#tbodyCursos tr").each(function(index, el) {
+				
+				var id_al = $(this).find('.id_al').attr('data-id');
+
+				var alumno = {};
+
+				alumno.id_al = id_al;
+				alumno.cal1 = $('#cal1_a' + id_al).val();
+				alumno.cal2 = $('#cal2_a' + id_al).val();
+				alumno.cal3 = $('#cal3_a' + id_al).val();
+				alumno.cal = $('#cal_a' + id_al).val();
+				alumno.asis = $('#asis_a' + id_al).val();
+
+				alumnos.push(alumno);
+
+			});
+
+			var jsonStr = JSON.stringify(alumnos);
+
+			$.ajax({
+				type: "POST",
+				url: "updateCalifAsist.php",
+				data: {data : jsonStr},
+				cache: false,
+
+				success: function (responseText) {
+					alert(responseText);
+				}
+			});
+
+
+			alert("no guardado");
 		}
+
+
+		// function ver (id_curso) {
+		// 	window.location.assign("seleccionAlumnoCalifAsist.php?id_curso=" + id_curso );
+		// }
 
 
 	</script>
@@ -80,17 +127,25 @@
 					<thead>
 						<tr>
 							<th>#ID</th>
-							<th>Curso</th>
-							<th>Día</th>
-							<th>Horario</th>
-							<th>Sal&oacute;n</th>
-							<th>Ver alumnos</th>
+							<th>Nombre</th>
+							<th>Apellido Paterno</th>
+							<th>Apellido Materno</th>
+							<th>Calificaci&oacute;n Parcial 1</th>
+							<th>Calificaci&oacute;n Parcial 2</th>
+							<th>Calificaci&oacute;n Parcial 3</th>
+							<th>Calificaci&oacute;n Final</th>
+							<th>Asistencias</th>
+
 						</tr>
 					</thead>
 					<tbody id="tbodyCursos">
 					</tbody>
 				</table>
 			</div> <!-- /row  -->
+
+			<div class="row">
+				<button type="submit" class="btn btn-action" onclick="guardarCambios()"> Guardar Cambios</button>
+			</div>
 			
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>

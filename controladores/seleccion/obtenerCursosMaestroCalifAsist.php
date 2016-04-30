@@ -44,6 +44,7 @@
 			<td>$dias</td>
 			<td>$horario</td>
 			<td>$aula</td>
+			<td><button type=\"submit\" class=\"btn btn-default\" onclick=\"ver(".$row["id_curso"].")\">Seleccionar</button></td>
 		</tr>
 		 ";
 		$formCont = $formCont + 1;
