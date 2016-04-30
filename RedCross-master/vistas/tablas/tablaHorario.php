@@ -24,12 +24,12 @@ include "../../includes/sessionAlumno.php";
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script>
 		function loadCourses(){
-				xhr=new XMLHttpRequest();
-				xhr.onload= fillFields;
-				var url="../../controladores/seleccion/obtenerCursosAlumno.php";
-				xhr.open("GET", url, true);
-				xhr.send();
-			}
+			xhr=new XMLHttpRequest();
+			xhr.onload= fillFields;
+			var url="../../controladores/seleccion/obtenerCursosAlumno.php";
+			xhr.open("GET", url, true);
+			xhr.send();
+		}
 
 		function fillFields(){
 
@@ -85,6 +85,7 @@ include "../../includes/sessionAlumno.php";
 							<th>Día</th>
 							<th>Horario</th>
 							<th>Sal&oacute;n</th>
+							<th>Maestro</th>
 						</tr>
 					</thead>
 					<tbody id="tbodyCursos">
