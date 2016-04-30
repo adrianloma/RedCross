@@ -62,7 +62,7 @@ include "../../includes/sessionMaestro.php";
 				</header>
 				<div>
 					<a href="../tablas/tablaHorarioMaestro.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Ver mis cursos">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Ver mi horario">
 					</a>
 				</div>
 				<br>
