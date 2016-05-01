@@ -43,7 +43,7 @@
 		}
 
 
-		// $result = mysqli_query($conexion, $sql);
+		$result = mysqli_query($conexion, $sql);
 
 	}
 
