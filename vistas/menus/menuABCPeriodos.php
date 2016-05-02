@@ -126,7 +126,7 @@ include "../../includes/sessionAdmin.php";
 					<button type="submit" class="btn btn-default">Buscar</button>
 					<?php
 					if($_SESSION['altaPeriodo'] == 1)
-						echo "<button onclick=\alta()\" class=\"btn btn-default\">Crear Periodo</button>";
+						echo "<button onclick=\"alta()\" class=\"btn btn-default\">Crear Periodo</button>";
 					?>
 
 					<button onclick="regresar()" class="btn btn-default">Regresar</button>
