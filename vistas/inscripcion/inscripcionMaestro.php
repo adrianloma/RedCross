@@ -30,6 +30,15 @@ include "../../includes/sessionAdmin.php";
 	<![endif]-->
 </head>
 
+<script type="text/javascript">
+	 		window.onload = function(){
+				<?php
+					if($_SESSION['altaMaestro'] == 0)
+						echo 'window.location.href = "../menus/menuABCAdmins.php";';
+				?>
+			}
+</script>
+
 <body class="home">
 
 	<nav class="navbar navbar-default">

@@ -30,22 +30,27 @@ include "../../includes/sessionAdmin.php";
 	<![endif]-->
 
 	<script>
-	function selectOption(select, textOption){
-	for(option in select.options){
-		if(textOption == option.text){
-			option.selected = true;
-			break;
+		function selectOption(select, textOption){
+			for(option in select.options){
+				if(textOption == option.text){
+					option.selected = true;
+					break;
+				}
+			}
 		}
-	}
-	}
 		function search(){
-			var searchId ="r"+getQueryVariable("id_administrador");
+			<?php
+				if($_SESSION['cambioGrupoCursos'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';			
+			?>
 
+			var searchId ="r"+getQueryVariable("id_administrador");
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
 			var url="../../controladores/edicion/search.php?matricula=" + searchId;
 			xhr.open("GET", url, true);
 			xhr.send();
+
 		}
 			
 		function fillFields(){
@@ -57,7 +62,11 @@ include "../../includes/sessionAdmin.php";
 				alert(arrayFields[1]);
 				return;
 			}
-			document.getElementById('id_permiso').value ='r' + parseInt(arrayFields[1]);
+
+			document.getElementById('id_permiso').value = parseInt(arrayFields[1]);
+
+			document.getElementById('id_administrador').value = parseInt(arrayFields[2]);
+
 			document.getElementById('altaAdmin').checked = parseInt(arrayFields[3]);
 			document.getElementById('bajaAdmin').checked = parseInt(arrayFields[4]);
 			document.getElementById('cambioAdmin').checked = parseInt(arrayFields[5]);
@@ -113,6 +122,8 @@ include "../../includes/sessionAdmin.php";
 	<!-- Highlights - jumbotron -->
 	<form method="post" action="../../controladores/edicion/permisos.php">
 		<input type="hidden"  id="id_permiso" name="id_permiso" value="">
+		<input type="hidden"  id="id_administrador" name="id_administrador" value="">
+
 	<div class="">
 		<div class="container">
 			<div class="row">
@@ -202,28 +213,28 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Grupos&Cursos: Alta</label>
+					<label for="" class="col-lg-2 control-label">Grupos&Cursos&Carreras: Alta</label>
 					<div class="col-lg-10">
 						<input type="checkbox" class="form-control" id="altaGrupoCursos" name="altaGrupoCursos" placeholder="altaGrupoCursos" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Grupos&Cursos: Baja</label>
+					<label for="" class="col-lg-2 control-label">Grupos&Cursos&Carreras: Baja</label>
 					<div class="col-lg-10">
 						<input type="checkbox" class="form-control" id="bajaGrupoCursos" name="bajaGrupoCursos" placeholder="bajaGrupoCursos" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Grupos&Cursos: Cambio</label>
+					<label for="" class="col-lg-2 control-label">Grupos&Cursos&Carreras: Cambio</label>
 					<div class="col-lg-10">
 						<input type="checkbox" class="form-control" id="cambioGrupoCursos" name="cambioGrupoCursos" placeholder="cambioGrupoCursos" >	
 					</div>
 				</div>
 				<br><br>	
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Ver reportes</label>
+					<label for="" class="col-lg-2 control-label">Permisos: Cambio</label>
 					<div class="col-lg-10">
 						<input type="checkbox" class="form-control" id="verReportes" name="verReportes" placeholder="verReportes" >	
 					</div>

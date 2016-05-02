@@ -31,6 +31,10 @@ include "../../includes/sessionAdmin.php";
 	<script>
 
 	function search(){
+		<?php
+			if($_SESSION['bajaAlumno'] == 0)
+				echo 'window.location.href = "../menus/menuABCAdmins.php";';
+		?>
 		var searchId ="a"+getQueryVariable("id_alumno");
 
 	    xhr=new XMLHttpRequest();

@@ -75,6 +75,10 @@ if($result){
     var admin_data = <?php echo json_encode($row); ?>;
     
     window.onload = function(){
+      <?php
+        if($_SESSION['cambioAdmin'] == 0)
+          echo 'window.location.href = "../menus/menuABCAdmins.php";';
+      ?>
       if (admin_data != null && admin_data != "" ) {
         document.getElementById("nombres").value = admin_data.d_nombre;
         document.getElementById("APaterno").value = admin_data.d_apellidopaterno;

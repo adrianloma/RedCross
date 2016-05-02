@@ -31,6 +31,10 @@ include "../../includes/conexion.php";
 	<script>
 
 		function search(){
+			<?php
+				if($_SESSION['cambioPeriodo'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';
+			?>
 			var searchId ="e"+getQueryVariable("id_periodo");
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;

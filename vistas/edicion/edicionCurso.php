@@ -30,6 +30,10 @@ include "../../includes/conexion.php";
 	<script>
 
 		function search(){
+			<?php
+				if($_SESSION['cambioGrupoCursos'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';
+			?>
 			var searchId ="c"+getQueryVariable("id_curso");
 
 			xhr=new XMLHttpRequest();

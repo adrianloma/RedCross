@@ -31,6 +31,10 @@ include "../../includes/conexion.php";
 	<script>
 
 		function search(){
+			<?php
+				if($_SESSION['cambioGrupoCursos'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';
+			?>									
 			var searchId ="n"+getQueryVariable("id_Semestre");
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
@@ -58,7 +62,6 @@ include "../../includes/conexion.php";
 </head>
 
 <body class="home" onload="search()">
-
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">

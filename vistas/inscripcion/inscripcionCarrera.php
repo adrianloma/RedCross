@@ -29,6 +29,14 @@ include "../../includes/conexion.php";
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 	<script type="text/javascript">
+
+ 		window.onload = function(){
+			<?php
+				if($_SESSION['altaGrupoCursos'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';
+			?>
+		}
+
 		function regresar(){
 			window.history.back();
 		}

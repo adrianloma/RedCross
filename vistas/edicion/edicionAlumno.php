@@ -31,6 +31,10 @@
 	<script>
 
 	function search(){
+		<?php
+			if($_SESSION['cambioAlumno'] == 0)
+				echo 'window.location.href = "../menus/menuABCAdmins.php";';
+		?>
 		var searchId ="a"+getQueryVariable("id_alumno");
 
 	    xhr=new XMLHttpRequest();

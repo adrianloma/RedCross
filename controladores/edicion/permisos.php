@@ -4,7 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 	
-	$id_permiso = substr($_POST["id_permiso"], 1);;
+	$id_permiso = $_POST["id_permiso"];
 
 	if (isset($_POST['altaAdmin'])) {
 		$altaAdmin = 1;
@@ -90,7 +90,7 @@
 		$bajaGrupoCursos = 0;
 	}
 
-	if (isset($_POST['cambioGrupoCursoselds'])) {
+	if (isset($_POST['cambioGrupoCursos'])) {
 		$cambioGrupoCursoselds = 1;
 	} else {
 		$cambioGrupoCursoselds = 0;

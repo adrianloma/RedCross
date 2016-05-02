@@ -74,38 +74,44 @@ if($result){
     var admin_data = <?php echo json_encode($row); ?>;
 
     window.onload = function(){
-      if (admin_data != null && admin_data != "" ) {
-        document.getElementById("nombres").value = admin_data.d_nombre;
-        document.getElementById("APaterno").value = admin_data.d_apellidopaterno;
-        document.getElementById("AMaterno").value = admin_data.d_apellidomaterno;
-        document.getElementById("FechaNacimiento").value = admin_data.d_fechanac;
-        document.getElementById("LugarNacimiento").value = admin_data.d_lugarnac;
-        document.getElementById("Nacionalidad").value = admin_data.d_nacionalidad;
-        document.getElementById("RH").value = admin_data.d_rh;
-        document.getElementById("CURP").value = admin_data.d_curp;
-        document.getElementById("ServicioMedico").value = admin_data.d_servmedico;
-        document.getElementById("ActualmenteLaborando").value = admin_data.d_trabajo;
-        document.getElementById("Enfermedades").value = admin_data.d_enfermedades;
-        document.getElementById("Alergias").value = admin_data.d_alergias;
-        document.getElementById("DebilidadMotriz").value = admin_data.d_debilidadmotriz;
-        document.getElementById("Direccion").value = admin_data.d_domicilio;
-        document.getElementById("NumInterior").value = admin_data.d_numint;
-        document.getElementById("NumExterior").value = admin_data.d_numext;
-        document.getElementById("CP").value = admin_data.d_cp;
-        document.getElementById("Colonia").value = admin_data.d_colonia;
-        document.getElementById("Municipio").value = admin_data.d_municipio;
-        document.getElementById("TelefonoLocal").value = admin_data.d_numlocal;
-        document.getElementById("TelefonoCelular").value = admin_data.d_numcelular;
-        document.getElementById("Escolaridad").value = admin_data.d_escolaridad;
-        document.getElementById("OtrosEstudios").value = admin_data.d_otrosestudios;
-        document.getElementById("Email").value = admin_data.d_email;
-        selectOption(document.getElementById("Sexo"), admin_data.d_sexo);
-        selectOption(document.getElementById("EstadoCivil"), admin_data.d_estadocivil);
-        selectOption(document.getElementById("GrupoSanguineo"), admin_data.d_gposanguineo);
-      } else {
-        alert( "Hubo un error al tratar de obtener la información. Por favor intente de nuevo." );
-        history.back();
-      }
+
+      <?php
+        if($_SESSION['bajaAdmin'] == 0)
+          echo 'window.location.href = "../menus/menuABCAdmins.php";';
+        ?>
+        
+        if (admin_data != null && admin_data != "" ) {
+          document.getElementById("nombres").value = admin_data.d_nombre;
+          document.getElementById("APaterno").value = admin_data.d_apellidopaterno;
+          document.getElementById("AMaterno").value = admin_data.d_apellidomaterno;
+          document.getElementById("FechaNacimiento").value = admin_data.d_fechanac;
+          document.getElementById("LugarNacimiento").value = admin_data.d_lugarnac;
+          document.getElementById("Nacionalidad").value = admin_data.d_nacionalidad;
+          document.getElementById("RH").value = admin_data.d_rh;
+          document.getElementById("CURP").value = admin_data.d_curp;
+          document.getElementById("ServicioMedico").value = admin_data.d_servmedico;
+          document.getElementById("ActualmenteLaborando").value = admin_data.d_trabajo;
+          document.getElementById("Enfermedades").value = admin_data.d_enfermedades;
+          document.getElementById("Alergias").value = admin_data.d_alergias;
+          document.getElementById("DebilidadMotriz").value = admin_data.d_debilidadmotriz;
+          document.getElementById("Direccion").value = admin_data.d_domicilio;
+          document.getElementById("NumInterior").value = admin_data.d_numint;
+          document.getElementById("NumExterior").value = admin_data.d_numext;
+          document.getElementById("CP").value = admin_data.d_cp;
+          document.getElementById("Colonia").value = admin_data.d_colonia;
+          document.getElementById("Municipio").value = admin_data.d_municipio;
+          document.getElementById("TelefonoLocal").value = admin_data.d_numlocal;
+          document.getElementById("TelefonoCelular").value = admin_data.d_numcelular;
+          document.getElementById("Escolaridad").value = admin_data.d_escolaridad;
+          document.getElementById("OtrosEstudios").value = admin_data.d_otrosestudios;
+          document.getElementById("Email").value = admin_data.d_email;
+          selectOption(document.getElementById("Sexo"), admin_data.d_sexo);
+          selectOption(document.getElementById("EstadoCivil"), admin_data.d_estadocivil);
+          selectOption(document.getElementById("GrupoSanguineo"), admin_data.d_gposanguineo);
+        } else {
+          alert( "Hubo un error al tratar de obtener la información. Por favor intente de nuevo." );
+          history.back();
+        }
     }
 function confirmDelete(){
   if( window.confirm("Si se borra este administrador, no habra manera de recuperarlo, ¿estas seguro?"))

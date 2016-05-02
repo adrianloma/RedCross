@@ -29,6 +29,13 @@ include "../../includes/conexion.php";
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 	<script>
+ 		
+ 		window.onload = function(){
+			<?php
+				if($_SESSION['altaPeriodo'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';
+			?>
+		}
 		function regresar(){
 			window.history.back();
 		}

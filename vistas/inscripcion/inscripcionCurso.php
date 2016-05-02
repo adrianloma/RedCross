@@ -30,6 +30,10 @@ include "../../includes/conexion.php";
 	<![endif]-->
 	<script>
 		function carga() {
+			<?php
+				if($_SESSION['altaGrupoCursos'] == 0)
+					echo 'window.location.href = "../menus/menuABCAdmins.php";';
+			?>
 			document.getElementById("grupo").value = getQueryVariable("id_grupo");
 		}
 

@@ -76,8 +76,8 @@
 				$_SESSION['bajaPeriodo']=$row['p_bPeriodo'];
 				$_SESSION['cambioPeriodo']=$row['p_cPeriodo'];
 				$_SESSION['altaGrupoCursos']=$row['p_aGruposCursos'];
-				$_SESSION['bajaGrupoCursos']=$row['p_aGruposCursos'];
-				$_SESSION['cambioGrupoCursos']=$row['p_aGruposCursos'];
+				$_SESSION['bajaGrupoCursos']=$row['p_bGruposCursos'];
+				$_SESSION['cambioGrupoCursos']=$row['p_cGruposCursos'];
 				$_SESSION['verReportes']=$row['p_verReportes'];
 			}	
 
