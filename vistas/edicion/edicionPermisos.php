@@ -106,7 +106,7 @@ include "../../includes/sessionAdmin.php";
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
+					<li><a href="../menus/menuABCAdmins.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -245,11 +245,11 @@ include "../../includes/sessionAdmin.php";
 			<br><br>
 			<div class="col-lg-12 text-right">
 				<a href="#">
-					<button style="width:100%;" class="btn btn-action" type="submit">Guardar</button>
+					<button style="width:100%;" class="btn btn-action" type="submit" >Guardar</button>
 				</a>
 				<br><br>
 				<a href="../menus/menuABCAdmins.php">
-					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
+					<button style="width:100%;" class="btn btn-action" type="button" >Cancelar</button>
 				</a>
 			</div>
 		</div>
