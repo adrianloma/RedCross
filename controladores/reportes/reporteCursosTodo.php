@@ -15,6 +15,7 @@
               m.m_email,
               ca.c_nombre,
               n.ne_desc,
+              p.per_desc,
               g.gru_nombre,
               c.cu_nombre,
               c.cu_objetivo,
@@ -33,10 +34,12 @@
               grupo g ON g.id_grupo = c.id_grupo
                   INNER JOIN
               nivel_Escolar n ON n.id_nivelEscolar = g.id_nivelEscolar
+              	  INNER JOIN
+              periodo p ON p.id_periodo = g.id_periodo
                   INNER JOIN
               carrera ca ON ca.id_carrera = n.id_carrera
           order by
-            m.id_maestro";
+            p.per_desc, ca.c_nombre, n.ne_desc, m.id_maestro";
 
   $headings = array(  'id_maestro',
                       'm_nombre',
@@ -45,6 +48,7 @@
                       'm_email',
                       'c_nombre',
                       'ne_desc',
+                      'per_desc',
                       'gru_nombre',
                       'cu_nombre',
                       'cu_objetivo',
