@@ -25,6 +25,7 @@
                 i.inscr_calificacion1,
                 i.inscr_calificacion2,
                 i.inscr_calificacion3,
+                i.inscr_tareas,
                 ifNULL(i.inscr_calificacion,0) as CalificacionFinal,
                 ifNULL(i.inscr_asistencia,0) as Asistencia,
                 i.inscr_fecharegistro
@@ -66,6 +67,7 @@
                       'inscr_calificacion1',
                       'inscr_calificacion2',
                       'inscr_calificacion3',
+                      'inscr_tareas',
                       'inscr_calificacion',
                       'inscr_asistencia',
                       'inscr_fecharegistro');
