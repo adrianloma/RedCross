@@ -147,6 +147,7 @@ CREATE TABLE `inscritos` (
   `inscr_calificacion1` float NOT NULL COMMENT 'calificación primer parcial',
   `inscr_calificacion2` float NOT NULL COMMENT 'calificación segundo parcial',
   `inscr_calificacion3` float NOT NULL COMMENT 'calificación tercer parcial',
+  `inscr_tareas` float NOT NULL COMMENT 'tareas y trabajos',
   `inscr_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro ',
   `inscr_fechasFaltas` text NOT NULL,
   `inscr_Cursado` tinyint(1) NOT NULL DEFAULT '0'

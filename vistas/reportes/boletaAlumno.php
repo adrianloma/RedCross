@@ -95,11 +95,12 @@ include "../../includes/sessionAdmin.php";
 						<tr>
 							<th>#ID</th>
 							<th>Curso</th>
-							<th>Calificaci&oacute;n 1er parcial</th>
-							<th>Calificaci&oacute;n 2ndo parcial</th>
-							<th>Calificaci&oacute;n 3er parcial</th>
+							<th>Calificaci&oacute;n 1er parcial (%25)</th>
+							<th>Calificaci&oacute;n 2ndo parcial (%25)</th>
+							<th>Calificaci&oacute;n 3er parcial (%25)</th>
+							<th>Tareas y actividades (%25)</th>
 							<th>Calificaci&oacute;n Final</th>
-							<th>Asistencia</th>
+							<th>Faltas</th>
 							<th>Cursado</th>
 							<th>Periodo</th>
 							<th>Nivel Escolar</th>

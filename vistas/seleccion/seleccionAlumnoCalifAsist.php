@@ -49,7 +49,6 @@
 			var flag = true;
 			$("input").each(function(index, el) {
 				if($(this).val() != "" && !$.isNumeric($(this).val())){
-					console.log("asdasd");
 					flag = false;
 				}
 			});
@@ -75,8 +74,10 @@
 					alumno.cal1 = $('#cal1_a' + id_al).val();
 					alumno.cal2 = $('#cal2_a' + id_al).val();
 					alumno.cal3 = $('#cal3_a' + id_al).val();
+					alumno.cal4 = $('#cal4_a' + id_al).val();
 					alumno.cal = $('#cal_a' + id_al).val();
 					alumno.asis = $('#asis_a' + id_al).val();
+					alumno.id_curso = curso;
 
 					alumnos.push(alumno);
 
@@ -89,7 +90,6 @@
 					url: "updateCalifAsist.php",
 					data: {data : jsonStr},
 					cache: false,
-
 					success: function (responseText) {
 						if(responseText == "1"){
 							alert("Información guardada exitosamente."); 
@@ -113,11 +113,14 @@
 			}
 		}
 
-
-		// function ver (id_curso) {
-		// 	window.location.assign("seleccionAlumnoCalifAsist.php?id_curso=" + id_curso );
-		// }
-
+		function recalcula(id){
+			var cal1 = parseFloat($('#cal1_a' + id).val());
+			var cal2 = parseFloat($('#cal2_a' + id).val());
+			var cal3 = parseFloat($('#cal3_a' + id).val());
+			var cal4 = parseFloat($('#cal4_a' + id).val());
+			var res = (cal1 + cal2 + cal3 + cal4)/4;
+			$('#cal_a' + id).val(res.toString());
+		}
 
 	</script>
 
@@ -162,11 +165,12 @@
 							<th>Nombre</th>
 							<th>Apellido Paterno</th>
 							<th>Apellido Materno</th>
-							<th>Calificaci&oacute;n Parcial 1</th>
-							<th>Calificaci&oacute;n Parcial 2</th>
-							<th>Calificaci&oacute;n Parcial 3</th>
+							<th>Calificaci&oacute;n Parcial 1 (%25)</th>
+							<th>Calificaci&oacute;n Parcial 2 (%25)</th>
+							<th>Calificaci&oacute;n Parcial 3 (%25)</th>
+							<th>Tareas y actividades (%25)</th>
 							<th>Calificaci&oacute;n Final</th>
-							<th>Asistencias</th>
+							<th>Faltas</th>
 
 						</tr>
 					</thead>

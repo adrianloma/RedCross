@@ -10,6 +10,7 @@
 			    i.inscr_calificacion1,
 			    i.inscr_calificacion2,
 			    i.inscr_calificacion3,
+			    i.inscr_tareas,
 			    IFNULL(i.inscr_calificacion, 0) AS inscr_calificacion,
 			    IFNULL(i.inscr_asistencia, 0) AS inscr_asistencia,
 			    IF(i.inscr_Cursado = 0, 'No', 'Si') AS cursado,
@@ -42,6 +43,7 @@
 		$calif1 = $row['inscr_calificacion1'];
 		$calif2 = $row['inscr_calificacion2'];
 		$calif3 = $row['inscr_calificacion3'];
+		$calif4 = $row['inscr_tareas'];
 		$califFinal = $row['inscr_calificacion'];
 		$asistencia = $row['inscr_asistencia'];
 		$cursado = $row['cursado'];
@@ -55,6 +57,7 @@
 			<td>$calif1</td>
 			<td>$calif2</td>
 			<td>$calif3</td>
+			<td>$calif4</td>
 			<td>$califFinal</td>
 			<td>$asistencia</td>
 			<td>$cursado</td>

@@ -77,6 +77,9 @@
 							<th>Día</th>
 							<th>Horario</th>
 							<th>Sal&oacute;n</th>
+							<th>Carrera</th>
+							<th>Grupo</th>
+							<th>Nivel Escolar</th>
 						</tr>
 					</thead>
 					<tbody id="tbodyCursos">

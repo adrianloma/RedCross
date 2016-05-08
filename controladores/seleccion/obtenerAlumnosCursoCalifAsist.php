@@ -17,6 +17,7 @@
 				i.inscr_calificacion1,
 				i.inscr_calificacion2,
 				i.inscr_calificacion3,
+				i.inscr_tareas,
 				i.inscr_calificacion,
 				i.inscr_asistencia
 			FROM
@@ -47,6 +48,7 @@
 		$calificacion1 = $row['inscr_calificacion1'];
 		$calificacion2 = $row['inscr_calificacion2'];
 		$calificacion3 = $row['inscr_calificacion3'];
+		$tareas = $row['inscr_tareas'];
 		$calificacion = $row['inscr_calificacion'];
 
 		$asistencia = $row['inscr_asistencia'];
@@ -57,10 +59,11 @@
 			<td>$nombre</td>
 			<td>$apellido</td>
 			<td>$apellido2</td>
-			<td><input type=\"text\" id=\"cal1_a$idAlumno\" value=\"$calificacion1\"></input></td>
-			<td><input type=\"text\" id=\"cal2_a$idAlumno\" value=\"$calificacion2\"></input></td>
-			<td><input type=\"text\" id=\"cal3_a$idAlumno\" value=\"$calificacion3\"></input></td>
-			<td><input type=\"text\" id=\"cal_a$idAlumno\" value=\"$calificacion\"></input></td>
+			<td><input type=\"text\" id=\"cal1_a$idAlumno\" onchange='recalcula($idAlumno)' value=\"$calificacion1\"></input></td>
+			<td><input type=\"text\" id=\"cal2_a$idAlumno\" onchange='recalcula($idAlumno)' value=\"$calificacion2\"></input></td>
+			<td><input type=\"text\" id=\"cal3_a$idAlumno\" onchange='recalcula($idAlumno)' value=\"$calificacion3\"></input></td>
+			<td><input type=\"text\" id=\"cal4_a$idAlumno\" onchange='recalcula($idAlumno)' value=\"$tareas\"></input></td>
+			<td><input type=\"text\" id=\"cal_a$idAlumno\" value=\"$calificacion\" readonly></input></td>
 			<td><input type=\"text\" id=\"asis_a$idAlumno\" value=\"$asistencia\"></input></td>
 		</tr>
 		 ";
