@@ -61,6 +61,12 @@
 					<h1 class="page-title">Generador de reportes: Alumnos</h1>
 				</header>
 				<div>
+					<a href="menuBoletasCarreras.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Boletas de alumnos">
+					</a>
+				</div>
+				<br>
+				<div>
 					<a href="../../controladores/reportes/reporteAlumnos.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Todos los alumnos">
 					</a>
