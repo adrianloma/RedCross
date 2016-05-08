@@ -77,7 +77,7 @@ include "../../includes/sessionAdmin.php";
 			window.location.assign("../edicion/edicionPermisos.php?id_administrador="+id);
 		}
 		function regresar(){
-			window.history.back();
+			window.location.assign("../menus/menuAdmin.php");
 		}
 	</script>
 

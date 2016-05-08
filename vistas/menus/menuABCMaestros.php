@@ -74,7 +74,7 @@ include "../../includes/sessionAdmin.php";
 			window.location.assign("../inscripcion/inscripcionMaestro.php");
 		}
 		function regresar(){
-			window.history.back();
+			window.location.assign("../menus/menuAdmin.php");
 		}
 	</script>
 

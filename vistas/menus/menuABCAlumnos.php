@@ -79,7 +79,7 @@ include "../../includes/sessionAdmin.php";
 		}
 
 		function regresar(){
-			window.history.back();
+			window.location.assign("../menus/menuAdmin.php");
 		}
 	</script>
 
