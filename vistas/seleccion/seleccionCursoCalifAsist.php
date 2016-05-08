@@ -84,6 +84,9 @@
 							<th>Día</th>
 							<th>Horario</th>
 							<th>Sal&oacute;n</th>
+							<th>Carrera</th>
+							<th>Nivel Escolar</th>
+							<th>Grupo</th>
 							<th>Ver alumnos</th>
 						</tr>
 					</thead>
