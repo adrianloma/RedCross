@@ -64,7 +64,7 @@ include "../../includes/sessionAdmin.php";
   </nav>
 
   <!-- Intro -->
-  <div class="container text-center">/
+  <div class="container text-center">
     <h2 class="thin">Inscripci&oacute;n de administrador al Sistema</h2>
     <br>
   </div>
@@ -277,7 +277,7 @@ include "../../includes/sessionAdmin.php";
 
   </form>
   <!-- /Highlights -->
-<?php include "../../includes/footer.php"; ?>|<?php include "../../includes/footer.php"; ?>|<?php include "../../includes/footer.php"; ?>
+<?php include "../../includes/footer.php"; ?>
 
   <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
