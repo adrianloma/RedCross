@@ -40,7 +40,7 @@ include "../../includes/sessionAdmin.php";
 		}
 		function search(){
 			<?php
-				if($_SESSION['cambioGrupoCursos'] == 0)
+				if($_SESSION['verReportes'] == 0)
 					echo 'window.location.href = "../menus/menuABCAdmins.php";';			
 			?>
 
