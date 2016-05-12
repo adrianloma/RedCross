@@ -29,7 +29,7 @@
 						inner join
 					carrera ca on ca.id_carrera = n.id_carrera
 				WHERE
-				    c.id_maestro = 1 AND p.per_estatus = 1
+				    c.id_maestro = $idMaestro AND p.per_estatus = 1
 				ORDER BY c.id_curso";
 	$result = mysqli_query($conexion, $sql);
 	$tableBody = "";
