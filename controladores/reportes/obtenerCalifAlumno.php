@@ -4,7 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
-	$idAlumno = $_SESSION['matricula'];
+	$idAlumno = $_GET['id_alumno'];
 	$sql="	SELECT 
 			    i.id_alumno,
 			    i.inscr_calificacion1,

@@ -31,7 +31,7 @@ include "../../includes/sessionAdmin.php";
 			
 			xhr=new XMLHttpRequest();
 			xhr.onload= fillFields;
-			var url="../../controladores/reportes/obtenerCalifAlumno.php";
+			var url="../../controladores/reportes/obtenerCalifAlumno.php?id_alumno=" + unescape(getQueryVariable("id_alumno"));
 			xhr.open("GET", url, true);
 			xhr.send();
 		}
